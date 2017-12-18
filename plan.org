@@ -1,0 +1,18 @@
+* TODO solve wordnet[27%]
+1. [X] understand the problem
+2. [X] create stub files
+3. [ ] watch the lectures
+4. [ ] implement SAP class
+5. [ ] debug
+6. [ ] implement wordnet class
+7. [ ] debug
+8. [ ] implement outcast class
+9. [ ] debug
+10. [ ] optimise
+
+* TODO solve seam carving
+* TODO solve baseball elimination
+* TODO solve boggle
+* TODO solve burrow wheeler
+* TODO understand linear programming
+* TODO understand intractability
