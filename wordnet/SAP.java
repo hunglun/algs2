@@ -2,14 +2,34 @@ import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.Digraph;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.BreadthFirstDirectedPaths;
 public class SAP {
-
+    private boolean[] marked;
+    private Digraph G;
     // constructor takes a digraph (not necessarily a DAG)
-    public SAP(Digraph G){}
+    public SAP(Digraph G){
+      //TODO create a defensive copy of G
+      this.G = G;
+      marked = new boolean[G.V()];
+    }
 
     // length of shortest ancestral path between v and w; -1 if no such path
     public int length(int v, int w){
- return 0;
+      BreadthFirstDirectedPaths vbfs = new BreadthFirstDirectedPaths(G,v);
+      BreadthFirstDirectedPaths wbfs = new BreadthFirstDirectedPaths(G,w);
+      
+      int result = Integer.MAX_VALUE;
+      int temp;
+      for (int i = 0; i < this.G.V(); i++) {
+        if (vbfs.hasPathTo(i) && wbfs.hasPathTo(i)){
+           temp = vbfs.distTo(i) + wbfs.distTo(i);
+           if (temp < result) result = temp;
+        }
+      }
+      
+      if (result == Double.MAX_VALUE) return -1;
+      
+      return result;
     }
 
     // a common ancestor of v and w that participates in a shortest ancestral path; -1 if no such path

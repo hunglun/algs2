@@ -1,12 +1,12 @@
-* TODO solve wordnet[27%]
+* TODO solve wordnet[30%]
 1. [X] understand the problem
 2. [X] create stub files
-3. [ ] watch the lectures
-4. [ ] implement SAP class
+3. [X] watch the lectures (3h)
+4. [ ] implement SAP class (1h)
 5. [ ] debug
-6. [ ] implement wordnet class
+6. [ ] implement wordnet class (1h)
 7. [ ] debug
-8. [ ] implement outcast class
+8. [ ] implement outcast class (1h)
 9. [ ] debug
 10. [ ] optimise
 
