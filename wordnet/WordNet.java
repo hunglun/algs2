@@ -8,6 +8,10 @@ import java.util.Stack;
 
 public class WordNet {
   private TreeSet<Synset> synsetsTree;
+  ST<Synset, Integer> st2;
+  Digraph digraph;
+  SAP sap;
+  Synset a[];
   // constructor takes the name of the two input files
   public WordNet(String synsets, String hypernyms){
     In in;
@@ -15,6 +19,8 @@ public class WordNet {
     String line;
     String fields[];
     ST<Integer, Synset> st = new ST<Integer, Synset>();
+    st2 = new ST<Synset, Integer>();
+   
     in = new In(synsets);
     line = in.readLine();
     int table_id = 0;
@@ -28,18 +34,25 @@ public class WordNet {
       synset_id = Integer.parseInt(fields[0]);
       StdOut.printf("id = %d, nouns = %s, definition = %s\n", synset_id, fields[1], fields[2]);             
       line = in.readLine();
-      synsetsTree.add(new Synset(synset_id,fields[1].split(" "),fields[2]));
-      st.put(synset_id, new Synset(table_id++,fields[1].split(" "),fields[2]));
+      Synset synset = new Synset(synset_id,fields[1].split(" "),fields[2]);
+      Synset synset2 = new Synset(table_id,fields[1].split(" "),fields[2]);
+      synsetsTree.add(synset);
+      st.put(synset_id, synset2);
+      st2.put(synset2, table_id);
+      
+      table_id++;
        // create a BST from synsets.txt, making isNoun return in logarithmic time
     } 
-    
-    
+    a = new Synset[synsetsTree.size()];
+    for(Synset synset : synsetsTree){
+      //a[synset.table_id] = synset2;
+    }
     //in.close();
     
     in = new In(hypernyms);
     line = in.readLine();
     // create a digraph based on hypernyms.txt and pass G to SAP class in distance and sap methods.
-    Digraph digraph = new Digraph(synsetsTree.size());
+    digraph = new Digraph(synsetsTree.size());
     while(line != null){
       // example of a line:
       // 164,21012,56099
@@ -55,6 +68,8 @@ public class WordNet {
       line = in.readLine();
       
     } 
+    
+    sap = new SAP(digraph);
   }
   private class Synset implements Comparable<Synset>{
     public final int id;
@@ -99,11 +114,35 @@ public class WordNet {
   }
   
   // distance between nounA and nounB (defined below)
-  public int distance(String nounA, String nounB){return 0;}
+  public int distance(String nounA, String nounB){
+    if (isNoun(nounA) == false) return -1;
+    if (isNoun(nounB) == false) return -1;
+    String _nounA[] = new String[1];
+    _nounA[0] = nounA;
+    String _nounB[] = new String[1];
+    _nounB[0] = nounB;
+    
+    int table_ida = st2.get(new Synset(1, _nounA, ""));
+    int table_idb = st2.get(new Synset(1, _nounB, ""));
+    return sap.length(table_ida, table_idb);
+  }
   
   // a synset (second field of synsets.txt) that is the common ancestor of nounA and nounB
   // in a shortest ancestral path (defined below)
-  public String sap(String nounA, String nounB){return "";}
+  public String sap(String nounA, String nounB){
+    if (isNoun(nounA) == false) throw new IllegalArgumentException("not a wordnet noun");
+    if (isNoun(nounB) == false) throw new IllegalArgumentException("not a wordnet noun");
+    String _nounA[] = new String[1];
+    _nounA[0] = nounA;
+    String _nounB[] = new String[1];
+    _nounB[0] = nounB;
+    
+    int table_ida = st2.get(new Synset(1, _nounA, ""));
+    int table_idb = st2.get(new Synset(1, _nounB, ""));
+    
+    int ancestor = sap.ancestor(table_ida, table_idb);
+    return "";
+  }
   
   // do unit testing of this class
   public static void main(String[] args){
@@ -111,6 +150,15 @@ public class WordNet {
     assert(wn.isNoun("a"));
     for(String n : wn.nouns()){
       StdOut.printf("%s\n", n);
+    }
+    
+    SAP sap = new SAP(wn.digraph);
+    while (!StdIn.isEmpty()) {
+      int v = StdIn.readInt();
+      int w = StdIn.readInt();
+      int length   = sap.length(v, w);
+      int ancestor = sap.ancestor(v, w);
+      StdOut.printf("length = %d, ancestor = %d\n", length, ancestor);
     }
   }
 }
