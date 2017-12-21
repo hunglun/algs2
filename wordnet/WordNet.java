@@ -3,11 +3,14 @@ import edu.princeton.cs.algs4.Digraph;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 import java.util.TreeSet;
+import java.util.Stack;
+
 public class WordNet {
-  
+  private TreeSet<Synset> synsetsTree;
   // constructor takes the name of the two input files
   public WordNet(String synsets, String hypernyms){
     In in;
+    synsetsTree = new TreeSet<Synset>();
     String line;
     String fields[];
     
@@ -23,13 +26,17 @@ public class WordNet {
       synset_id = Integer.parseInt(fields[0]);
       StdOut.printf("id = %d, nouns = %s, definition = %s\n", synset_id, fields[1], fields[2]);             
       line = in.readLine();
+      synsetsTree.add(new Synset(synset_id,fields[1].split(" "),fields[2]));  
+       // create a BST from synsets.txt, making isNoun return in logarithmic time
     } 
     
     
+    //in.close();
+    
     in = new In(hypernyms);
     line = in.readLine();
-  
-     
+    // create a digraph based on hypernyms.txt and pass G to SAP class in distance and sap methods.
+    Digraph digraph = new Digraph(synsetsTree.size());
     while(line != null){
       // example of a line:
       // 164,21012,56099
@@ -40,16 +47,50 @@ public class WordNet {
       }
       StdOut.printf("\n");                
       line = in.readLine();
+      
     } 
   }
-  
+  private class Synset implements Comparable<Synset>{
+    private int id;
+    public final String nouns[];
+    private String definition;
+    public Synset(int id, String nouns[], String definition){
+      this.id = id;
+      this.nouns = nouns;
+      this.definition = definition;
+    }
+    public int compareTo(Synset that) {
+      
+      for(String thisNoun : nouns){
+        for(String thatNoun : that.nouns){
+          if (thisNoun.compareTo(thatNoun) == 0) return 0;
+        }
+      }
+      
+      return 1; // don't care about other cases.
+    }
+
+  }
   // returns all WordNet nouns
   public Iterable<String> nouns(){
-    return new TreeSet<String>();
+    Stack<String> stack = new Stack<String>();
+    for(Synset s : synsetsTree){
+      for(String noun : s.nouns){
+        stack.push(noun);
+      }
+    }
+    return stack;
   }
   
   // is the word a WordNet noun?
-  public boolean isNoun(String word){return false;}
+  public boolean isNoun(String word){
+    for(String n: nouns()){
+      if (n.equals(word)){
+        return true;
+      }
+    }
+    return false;
+  }
   
   // distance between nounA and nounB (defined below)
   public int distance(String nounA, String nounB){return 0;}
@@ -61,6 +102,9 @@ public class WordNet {
   // do unit testing of this class
   public static void main(String[] args){
     WordNet wn = new WordNet(args[0], args[1]);
-    
+    assert(wn.isNoun("a"));
+    for(String n : wn.nouns()){
+      StdOut.printf("%s\n", n);
+    }
   }
 }
