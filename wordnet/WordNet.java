@@ -8,7 +8,7 @@ import java.util.Stack;
 
 public class WordNet {
   private TreeSet<Synset> synsetsTree;
-  ST<Synset, Integer> st2;
+  public ST<String, Integer> st2;
   Digraph digraph;
   SAP sap;
   Synset a[];
@@ -19,7 +19,7 @@ public class WordNet {
     String line;
     String fields[];
     ST<Integer, Synset> st = new ST<Integer, Synset>();
-    st2 = new ST<Synset, Integer>();
+    st2 = new ST<String, Integer>();
    
     in = new In(synsets);
     line = in.readLine();
@@ -34,18 +34,20 @@ public class WordNet {
       synset_id = Integer.parseInt(fields[0]);
       StdOut.printf("id = %d, nouns = %s, definition = %s\n", synset_id, fields[1], fields[2]);             
       line = in.readLine();
-      Synset synset = new Synset(synset_id,fields[1].split(" "),fields[2]);
-      Synset synset2 = new Synset(table_id,fields[1].split(" "),fields[2]);
+      Synset synset = new Synset(synset_id,fields[1].split(" "),fields[2],table_id);
       synsetsTree.add(synset);
-      st.put(synset_id, synset2);
-      st2.put(synset2, table_id);
+      st.put(synset_id, synset);
+      String[] _noun = new String[1];
+    
+      for(String noun : fields[1].split(" "))
+        st2.put(noun, table_id);
       
       table_id++;
        // create a BST from synsets.txt, making isNoun return in logarithmic time
     } 
     a = new Synset[synsetsTree.size()];
     for(Synset synset : synsetsTree){
-      //a[synset.table_id] = synset2;
+      a[synset.table_id] = synset;
     }
     //in.close();
     
@@ -74,21 +76,18 @@ public class WordNet {
   private class Synset implements Comparable<Synset>{
     public final int id;
     public final String nouns[];
+    public final int table_id;
     private String definition;
 
-    public Synset(int id, String nouns[], String definition){
+    public Synset(int id, String nouns[], String definition, int table_id){
       this.id = id;
       this.nouns = nouns;
       this.definition = definition;
+      this.table_id = table_id;
     }
     public int compareTo(Synset that) {
-      for(String thisNoun : nouns){
-        for(String thatNoun : that.nouns){
-          if (thisNoun.compareTo(thatNoun) == 0) return 0;
-        }
-      }
       
-      return 1; // don't care about other cases.
+      return this.nouns[0].compareTo(that.nouns[0]);
     }
 
   }
@@ -115,50 +114,77 @@ public class WordNet {
   
   // distance between nounA and nounB (defined below)
   public int distance(String nounA, String nounB){
-    if (isNoun(nounA) == false) return -1;
-    if (isNoun(nounB) == false) return -1;
-    String _nounA[] = new String[1];
-    _nounA[0] = nounA;
-    String _nounB[] = new String[1];
-    _nounB[0] = nounB;
-    
-    int table_ida = st2.get(new Synset(1, _nounA, ""));
-    int table_idb = st2.get(new Synset(1, _nounB, ""));
-    return sap.length(table_ida, table_idb);
+ 
+    Object table_ida = st2.get(nounA);
+    Object table_idb = st2.get(nounB);
+    if (table_idb ==null) throw new IllegalArgumentException("not a wordnet noun");
+    if (table_idb ==null) throw new IllegalArgumentException("not a wordnet noun");
+    return sap.length((Integer)table_ida, (Integer)table_idb);
   }
   
   // a synset (second field of synsets.txt) that is the common ancestor of nounA and nounB
   // in a shortest ancestral path (defined below)
   public String sap(String nounA, String nounB){
-    if (isNoun(nounA) == false) throw new IllegalArgumentException("not a wordnet noun");
-    if (isNoun(nounB) == false) throw new IllegalArgumentException("not a wordnet noun");
-    String _nounA[] = new String[1];
-    _nounA[0] = nounA;
-    String _nounB[] = new String[1];
-    _nounB[0] = nounB;
+    Object table_ida = st2.get(nounA);
+    Object table_idb = st2.get(nounB);
+    if (table_idb ==null) throw new IllegalArgumentException("not a wordnet noun");
+    if (table_idb ==null) throw new IllegalArgumentException("not a wordnet noun");
     
-    int table_ida = st2.get(new Synset(1, _nounA, ""));
-    int table_idb = st2.get(new Synset(1, _nounB, ""));
-    
-    int ancestor = sap.ancestor(table_ida, table_idb);
-    return "";
+    int ancestor = sap.ancestor((Integer)table_ida, (Integer)table_idb);
+    if (ancestor == -1) throw new IllegalArgumentException("no common ancestor found!");
+    String result = "";
+    for(String n : a[ancestor].nouns){
+      result += n;
+    }
+    return result;
   }
-  
+  private int size(){
+   return st2.size();
+  }
   // do unit testing of this class
   public static void main(String[] args){
     WordNet wn = new WordNet(args[0], args[1]);
+    
+  
     assert(wn.isNoun("a"));
     for(String n : wn.nouns()){
       StdOut.printf("%s\n", n);
     }
     
     SAP sap = new SAP(wn.digraph);
+    
+    int length   = sap.length(0, 1);
+    int ancestor = sap.ancestor(0, 1);     
+    StdOut.printf("length = %d, ancestor = %d\n", length, ancestor);
+    
+    length   = sap.length(0, 0);
+    ancestor = sap.ancestor(0, 0);     
+    StdOut.printf("length = %d, ancestor = %d\n", length, ancestor);
+    
+    assert(wn.size() == 3);
+    String m = "a";
+    String n = "b";
+    String ancestor_name = "";
+    int distance   = wn.distance(m, n);
+    ancestor_name = wn.sap(m, n);
+    
+    StdOut.printf("distance = %d, ancestor = %s\n", distance, ancestor_name);
+ /*   
     while (!StdIn.isEmpty()) {
       int v = StdIn.readInt();
       int w = StdIn.readInt();
       int length   = sap.length(v, w);
-      int ancestor = sap.ancestor(v, w);
+      int ancestor = sap.ancestor(v, w);     
       StdOut.printf("length = %d, ancestor = %d\n", length, ancestor);
+      
+      String m = StdIn.readString();
+      String n = StdIn.readString();
+      int distance   = wn.distance(m, n);
+      String ancestor_name = wn.sap(m, n);
+      
+      StdOut.printf("length = %d, ancestor = %s\n", distance, ancestor_name);
+      
     }
+  */
   }
 }
