@@ -1,15 +1,20 @@
-* TODO solve wordnet[75%]
+* DONE solve wordnet[100%]
 1. [X] understand the problem
 2. [X] create stub files
 3. [X] watch the lectures (3h)
 4. [X] implement SAP class (1h)
 5. [X] implement wordnet class (1h)
 6. [X] implement outcast class (1h)
-7. [ ] debug
-8. [ ] optimise
+7. [X] debug
+8. [X] optimise
+* TODO solve seam carving [16%]
+1. [X] understand the problem
+2. [ ] watch the lectures (3h)
+3. [ ] create stub files
+4. [ ] implement SeamCarver.java (1h)
+5. [ ] debug
+6. [ ] optimise
 
-
-* TODO solve seam carving
 * TODO solve baseball elimination
 * TODO solve boggle
 * TODO solve burrow wheeler

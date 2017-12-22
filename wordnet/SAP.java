@@ -9,7 +9,7 @@ public class SAP {
     private int ancestor;
     // constructor takes a digraph (not necessarily a DAG)
     public SAP(Digraph G){
-      //TODO create a defensive copy of G
+      
       this.G = new Digraph(G);
       marked = new boolean[G.V()];
       ancestor = -1;

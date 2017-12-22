@@ -8,56 +8,51 @@ import java.util.TreeSet;
 import java.util.Stack;
 
 public class WordNet {
-  private TreeSet<Synset> synsetsTree;
-  private ST<String, Bag<Integer>> st2;
+  private Bag<Synset> synsetbag;
+  private ST<String, Bag<Integer>> noun_2_tableid_symtable;
   private Digraph digraph;
   private SAP sap;
   private Synset a[];
   // constructor takes the name of the two input files
   public WordNet(String synsets, String hypernyms){
     In in;
-    synsetsTree = new TreeSet<Synset>();
     String line;
     String fields[];
-    ST<Integer, Synset> st = new ST<Integer, Synset>();
-    st2 = new ST<String, Bag<Integer>>();
-   
+    ST<Integer, Synset> id_2_synset_symtable = new ST<Integer, Synset>();
+    int synset_id;
+    int table_id = 0;
+
+    noun_2_tableid_symtable = new ST<String, Bag<Integer>>();
+    synsetbag = new Bag<Synset>(); 
     in = new In(synsets);
     line = in.readLine();
-    int table_id = 0;
-  
-    int synset_id;    
     while(line != null){
       // example of a line:
       // 36,AND_circuit AND_gate,a circuit in a computer that fires only when all of its inputs fire
       fields = line.split(",");
-     
       synset_id = Integer.parseInt(fields[0]);
      // StdOut.printf("id = %d, nouns = %s, definition = %s\n", synset_id, fields[1], fields[2]);             
       line = in.readLine();
       Synset synset = new Synset(synset_id,fields[1].split(" "),fields[2],table_id);
-      synsetsTree.add(synset);
-      st.put(synset_id, synset);
-    
-      
+      synsetbag.add(synset);
+      id_2_synset_symtable.put(synset_id, synset);
       Bag<Integer> tablelist;
       for(String noun : fields[1].split(" ")){
-        tablelist = st2.get(noun);
+        tablelist = noun_2_tableid_symtable.get(noun);
         if (tablelist == null){
           tablelist = new Bag<Integer>();
         }
         tablelist.add(table_id);
-        st2.put(noun, tablelist);
-             
+        noun_2_tableid_symtable.put(noun, tablelist);
       }
       
-      table_id++;
+      table_id++; // replace table id with synset id
        // create a BST from synsets.txt, making isNoun return in logarithmic time
     } 
-    int size = synsetsTree.size();
-    assert(table_id == synsetsTree.size());
-    a = new Synset[synsetsTree.size()];
-    for(Synset synset : synsetsTree){
+    int size = synsetbag.size();
+    assert(table_id == synsetbag.size());
+    a = new Synset[synsetbag.size()];
+    for(Synset synset : synsetbag){
       a[synset.table_id] = synset;
     }
     //in.close();
@@ -65,7 +60,7 @@ public class WordNet {
     in = new In(hypernyms);
     line = in.readLine();
     // create a digraph based on hypernyms.txt and pass G to SAP class in distance and sap methods.
-    digraph = new Digraph(synsetsTree.size());
+    digraph = new Digraph(synsetbag.size());
     while(line != null){
       // example of a line:
       // 164,21012,56099
@@ -73,8 +68,8 @@ public class WordNet {
    //   StdOut.printf("synsetid = %d, hypernyms: ", Integer.parseInt(fields[0]));
       for(int i = 1; i < fields.length; i++){
      //   StdOut.printf("%d ", Integer.parseInt(fields[i]));
-        int v = st.get(Integer.parseInt(fields[0])).id;
-        int w = st.get(Integer.parseInt(fields[i])).id;
+        int v = id_2_synset_symtable.get(Integer.parseInt(fields[0])).id;
+        int w = id_2_synset_symtable.get(Integer.parseInt(fields[i])).id;
         digraph.addEdge(v,w);
       }
      // StdOut.printf("\n");                
@@ -107,7 +102,7 @@ public class WordNet {
   // returns all WordNet nouns
   public Iterable<String> nouns(){
     Stack<String> stack = new Stack<String>();
-    for(Synset s : synsetsTree){
+    for(Synset s : synsetbag){
       for(String noun : s.nouns){
         stack.push(noun);
       }
@@ -117,15 +112,15 @@ public class WordNet {
   
   // is the word a WordNet noun?
   public boolean isNoun(String word){
-    return (st2.get(word) == null);
+    return (noun_2_tableid_symtable.get(word) != null);
   }
   
   // distance between nounA and nounB (defined below)
   public int distance(String nounA, String nounB){
    // assert(isNoun(nounA));
     //assert(isNoun(nounB));
-    Bag<Integer> table_ida = st2.get(nounA);
-    Bag<Integer> table_idb = st2.get(nounB);
+    Bag<Integer> table_ida = noun_2_tableid_symtable.get(nounA);
+    Bag<Integer> table_idb = noun_2_tableid_symtable.get(nounB);
     if (table_idb ==null) throw new IllegalArgumentException("not a wordnet noun");
     if (table_idb ==null) throw new IllegalArgumentException("not a wordnet noun");
     return sap.length(table_ida, table_idb);
@@ -134,8 +129,8 @@ public class WordNet {
   // a synset (second field of synsets.txt) that is the common ancestor of nounA and nounB
   // in a shortest ancestral path (defined below)
   public String sap(String nounA, String nounB){
-    Bag<Integer> table_ida = st2.get(nounA);
-    Bag<Integer> table_idb = st2.get(nounB);
+    Bag<Integer> table_ida = noun_2_tableid_symtable.get(nounA);
+    Bag<Integer> table_idb = noun_2_tableid_symtable.get(nounB);
     if (table_idb ==null) throw new IllegalArgumentException("not a wordnet noun");
     if (table_idb ==null) throw new IllegalArgumentException("not a wordnet noun");
     
@@ -156,45 +151,13 @@ public class WordNet {
   public static void main(String[] args){
     WordNet wn = new WordNet(args[0], args[1]);
     SAP sap = new SAP(wn.digraph);
-  /*
     assert(wn.isNoun("a"));
-    for(String n : wn.nouns()){
-      StdOut.printf("%s\n", n);
-    }
-    
-    SAP sap = new SAP(wn.digraph);
-    
-    int length   = sap.length(0, 1);
-    int ancestor = sap.ancestor(0, 1);     
-    StdOut.printf("length = %d, ancestor = %d\n", length, ancestor);
-    
-    length   = sap.length(0, 0);
-    ancestor = sap.ancestor(0, 0);     
-    StdOut.printf("length = %d, ancestor = %d\n", length, ancestor);
-    
-    assert(wn.size() == 3);
-    String m = "a";
-    String n = "b";
-    String ancestor_name = "";
-    int distance   = wn.distance(m, n);
-    ancestor_name = wn.sap(m, n);
-    
-    StdOut.printf("distance = %d, ancestor = %s\n", distance, ancestor_name);
-*/   
     while (!StdIn.isEmpty()) {
-//      int v = StdIn.readInt();
-//      int w = StdIn.readInt();
-//      int length   = sap.length(v, w);
-//      int ancestor = sap.ancestor(v, w);     
-//      StdOut.printf("length = %d, ancestor = %d\n", length, ancestor);
-//      
       String m = StdIn.readString();
       String n = StdIn.readString();
       int distance   = wn.distance(m, n);
       String ancestor_name = wn.sap(m, n);
-      
       StdOut.printf("length = %d, ancestor = %s\n", distance, ancestor_name);
-      
     }
   }
 }
