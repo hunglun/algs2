@@ -3,12 +3,13 @@ import edu.princeton.cs.algs4.ST;
 import edu.princeton.cs.algs4.Digraph;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.Bag;
 import java.util.TreeSet;
 import java.util.Stack;
 
 public class WordNet {
   private TreeSet<Synset> synsetsTree;
-  private ST<String, Integer> st2;
+  private ST<String, Bag<Integer>> st2;
   private Digraph digraph;
   private SAP sap;
   private Synset a[];
@@ -19,7 +20,7 @@ public class WordNet {
     String line;
     String fields[];
     ST<Integer, Synset> st = new ST<Integer, Synset>();
-    st2 = new ST<String, Integer>();
+    st2 = new ST<String, Bag<Integer>>();
    
     in = new In(synsets);
     line = in.readLine();
@@ -38,9 +39,17 @@ public class WordNet {
       synsetsTree.add(synset);
       st.put(synset_id, synset);
       String[] _noun = new String[1];
-    
-      for(String noun : fields[1].split(" "))
-        st2.put(noun, table_id);
+      
+      Bag<Integer> tablelist;
+      for(String noun : fields[1].split(" ")){
+        tablelist = st2.get(noun);
+        if (tablelist == null){
+          tablelist = new Bag<Integer>();
+        }
+        tablelist.add(table_id);
+        st2.put(noun, tablelist);
+             
+      }
       
       table_id++;
        // create a BST from synsets.txt, making isNoun return in logarithmic time
@@ -108,33 +117,28 @@ public class WordNet {
   
   // is the word a WordNet noun?
   public boolean isNoun(String word){
-    for(String n: nouns()){
-      if (n.equals(word)){
-        return true;
-      }
-    }
-    return false;
+    return (st2.get(word) == null);
   }
   
   // distance between nounA and nounB (defined below)
   public int distance(String nounA, String nounB){
  
-    Object table_ida = st2.get(nounA);
-    Object table_idb = st2.get(nounB);
+    Bag<Integer> table_ida = st2.get(nounA);
+    Bag<Integer> table_idb = st2.get(nounB);
     if (table_idb ==null) throw new IllegalArgumentException("not a wordnet noun");
     if (table_idb ==null) throw new IllegalArgumentException("not a wordnet noun");
-    return sap.length((Integer)table_ida, (Integer)table_idb);
+    return sap.length(table_ida, table_idb);
   }
   
   // a synset (second field of synsets.txt) that is the common ancestor of nounA and nounB
   // in a shortest ancestral path (defined below)
   public String sap(String nounA, String nounB){
-    Object table_ida = st2.get(nounA);
-    Object table_idb = st2.get(nounB);
+    Bag<Integer> table_ida = st2.get(nounA);
+    Bag<Integer> table_idb = st2.get(nounB);
     if (table_idb ==null) throw new IllegalArgumentException("not a wordnet noun");
     if (table_idb ==null) throw new IllegalArgumentException("not a wordnet noun");
     
-    int ancestor = sap.ancestor((Integer)table_ida, (Integer)table_idb);
+    int ancestor = sap.ancestor(table_ida, table_idb);
     if (ancestor == -1) throw new IllegalArgumentException("no common ancestor found!");
     String result = "";
     for(String n : a[ancestor].nouns){
