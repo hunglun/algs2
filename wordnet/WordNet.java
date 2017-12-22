@@ -38,7 +38,7 @@ public class WordNet {
       Synset synset = new Synset(synset_id,fields[1].split(" "),fields[2],table_id);
       synsetsTree.add(synset);
       st.put(synset_id, synset);
-      String[] _noun = new String[1];
+    
       
       Bag<Integer> tablelist;
       for(String noun : fields[1].split(" ")){
@@ -122,7 +122,8 @@ public class WordNet {
   
   // distance between nounA and nounB (defined below)
   public int distance(String nounA, String nounB){
- 
+   // assert(isNoun(nounA));
+    //assert(isNoun(nounB));
     Bag<Integer> table_ida = st2.get(nounA);
     Bag<Integer> table_idb = st2.get(nounB);
     if (table_idb ==null) throw new IllegalArgumentException("not a wordnet noun");
@@ -142,7 +143,11 @@ public class WordNet {
     if (ancestor == -1) throw new IllegalArgumentException("no common ancestor found!");
     String result = "";
     for(String n : a[ancestor].nouns){
-      result += n;
+      if (result!=""){
+       result += " " + n;
+      }else{
+       result = n;
+      }
     }
     return result;
   }
