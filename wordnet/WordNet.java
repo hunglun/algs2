@@ -30,9 +30,9 @@ public class WordNet {
       // example of a line:
       // 36,AND_circuit AND_gate,a circuit in a computer that fires only when all of its inputs fire
       fields = line.split(",");
-      assert(fields.length == 3);
+     
       synset_id = Integer.parseInt(fields[0]);
-      StdOut.printf("id = %d, nouns = %s, definition = %s\n", synset_id, fields[1], fields[2]);             
+     // StdOut.printf("id = %d, nouns = %s, definition = %s\n", synset_id, fields[1], fields[2]);             
       line = in.readLine();
       Synset synset = new Synset(synset_id,fields[1].split(" "),fields[2],table_id);
       synsetsTree.add(synset);
@@ -45,6 +45,7 @@ public class WordNet {
       table_id++;
        // create a BST from synsets.txt, making isNoun return in logarithmic time
     } 
+    int size = synsetsTree.size();
     assert(table_id == synsetsTree.size());
     a = new Synset[synsetsTree.size()];
     for(Synset synset : synsetsTree){
@@ -60,14 +61,14 @@ public class WordNet {
       // example of a line:
       // 164,21012,56099
       fields = line.split(",");
-      StdOut.printf("synsetid = %d, hypernyms: ", Integer.parseInt(fields[0]));
+   //   StdOut.printf("synsetid = %d, hypernyms: ", Integer.parseInt(fields[0]));
       for(int i = 1; i < fields.length; i++){
-        StdOut.printf("%d ", Integer.parseInt(fields[i]));
+     //   StdOut.printf("%d ", Integer.parseInt(fields[i]));
         int v = st.get(Integer.parseInt(fields[0])).id;
         int w = st.get(Integer.parseInt(fields[i])).id;
         digraph.addEdge(v,w);
       }
-      StdOut.printf("\n");                
+     // StdOut.printf("\n");                
       line = in.readLine();
       
     } 
@@ -88,7 +89,9 @@ public class WordNet {
     }
     public int compareTo(Synset that) {
       
-      return this.nouns[0].compareTo(that.nouns[0]);
+      if( this.id > that.id ) return 1;
+      if( this.id < that.id ) return -1;
+      return 0;
     }
 
   }
