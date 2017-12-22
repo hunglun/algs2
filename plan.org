@@ -1,12 +1,12 @@
-* TODO solve wordnet[50%]
+* TODO solve wordnet[62%]
 1. [X] understand the problem
 2. [X] create stub files
 3. [X] watch the lectures (3h)
 4. [X] implement SAP class (1h)
-5. [ ] implement wordnet class (1h)
-7. [ ] implement outcast class (1h)
-8. [ ] debug
-9. [ ] optimise
+5. [X] implement wordnet class (1h)
+6. [ ] implement outcast class (1h)
+7. [ ] debug
+8. [ ] optimise
 
 
 * TODO solve seam carving

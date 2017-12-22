@@ -8,10 +8,10 @@ import java.util.Stack;
 
 public class WordNet {
   private TreeSet<Synset> synsetsTree;
-  public ST<String, Integer> st2;
-  Digraph digraph;
-  SAP sap;
-  Synset a[];
+  private ST<String, Integer> st2;
+  private Digraph digraph;
+  private SAP sap;
+  private Synset a[];
   // constructor takes the name of the two input files
   public WordNet(String synsets, String hypernyms){
     In in;
@@ -45,6 +45,7 @@ public class WordNet {
       table_id++;
        // create a BST from synsets.txt, making isNoun return in logarithmic time
     } 
+    assert(table_id == synsetsTree.size());
     a = new Synset[synsetsTree.size()];
     for(Synset synset : synsetsTree){
       a[synset.table_id] = synset;
@@ -138,14 +139,12 @@ public class WordNet {
     }
     return result;
   }
-  private int size(){
-   return st2.size();
-  }
+
   // do unit testing of this class
   public static void main(String[] args){
     WordNet wn = new WordNet(args[0], args[1]);
-    
-  
+    SAP sap = new SAP(wn.digraph);
+  /*
     assert(wn.isNoun("a"));
     for(String n : wn.nouns()){
       StdOut.printf("%s\n", n);
@@ -169,14 +168,14 @@ public class WordNet {
     ancestor_name = wn.sap(m, n);
     
     StdOut.printf("distance = %d, ancestor = %s\n", distance, ancestor_name);
- /*   
+*/   
     while (!StdIn.isEmpty()) {
-      int v = StdIn.readInt();
-      int w = StdIn.readInt();
-      int length   = sap.length(v, w);
-      int ancestor = sap.ancestor(v, w);     
-      StdOut.printf("length = %d, ancestor = %d\n", length, ancestor);
-      
+//      int v = StdIn.readInt();
+//      int w = StdIn.readInt();
+//      int length   = sap.length(v, w);
+//      int ancestor = sap.ancestor(v, w);     
+//      StdOut.printf("length = %d, ancestor = %d\n", length, ancestor);
+//      
       String m = StdIn.readString();
       String n = StdIn.readString();
       int distance   = wn.distance(m, n);
@@ -185,6 +184,5 @@ public class WordNet {
       StdOut.printf("length = %d, ancestor = %s\n", distance, ancestor_name);
       
     }
-  */
   }
 }
