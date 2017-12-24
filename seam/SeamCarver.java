@@ -9,6 +9,7 @@ public class SeamCarver {
     p = picture;
     w = p.width();
     h = p.height();
+    StdOut.printf("widht %d, height %d\n", w, h);
     
   } // create a seam carver object based on the given picture
   public Picture picture()                          {
@@ -21,7 +22,6 @@ public class SeamCarver {
     return h;
   } // height of current picture
   private int gx(int x, int y){
-    if (x == 0 || y == 0 || x == this.w - 1 || y == this.h -1) return 10000;
 //    StdOut.printf("x : %d, y : %d\n", x, y);
     Color right = p.get(x+1,y);
     Color left  = p.get(x-1,y);
@@ -35,7 +35,7 @@ public class SeamCarver {
   }
   
   private int gy(int x, int y){
-    if (x == 0 || y == 0 || y == this.w - 1 || x == this.h -1) return 10000;
+    
  //  StdOut.printf("x : %d, y : %d\n", x, y);
     Color right = p.get(x,y+1);
     Color left  = p.get(x,y-1);
@@ -48,6 +48,7 @@ public class SeamCarver {
     return r*r + g*g + b*b;
   }
   public  double energy(int x, int y)               {
+    if (x == 0 || y == 0 || y == this.h - 1 || x == this.w -1) return 1000;
     return Math.sqrt(gx(x,y) + gy(x,y));
   } // energy of pixel at column x and row y
   public   int[] findHorizontalSeam()               {
