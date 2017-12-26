@@ -14,7 +14,7 @@
 4. [-] implement SeamCarver.java (1h)
    - [X] Start by writing the constructor as well as picture(), width() and height(). These should be very easy.
    - [X] From there, write energy(). Calculating Δx2 and Δy2 are very similar. Using two private methods will keep your code simple. To test that your code works, use the client PrintEnergy described in the testing section above.
-   - [ ] To write findVerticalSeam(), you will want to first make sure you understand the topologial sort algorithm for computing a shortest path in a DAG. Do not create an EdgeWeightedDigraph. Instead construct a 2d energy array using the energy() method that you have already written. Your algorithm can traverse this matrix treating some select entries as reachable from (x, y) to calculate where the seam is located. To test that your code works, use the client PrintSeams described in the testing section above.
+   - [X] To write findVerticalSeam(), you will want to first make sure you understand the topologial sort algorithm for computing a shortest path in a DAG. Do not create an EdgeWeightedDigraph. Instead construct a 2d energy array using the energy() method that you have already written. Your algorithm can traverse this matrix treating some select entries as reachable from (x, y) to calculate where the seam is located. To test that your code works, use the client PrintSeams described in the testing section above.
    - [ ] To write findHorizontalSeam(), transpose the image, call findVerticalSeam(), and transpose it back.
    - [ ] Now implement removeVerticalSeam(). Typically, this method will be called with the output of findVerticalSeam(), but be sure that they work for any seam. To test that your code words, use the client ResizeDemo described in the testing section above.
    - [ ] To write removeHorizontalSeam(), transpose the image, call removeVerticalSeam(), and transpose it back.
@@ -28,7 +28,7 @@
 - [X]  Do not create an EdgeWeightedDigraph
 - [X]  Instead construct a 2d energy array using the energy() method
   that you have already written
-- [ ]  Your algorithm can traverse this matrix treating some select
+- [X]  Your algorithm can traverse this matrix treating some select
   entries as reachable from (x, y) to calculate where the seam is
   located
 - [ ]  To test that your code works, use the client PrintSeams

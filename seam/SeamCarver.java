@@ -23,7 +23,7 @@ public class SeamCarver {
       }
     }
     
-    //sp = new SP(w,h,m);
+    sp = new SP(w,h,m);
     StdOut.printf("width %d, height %d\n", w, h);
     
   } // create a seam carver object based on the given picture
@@ -75,7 +75,17 @@ public class SeamCarver {
     return sp.horizontalSeam();
   } // sequence of indices for horizontal seam
   public   int[] findVerticalSeam()                 {
-    return sp.verticalSeam();
+    double min = Double.POSITIVE_INFINITY;
+    int end=0;
+    for(int i=0; i< h; i++){
+      double dist = sp.distTo(new Pair(w-1,i));
+      if (dist < min) {
+        min = dist;
+        end = i;
+      }
+    }
+    return sp.verticalPathTo(new Pair(w-1, end));
+
   } // sequence of indices for vertical seam
   public    void removeHorizontalSeam(int[] seam)   {
     

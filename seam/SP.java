@@ -1,12 +1,12 @@
 /**
  * Auto Generated Java Class.
  */
+import edu.princeton.cs.algs4.Stack;
 import edu.princeton.cs.algs4.Bag;
-import edu.princeton.cs.algs4.IndexMinPQ;
+import edu.princeton.cs.algs4.StdOut;
 public class SP {
-  private double distTo[];
-  private Pair edgeTo[];
-  private IndexMinPQ<Double> pq; 
+  private double distTo[][];
+  private MyDirectedEdge edgeTo[][];
   private int w,h;
   private double m[][];
 
@@ -20,75 +20,113 @@ public class SP {
       }
     }
    // SP algorithm initialisation
-    pq = new IndexMinPQ<Double>(w*h+2);
-    distTo = new double[w*h+2];
-    edgeTo = new Pair[w*h+2];
-    for(int i = 0; i < w*h; i++)
-      distTo[i] = Double.POSITIVE_INFINITY;
+    // TODO compute it for vertical seam in a separate method.
 
-    int start = w*h;
-    distTo[start] = 0.0;
-    pq.insert(start, 0.0);
-    while(!pq.isEmpty()){
-      relax(pq.delMin()); // TODO
-    }
-  
-  }
-  
-   private class Pair{
-    public int x,y;
-    public Pair(int x, int y){
-      this.x = x;
-      this.y = y;
-    }
-  }
-  private Iterable<Pair> adj(int x, int y){
-    Bag<Pair> nb = new Bag<Pair>();
+    distTo = new double[w][h];
+    edgeTo = new MyDirectedEdge[w][h];
+    for(int i = 0; i < w; i++)
+      for(int j = 0; j < h; j++)
+      distTo[i][j] = Double.POSITIVE_INFINITY;
     
-    // special case 1
-    if(x == 0 && y == h + 1){
-      for(int i = 0; i < this.w; i++){
-        nb.add(new Pair(0,i));
-      }
-      return nb;
+    // vertical seam only
+    TopologicalOrder top = new TopologicalOrder(w,h,m,true);
+    for(int i=0; i< w;i++){
+      distTo[i][0] = m[i][0];
+      
     }
-    // special case 2
-    if(x == w && y == h){
-      for(int i = 0; i < this.w; i++){
-        nb.add(new Pair(0,i));
-      }
-      return nb;
+    for(Pair v : top.order()){
+      //StdOut.println("top order:  "+ v);
+      relax(v, true);
     }
-    for(int i = x-1; i <= x+1; i++){
-      for(int j = y-1; j <= y+1; j++){
-        if (i < 0 || j < 0 || j > this.h - 1 || i > this.w - 1) continue;
-        nb.add(new Pair(i,j));
+    
+
+  
+    for(int j=0; j< h;j++){
+      for(int i=0; i< w;i++){
+        
+        StdOut.printf("%4.0f ",m[i][j] );
       }
+      StdOut.println();
     }
+        StdOut.println();
+    for(int j=0; j< h;j++){
+      for(int i=0; i< w;i++){
+        
+        StdOut.printf("%4.0f ",distTo[i][j] );
+      }
+      StdOut.println();
+    }
+    
+    for(int j=0; j< h;j++){
+      for(int i=0; i< w;i++){
+        
+        StdOut.println(edgeTo[i][j] );
+      }
+      StdOut.println();
+    }
+  }
+  
+  private Iterable<MyDirectedEdge> adj_vertical(Pair v){
+    Bag<MyDirectedEdge> nb = new Bag<MyDirectedEdge>();
+    if (v.y == this.h - 1) return nb;
+    nb.add(new MyDirectedEdge(v, new Pair(v.x,v.y+1),0));
+    if (v.x != 0 ){
+      nb.add(new MyDirectedEdge(v, new Pair(v.x-1,v.y+1),0));
+    }
+    if (v.x != this.w - 1 )
+      nb.add(new MyDirectedEdge(v, new Pair(v.x+1,v.y+1),0));
+    //for (  MyDirectedEdge e : nb) StdOut.println(e);
     return nb;
   }
+  private Iterable<MyDirectedEdge> adj_horizontal(Pair v){
+// TODO
+    return null;
+  }
+  
+  private Iterable<MyDirectedEdge> adj(Pair v, boolean isVertical){
+    
+    return isVertical? adj_vertical(v) : adj_horizontal(v);
+  }
+  
   
   public int[] horizontalSeam(){
     return null;
   }
   
-  public int[] verticalSeam(){
-    return null;
+  public boolean hasPathTo(Pair v) {
+    //validateVertex(v);
+    return distTo[v.x][v.y] < Double.POSITIVE_INFINITY;
   }
+   public double distTo(Pair v) {
+//        validateVertex(v);
+        return distTo[v.x][v.y];
+    }
+
+   public int[] verticalPathTo(Pair v){
+//     validateVertex(v);
+     if (!hasPathTo(v)) return null;
+     Stack<MyDirectedEdge> path = new Stack<MyDirectedEdge>();
+     for (MyDirectedEdge e = edgeTo[v.x][v.y]; e != null; e = edgeTo[e.from().x][e.from().y]) {
+       path.push(e);
+     }
+     int[] apath = new int[path.size()];
+     int count=0;
+     for(MyDirectedEdge e : path){
+       apath[count] = e.from().x;
+       count++;
+     }
+     //apath[count]=v.x;
+     return apath;
+   }
   
-  private void relax(int i){
-    int y = i / w;
-    int x = i % w;
-      
-    for(Pair nb : adj(x,y)){
-      if(distTo[nb.x + w * nb.y] > distTo[nb.x + w * nb.y] + m[x][y]){
-        distTo[nb.x + w * nb.y] = distTo[nb.x + w * nb.y] + m[x][y];
-        edgeTo[nb.x + w* nb.y] = nb;
-        int key = nb.x  + this.w * nb.y;
-        if (pq.contains(key)) pq.changeKey(key,distTo[nb.x + w * nb.y]);
-        else pq.insert(key,distTo[nb.x + w * nb.y]);
+  private void relax(Pair v, boolean isVertical){
+    for(MyDirectedEdge e : adj(v, isVertical)){
+      Pair w = e.to();
+      if(distTo[w.x][w.y] > distTo[v.x][v.y] + m[w.x][w.y]){
+        distTo[w.x][w.y] = distTo[v.x][v.y] + m[w.x][w.y];
+        edgeTo[w.x][w.y] = e;
       }
     }
   }
-  
+
 }
