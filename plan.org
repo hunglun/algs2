@@ -21,6 +21,21 @@
 5. [ ] debug
 6. [ ] optimise
 
+** findVerticalSeam
+- [ ]  To write findVerticalSeam(), you will want to first make sure
+  you understand the topologial sort algorithm for computing a
+  shortest path in a DAG
+- [X]  Do not create an EdgeWeightedDigraph
+- [X]  Instead construct a 2d energy array using the energy() method
+  that you have already written
+- [ ]  Your algorithm can traverse this matrix treating some select
+  entries as reachable from (x, y) to calculate where the seam is
+  located
+- [ ]  To test that your code works, use the client PrintSeams
+  described in the testing section above
+
+
+
 * TODO solve baseball elimination
 * TODO solve boggle
 * TODO solve burrow wheeler
