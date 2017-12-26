@@ -8,13 +8,13 @@ public class SP {
   private Pair edgeTo[];
   private IndexMinPQ<Double> pq; 
   private int w,h;
-  private int m[][];
-  /* ADD YOUR CODE HERE */
-  public SP(int w, int h, int m[][]){
+  private double m[][];
+
+  public SP(int w, int h, double m[][]){
     this.w = w;
     this.h = h;
-    
-    for(int i = 0; i < w*h ; i++){
+    this.m = new double[w][h];
+    for(int i = 0; i < w ; i++){
       for(int j = 0; j < h; j++){
         this.m[i][j] = m[i][j];
       }
@@ -66,6 +66,14 @@ public class SP {
       }
     }
     return nb;
+  }
+  
+  public int[] horizontalSeam(){
+    return null;
+  }
+  
+  public int[] verticalSeam(){
+    return null;
   }
   
   private void relax(int i){
