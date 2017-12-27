@@ -66,16 +66,20 @@ public class TopologicalOrder {
   private int height;
   private int width;
   public TopologicalOrder(int width, int height, double[][] m, boolean isVertical) {
-    
+       
     int w=width;
     int h=height;
     this.height=height;
     this.width = width;
+    StdOut.printf("Topological sort - height %d, width %d\n\n", h, w);
     postorder = new Queue<Pair>();
     marked    = new boolean[w][h];
     for (int i = 0; i < width; i++)
-      for (int j = 0; j < height; j++)
+      for (int j = 0; j < height-1; j++)
       if (!marked[i][j]) dfs(new Pair(i,j),isVertical);
+    
+    if (!marked[0][h-1]) dfs(new Pair(0,h-1),isVertical);
+    if (!marked[1][h-1]) dfs(new Pair(1,h-1),isVertical);
   }
   
   // run DFS in edge-weighted digraph G from vertex v and compute preorder/postorder
@@ -83,6 +87,7 @@ public class TopologicalOrder {
     marked[v.x][v.y] = true;
     for (MyDirectedEdge e : adj(v,isVertical)) {
       Pair w = e.to();
+      //StdOut.println(e);
       if (!marked[w.x][w.y]) {
         dfs(w, isVertical);
       }
@@ -91,7 +96,25 @@ public class TopologicalOrder {
   }
   private Iterable<MyDirectedEdge> adj_vertical(Pair v){
     Bag<MyDirectedEdge> nb = new Bag<MyDirectedEdge>();
-    if (v.y == this.height - 1) return nb;
+    
+    // handle virtual nodes;
+    if (v.y == this.height - 1) {
+      if(v.x == 1) // the virtual end node
+        return nb;
+      if(v.x == 0){ // connect virtual start node to the first row
+        for(int i=0; i<this.width; i++)
+          nb.add(new MyDirectedEdge(v,new Pair(i,0),0));
+        return nb;
+      }
+      return nb; // ignore all other virtual nodes.
+    };
+    
+    // connect last row to the end virtual node.
+    if (v.y == this.height - 2) {
+      nb.add(new MyDirectedEdge(v,new Pair(1,this.height - 1),0));
+      return nb;
+    };
+    
     nb.add(new MyDirectedEdge(v, new Pair(v.x,v.y+1),0));
     if (v.x != 0 ){
       nb.add(new MyDirectedEdge(v, new Pair(v.x-1,v.y+1),0));

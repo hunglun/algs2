@@ -75,16 +75,8 @@ public class SeamCarver {
     return sp.horizontalSeam();
   } // sequence of indices for horizontal seam
   public   int[] findVerticalSeam()                 {
-    double min = Double.POSITIVE_INFINITY;
-    int end=0;
-    for(int i=0; i< h; i++){
-      double dist = sp.distTo(new Pair(w-1,i));
-      if (dist < min) {
-        min = dist;
-        end = i;
-      }
-    }
-    return sp.verticalPathTo(new Pair(w-1, end));
+   
+    return sp.verticalSeam();
 
   } // sequence of indices for vertical seam
   public    void removeHorizontalSeam(int[] seam)   {
