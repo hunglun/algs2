@@ -47,7 +47,13 @@ public class SeamCarver {
 
   
   public Picture picture()                          {
-    return p;
+    Picture pic = new Picture(w, h);
+    for(int i = 0; i < w ; i++){
+      for(int j = 0; j < h; j++){
+        pic.set(i,j,p_color[i][j]);
+      }
+    }
+    return pic;
   } // current picture
   public     int width()                            {  
     return w;
@@ -109,14 +115,15 @@ public class SeamCarver {
    
    for(int j = 0; j < h; j++){
      for(int i = 0; i < w ; i++){
+       // TODO optimise
       /* if (i >= seam[j]){
          m[i][j] = m[i+1][j]; // shift array to fill in the hole left by the vertical seam.
        }
        */
        m[i][j] = energy(i,j);
-       StdOut.printf("%10.2f",m[i][j]);
+       //StdOut.printf("%10.2f",m[i][j]);
      }
-     StdOut.println();
+     //StdOut.println();
    }   
    sp = new SP(w,h,m);
   } // remove vertical seam from current picture
