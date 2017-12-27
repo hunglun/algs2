@@ -84,7 +84,8 @@ public class PrintSeams {
         StdOut.println("}");
         printSeam(carver, horizontalSeam, HORIZONTAL);
 
-        carver.removeVerticalSeam(verticalSeam);
+        carver.removeHorizontalSeam(horizontalSeam);
+        //carver.removeVerticalSeam(verticalSeam);
     }
 
 }

@@ -32,13 +32,7 @@ public class SeamCarver {
     }    
     sp = new SP(w,h,m);
     
-    m_t = new double[h][w];
-    for(int i = 0; i < h ; i++){
-      for(int j = 0; j < w; j++){
-        m_t[i][j] = energy(j,i);
-      }
-    }    
-    sp_t = new SP(h,w,m_t);
+    
     
     StdOut.printf("width %d, height %d\n", w, h);
     
@@ -92,7 +86,15 @@ public class SeamCarver {
     if (x == 0 || y == 0 || y == this.h - 1 || x == this.w -1) return 1000;
     return Math.sqrt(gx(x,y) + gy(x,y));
   } // energy of pixel at column x and row y
-  public   int[] findHorizontalSeam()               {
+  public   int[] findHorizontalSeam()    
+  {
+    m_t = new double[h][w];
+    for(int i = 0; i < h ; i++){
+      for(int j = 0; j < w; j++){
+        m_t[i][j] = m[j][i];
+      }
+    }    
+    sp_t = new SP(h,w,m_t);
     return sp_t.verticalSeam();   
   } // sequence of indices for horizontal seam
   public   int[] findVerticalSeam()                 {
@@ -101,7 +103,25 @@ public class SeamCarver {
 
   } // sequence of indices for vertical seam
   public    void removeHorizontalSeam(int[] seam)   {
+    h = h - 1;
+    for(int i = 0; i < w ; i++){
+     for(int j = 0; j < h; j++){
+       if (j >= seam[i]){
+         p_color[i][j] = p_color[i][j+1];
+       }
+     }
+   }  
+   
     
+   for(int j = 0; j < h; j++){
+     for(int i = 0; i < w ; i++){
+       m[i][j] = energy(i,j);
+  //     StdOut.printf("%10.2f",m[i][j]);
+     }
+   //  StdOut.println();
+   }   
+   
+   sp = new SP(w,h,m);
   } // remove horizontal seam from current picture
   public    void removeVerticalSeam(int[] seam)     {
    w = w - 1;
