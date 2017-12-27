@@ -21,8 +21,8 @@
 5. [ ] debug
 6. [ ] optimise
 
-** findVerticalSeam
-- [ ]  To write findVerticalSeam(), you will want to first make sure
+** DONE findVerticalSeam
+- [X]  To write findVerticalSeam(), you will want to first make sure
   you understand the topologial sort algorithm for computing a
   shortest path in a DAG
 - [X]  Do not create an EdgeWeightedDigraph
@@ -31,7 +31,7 @@
 - [X]  Your algorithm can traverse this matrix treating some select
   entries as reachable from (x, y) to calculate where the seam is
   located
-- [ ]  To test that your code works, use the client PrintSeams
+- [X]  To test that your code works, use the client PrintSeams
   described in the testing section above
 
 

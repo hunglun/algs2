@@ -8,8 +8,8 @@ public class SeamCarver {
   private int w;
   private int h;
   private final Picture p;
-  private double[][]m;
-  private SP sp;
+  private double[][]m, m_t;
+  private SP sp, sp_t;
   
   public SeamCarver(Picture picture)                {
     // compute energy matrix
@@ -21,9 +21,17 @@ public class SeamCarver {
       for(int j = 0; j < h; j++){
         m[i][j] = energy(i,j);
       }
-    }
-    
+    }    
     sp = new SP(w,h,m);
+    
+    m_t = new double[h][w];
+    for(int i = 0; i < h ; i++){
+      for(int j = 0; j < w; j++){
+        m_t[i][j] = energy(j,i);
+      }
+    }    
+    sp_t = new SP(h,w,m_t);
+    
     StdOut.printf("width %d, height %d\n", w, h);
     
   } // create a seam carver object based on the given picture
@@ -72,7 +80,9 @@ public class SeamCarver {
   } // energy of pixel at column x and row y
   public   int[] findHorizontalSeam()               {
     
-    return sp.horizontalSeam();
+    
+    return sp_t.verticalSeam();
+    
   } // sequence of indices for horizontal seam
   public   int[] findVerticalSeam()                 {
    
