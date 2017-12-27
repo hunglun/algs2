@@ -114,28 +114,16 @@ public class SeamCarver {
     sp = new SP(w,h,m);
   } // remove horizontal seam from current picture
   public    void removeVerticalSeam(int[] seam)     {
-    
-    double[][] new_m = new double[w-1][h]; 
-    Queue<Integer> q = new Queue<Integer>();
-    for(int i: findVerticalSeam())
-      q.enqueue(i);
-    
-    int count = 0;
-    int vseami = q.dequeue();
-    for(int i = 0; i < h ; i++){
-      for(int j = 0; j < w; j++){
-        if (vseami == j) {
-          vseami = q.dequeue();
-        }else{
-          new_m[count%w][count/w] = m[i][j];
-          count++;
-        }
-      }
-    }
-    
-    m = new_m;
-    w--;
-    
-    sp = new SP(w,h,m);
+   w = w - 1;
+   for(int j = 0; j < h; j++){
+     for(int i = 0; i < w ; i++){
+       if (i >= seam[j]){
+         m[i][j] = m[i+1][j]; // shift array to fill in the hole left by the vertical seam.
+       }
+       StdOut.printf("%10.2f",m[i][j]);
+     }
+     StdOut.println();
+   }    
+   sp = new SP(w,h,m);
   } // remove vertical seam from current picture
 }
