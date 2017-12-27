@@ -1,0 +1,809 @@
+ee the Assessment Guide for information on how to interpret this report.
+
+ASSESSMENT SUMMARY
+
+Compilation:  PASSED
+API:          PASSED
+
+Findbugs:     FAILED (4 warnings)
+PMD:          PASSED
+Checkstyle:   FAILED (0 errors, 208 warnings)
+
+Correctness:  20/31 tests passed
+Memory:       0/6 tests passed
+Timing:       0/17 tests passed
+
+Aggregate score: 48.71%
+[Compilation: 5%, API: 5%, Findbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
+
+ASSESSMENT DETAILS
+
+The following files were submitted:
+----------------------------------
+2.3K Dec 27 18:08 MyDirectedEdge.java
+ 251 Dec 27 18:08 Pair.java
+4.4K Dec 27 18:08 SP.java
+3.9K Dec 27 18:08 SeamCarver.java
+7.0K Dec 27 18:08 TopologicalOrder.java
+
+
+********************************************************************************
+*  COMPILING                                                                    
+********************************************************************************
+
+
+% javac SeamCarver.java
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+Checking the APIs of your programs.
+*-----------------------------------------------------------
+SeamCarver:
+
+================================================================
+
+
+********************************************************************************
+*  CHECKING STYLE AND COMMON BUG PATTERNS                                       
+********************************************************************************
+
+
+% findbugs *.class
+*-----------------------------------------------------------
+M D UP_UNUSED_PARAMETER UP: Static or private method TopologicalOrder.adj_horizontal(Pair) has unused parameters  At TopologicalOrder.java:[line 134]
+M D UP_UNUSED_PARAMETER UP: Static or private method SP.adj_horizontal(Pair) has unused parameters  At SP.java:[line 112]
+L D PZLA_PREFER_ZERO_LENGTH_ARRAYS PZLA: Should 'verticalPathTo()' return a zero-length array instead of null?  At SP.java:[line 139]
+M P URF_UNREAD_FIELD UrF: The instance (or static) variable 'w' is never read. Consider removing it from the class.  At SP.java:[line 15]
+Warnings generated: 4
+
+
+================================================================
+
+
+% pmd .
+*-----------------------------------------------------------
+Pair.java:2: The private instance (or static) variable 'x' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+Pair.java:2: The private instance (or static) variable 'y' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+SP.java:10: Avoid unused private instance (or static) variables, such as 'w'. [UnusedPrivateField]
+SP.java:10: Can you replace the instance (or static) variable 'w' with a local variable? [SingularField]
+SP.java:10: The private instance (or static) variable 'h' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+SP.java:10: The private instance (or static) variable 'height' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+SP.java:10: The private instance (or static) variable 'w' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+SP.java:10: The private instance (or static) variable 'width' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+SP.java:11: The private instance (or static) variable 'm' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+SP.java:93: There appears to be a spurious semicolon. [EmptyStatementNotInLoop]
+SP.java:99: There appears to be a spurious semicolon. [EmptyStatementNotInLoop]
+SP.java:110: Avoid unused parameter variables, such as 'v'. [UnusedFormalParameter]
+SeamCarver.java:10: Can you replace the instance (or static) variable 'p' with a local variable? [SingularField]
+SeamCarver.java:11: Can you replace the instance (or static) variable 'm_t' with a local variable? [SingularField]
+SeamCarver.java:12: Can you replace the instance (or static) variable 'sp_t' with a local variable? [SingularField]
+TopologicalOrder.java:60: The private instance (or static) variable 'postorder' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+TopologicalOrder.java:66: The private instance (or static) variable 'height' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+TopologicalOrder.java:67: The private instance (or static) variable 'width' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+TopologicalOrder.java:68: Avoid unused parameter variables, such as 'm'. [UnusedFormalParameter]
+TopologicalOrder.java:115: There appears to be a spurious semicolon. [EmptyStatementNotInLoop]
+TopologicalOrder.java:121: There appears to be a spurious semicolon. [EmptyStatementNotInLoop]
+TopologicalOrder.java:132: Avoid unused parameter variables, such as 'v'. [UnusedFormalParameter]
+PMD ends with 22 warnings.
+
+
+================================================================
+
+
+% checkstyle *.java
+*-----------------------------------------------------------
+[WARN] MyDirectedEdge.java:24:33: ',' is not followed by whitespace. [WhitespaceAfter]
+[WARN] MyDirectedEdge.java:25:33: ',' is not followed by whitespace. [WhitespaceAfter]
+[WARN] MyDirectedEdge.java:67:76: ',' is not followed by whitespace. [WhitespaceAfter]
+[WARN] Pair.java:1:18: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] Pair.java:2:17: ',' is not followed by whitespace. [WhitespaceAfter]
+[WARN] Pair.java:3:28: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] Pair.java:9:35: ';' is preceded with whitespace. [NoWhitespaceBefore]
+[WARN] Pair.java:11:17: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] Pair.java:15:17: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] SeamCarver.java:2:8: Unused import statement for 'edu.princeton.cs.algs4.Bag'. [UnusedImports]
+[WARN] SeamCarver.java:4:8: Unused import statement for 'edu.princeton.cs.algs4.StdOut'. [UnusedImports]
+[WARN] SeamCarver.java:5:8: Unused import statement for 'edu.princeton.cs.algs4.IndexMinPQ'. [UnusedImports]
+[WARN] SeamCarver.java:6:8: Unused import statement for 'edu.princeton.cs.algs4.Queue'. [UnusedImports]
+[WARN] SeamCarver.java:11:24: The instance variable 'm_t' must start with a lowercase letter and use camelCase. [MemberName]
+[WARN] SeamCarver.java:12:18: The instance variable 'sp_t' must start with a lowercase letter and use camelCase. [MemberName]
+[WARN] SeamCarver.java:13:21: The instance variable 'p_color' must start with a lowercase letter and use camelCase. [MemberName]
+[WARN] SeamCarver.java:22:8: 'for' is not followed by whitespace. [WhitespaceAfter]
+[WARN] SeamCarver.java:22:25: ';' is preceded with whitespace. [NoWhitespaceBefore]
+[WARN] SeamCarver.java:22:32: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] SeamCarver.java:23:10: 'for' is not followed by whitespace. [WhitespaceAfter]
+[WARN] SeamCarver.java:23:33: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] SeamCarver.java:24:33: ',' is not followed by whitespace. [WhitespaceAfter]
+[WARN] SeamCarver.java:27:8: 'for' is not followed by whitespace. [WhitespaceAfter]
+[WARN] SeamCarver.java:27:25: ';' is preceded with whitespace. [NoWhitespaceBefore]
+[WARN] SeamCarver.java:27:32: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] SeamCarver.java:28:10: 'for' is not followed by whitespace. [WhitespaceAfter]
+[WARN] SeamCarver.java:28:33: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] SeamCarver.java:29:28: ',' is not followed by whitespace. [WhitespaceAfter]
+[WARN] SeamCarver.java:33:19: ',' is not followed by whitespace. [WhitespaceAfter]
+[WARN] SeamCarver.java:33:21: ',' is not followed by whitespace. [WhitespaceAfter]
+[WARN] SeamCarver.java:37:7: '//' or '/*' is not followed by whitespace. [WhitespaceAfter]
+[WARN] SeamCarver.java:45:8: 'for' is not followed by whitespace. [WhitespaceAfter]
+[WARN] SeamCarver.java:45:25: ';' is preceded with whitespace. [NoWhitespaceBefore]
+[WARN] SeamCarver.java:45:32: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] SeamCarver.java:46:10: 'for' is not followed by whitespace. [WhitespaceAfter]
+[WARN] SeamCarver.java:46:33: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] SeamCarver.java:47:19: ',' is not followed by whitespace. [WhitespaceAfter]
+[WARN] SeamCarver.java:47:21: ',' is not followed by whitespace. [WhitespaceAfter]
+[WARN] SeamCarver.java:58:31: '{' is not preceded with whitespace. [WhitespaceAround]
+...
+Checkstyle ends with 0 errors and 208 warnings.
+
+% custom checkstyle checks for SeamCarver.java
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+********************************************************************************
+*  TESTING CORRECTNESS
+********************************************************************************
+
+Testing correctness of SeamCarver
+*-----------------------------------------------------------
+Running 31 total tests.
+
+Test 1a: check energy() with file inputs
+  * 6x5.png
+  * 4x6.png
+  * 10x12.png
+  * 3x7.png
+  * 5x6.png
+  * 7x3.png
+  * 7x10.png
+  * 12x10.png
+  * stripes.png
+  * diagonals.png
+  * chameleon.png
+  * HJoceanSmall.png
+  * 1x8.png
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    SP.<init>(SP.java:26)
+    SeamCarver.<init>(SeamCarver.java:33)
+    TestSeamCarver.checkEnergy(TestSeamCarver.java:81)
+    TestSeamCarver.checkEnergy(TestSeamCarver.java:131)
+    TestSeamCarver.test1a(TestSeamCarver.java:579)
+    TestSeamCarver.main(TestSeamCarver.java:1572)
+
+  * 8x1.png
+  * 1x1.png
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    SP.<init>(SP.java:26)
+    SeamCarver.<init>(SeamCarver.java:33)
+    TestSeamCarver.checkEnergy(TestSeamCarver.java:81)
+    TestSeamCarver.checkEnergy(TestSeamCarver.java:131)
+    TestSeamCarver.test1a(TestSeamCarver.java:581)
+    TestSeamCarver.main(TestSeamCarver.java:1572)
+
+==> FAILED
+
+Test 1b: check energy() with random pictures
+  * 4-by-6
+  * 5-by-5
+  * 6-by-4
+  * 7-by-10
+  * 250-by-250
+==> passed
+
+Test 1c: check energy() with random pictures in which the RGB components
+         of each pixel are in a small range
+  * 4-by-6
+  * 5-by-5
+  * 6-by-4
+  * 7-by-10
+  * 250-by-250
+==> passed
+
+Test 2a: check width() with file inputs
+  * 6x5.png
+  * 4x6.png
+==> passed
+
+Test 2b: check width() with random pictures
+  * 4-by-6
+  * 5-by-5
+  * 6-by-4
+  * 7-by-10
+==> passed
+
+Test 3a: check height() with file inputs
+  * 6x5.png
+  * 4x6.png
+==> passed
+
+Test 3b: check height() with random pictures
+  * 4-by-6
+  * 5-by-5
+  * 6-by-4
+  * 7-by-10
+==> passed
+
+Test 4a: check findVerticalSeam() with file inputs
+  * 6x5.png
+  * 4x6.png
+  * 10x12.png
+  * 3x7.png
+  * 5x6.png
+  * 7x3.png
+  * 7x10.png
+  * 12x10.png
+  * stripes.png
+  * diagonals.png
+  * chameleon.png
+  * HJoceanSmall.png
+  * 1x8.png
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    SP.<init>(SP.java:26)
+    SeamCarver.<init>(SeamCarver.java:33)
+    TestSeamCarver.checkFindVerticalSeam(TestSeamCarver.java:484)
+    TestSeamCarver.checkFindVerticalSeam(TestSeamCarver.java:561)
+    TestSeamCarver.test4a(TestSeamCarver.java:669)
+    TestSeamCarver.main(TestSeamCarver.java:1593)
+
+  * 8x1.png
+  * 1x1.png
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    SP.<init>(SP.java:26)
+    SeamCarver.<init>(SeamCarver.java:33)
+    TestSeamCarver.checkFindVerticalSeam(TestSeamCarver.java:484)
+    TestSeamCarver.checkFindVerticalSeam(TestSeamCarver.java:561)
+    TestSeamCarver.test4a(TestSeamCarver.java:671)
+    TestSeamCarver.main(TestSeamCarver.java:1593)
+
+==> FAILED
+
+Test 4b: check findVerticalSeam() with random pictures
+  * 4-by-6
+  * 5-by-5
+  * 6-by-4
+  * 7-by-10
+  * 250-by-250
+==> passed
+
+Test 4c: check findVerticalSeam() with random pictures in which
+         the RGB values of each pixel are in a small range
+  * 4-by-6
+  * 5-by-5
+  * 6-by-4
+  * 7-by-10
+  * 250-by-250
+==> passed
+
+Test 5a: check findHorizontalSeam() with file inputs
+  * 6x5.png
+  * 4x6.png
+  * 10x12.png
+  * 3x7.png
+  * 5x6.png
+  * 7x3.png
+  * 7x10.png
+  * 12x10.png
+  * stripes.png
+  * diagonals.png
+  * chameleon.png
+  * HJoceanSmall.png
+  * 1x8.png
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    SP.<init>(SP.java:26)
+    SeamCarver.<init>(SeamCarver.java:33)
+    TestSeamCarver.checkFindHorizontalSeam(TestSeamCarver.java:520)
+    TestSeamCarver.checkFindHorizontalSeam(TestSeamCarver.java:554)
+    TestSeamCarver.test5a(TestSeamCarver.java:717)
+    TestSeamCarver.main(TestSeamCarver.java:1602)
+
+  * 8x1.png
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    SP.<init>(SP.java:26)
+    SeamCarver.findHorizontalSeam(SeamCarver.java:97)
+    TestSeamCarver.checkFindHorizontalSeam(TestSeamCarver.java:521)
+    TestSeamCarver.checkFindHorizontalSeam(TestSeamCarver.java:554)
+    TestSeamCarver.test5a(TestSeamCarver.java:718)
+    TestSeamCarver.main(TestSeamCarver.java:1602)
+
+  * 1x1.png
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    SP.<init>(SP.java:26)
+    SeamCarver.<init>(SeamCarver.java:33)
+    TestSeamCarver.checkFindHorizontalSeam(TestSeamCarver.java:520)
+    TestSeamCarver.checkFindHorizontalSeam(TestSeamCarver.java:554)
+    TestSeamCarver.test5a(TestSeamCarver.java:719)
+    TestSeamCarver.main(TestSeamCarver.java:1602)
+
+==> FAILED
+
+Test 5b: check findHorizontalSeam() with random pictures
+  * 4-by-6
+  * 5-by-5
+  * 6-by-4
+  * 7-by-10
+  * 250-by-250
+==> passed
+
+Test 5c: check findHorizontalSeam() with random pictures in which the RGB
+         components of each pixel are in a small range
+  * 4-by-6
+  * 5-by-5
+  * 6-by-4
+  * 7-by-10
+  * 250-by-250
+==> passed
+
+Test 6a: check removeVerticalSeam() with file inputs and optimal seams
+  * 6x5.png
+  * 10x12.png
+  * 3x7.png
+  * 5x6.png
+  * 7x3.png
+  * 7x10.png
+  * 12x10.png
+  * stripes.png
+  * diagonals.png
+  * chameleon.png
+  * HJoceanSmall.png
+  * 8x1.png
+==> passed
+
+Test 6b: check removeVerticalSeam() with random pictures and optimal seams
+  * 4-by-6
+  * 5-by-5
+  * 6-by-4
+  * 7-by-10
+  * 250-by-250
+==> passed
+
+Test 6c: check removeVerticalSeam() with file inputs and random seams
+  * 6x5.png
+  * 10x12.png
+  * 3x7.png
+  * 5x6.png
+  * 7x3.png
+  * 7x10.png
+  * 12x10.png
+  * stripes.png
+  * diagonals.png
+  * chameleon.png
+  * HJoceanSmall.png
+  * 8x1.png
+==> passed
+
+Test 6d: check removeVerticalSeam() with random pictures and random seams
+  * 4-by-6
+  * 5-by-5
+  * 6-by-4
+  * 7-by-10
+  * 250-by-250
+==> passed
+
+Test 7a: check removeHorizontalSeam() with file inputs and optimal seams
+  * 6x5.png
+  * 10x12.png
+  * 3x7.png
+  * 5x6.png
+  * 7x3.png
+  * 7x10.png
+  * 12x10.png
+  * stripes.png
+  * diagonals.png
+  * chameleon.png
+  * HJoceanSmall.png
+  * 1x8.png
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    SP.<init>(SP.java:26)
+    SeamCarver.<init>(SeamCarver.java:33)
+    TestSeamCarver.checkRemoveHorizontalSeam(TestSeamCarver.java:852)
+    TestSeamCarver.checkRemoveHorizontalSeam(TestSeamCarver.java:842)
+    TestSeamCarver.test7a(TestSeamCarver.java:982)
+    TestSeamCarver.main(TestSeamCarver.java:1623)
+
+==> FAILED
+
+Test 7b: check removeHorizontalSeam() with random pictures and optimal seams
+  * 4-by-6
+  * 5-by-5
+  * 6-by-4
+  * 7-by-10
+  * 250-by-250
+==> passed
+
+Test 7c: check removeHorizontalSeam() with file inputs and random seams
+  * 6x5.png
+  * 10x12.png
+  * 3x7.png
+  * 5x6.png
+  * 7x3.png
+  * 7x10.png
+  * 12x10.png
+  * stripes.png
+  * diagonals.png
+  * chameleon.png
+  * HJoceanSmall.png
+  * 1x8.png
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    SP.<init>(SP.java:26)
+    SeamCarver.<init>(SeamCarver.java:33)
+    TestSeamCarver.checkRemoveHorizontalSeam(TestSeamCarver.java:852)
+    TestSeamCarver.checkRemoveHorizontalSeam(TestSeamCarver.java:842)
+    TestSeamCarver.test7c(TestSeamCarver.java:1011)
+    TestSeamCarver.main(TestSeamCarver.java:1629)
+
+==> FAILED
+
+Test 7d: check removeHorizontalSeam() with random pictures and random seams
+  * 4-by-6
+  * 5-by-5
+  * 6-by-4
+  * 7-by-10
+  * 250-by-250
+==> passed
+
+Test 8: check energy() with invalid arguments
+  * picture = 6x5.png, call energy(-1, 4)
+    - fails to throw an exception when calling energy(-1, 4)
+
+  * picture = 6x5.png, call energy(6, 4)
+    - fails to throw an exception when calling energy(6, 4)
+
+  * picture = 6x5.png, call energy(5, 5)
+    - fails to throw an exception when calling energy(5, 5)
+
+  * picture = 6x5.png, call energy(4, -1)
+    - throws wrong exception when calling energy(4, -1)
+    - throws a java.lang.ArrayIndexOutOfBoundsException
+    - should throw a java.lang.IllegalArgumentException
+
+  * picture = 6x5.png, call energy(4, 5)
+    - throws wrong exception when calling energy(4, 5)
+    - throws a java.lang.ArrayIndexOutOfBoundsException
+    - should throw a java.lang.IllegalArgumentException
+
+==> FAILED
+
+Test 9a: check removeVerticalSeam() with invalid seam
+  * picture = 10x10.png
+    - fails to throw an exception when calling removeVerticalSeam() with an invalid seam
+    - failed on trial 1 of 100
+    - entry 0 is not between 0 and 9
+    - invalid seam = { -1, 0, 0, 0, 0, 1, 2, 2, 3, 2 }
+
+  * picture = 3x7.png
+    - fails to throw an exception when calling removeVerticalSeam() with an invalid seam
+    - failed on trial 1 of 100
+    - entry 2 is not between 0 and 2
+    - invalid seam = { 0, 2, 3, 1, 1, 0, 0 }
+
+  * picture = 7x3.png
+    - fails to throw an exception when calling removeVerticalSeam() with an invalid seam
+    - failed on trial 1 of 100
+    - entry 1 is not between 0 and 6
+    - invalid seam = { 6, 7, 5 }
+
+  * picture = 10x12.png
+    - fails to throw an exception when calling removeVerticalSeam() with an invalid seam
+    - failed on trial 1 of 100
+    - entry 0 is not between 0 and 9
+    - invalid seam = { -1, 0, 0, 2, 1, 1, 0, 0, 1, 0, 0, 0 }
+
+  * picture = 12x10.png
+    - fails to throw an exception when calling removeVerticalSeam() with an invalid seam
+    - failed on trial 1 of 100
+    - entry 0 is not between 0 and 11
+    - invalid seam = { -1, 0, 0, 1, 1, 2, 3, 2, 3, 4 }
+
+  * picture = 1x8.png
+    - throws wrong exception when calling removeVerticalSeam() with an invalid seam
+    - throws a java.lang.ArrayIndexOutOfBoundsException
+    - should throw a java.lang.IllegalArgumentException
+    - failed on trial 1 of 100
+    - entry 0 is not between 0 and 0
+    - invalid seam = { -1, 0, 0, 0, 0, 0, 0, 0 }
+
+  * picture = 8x1.png
+    - fails to throw an exception when calling removeVerticalSeam() with an invalid seam
+    - failed on trial 1 of 100
+    - entry 0 is not between 0 and 7
+    - invalid seam = { -1 }
+
+  * picture = 1x1.png
+    - throws wrong exception when calling removeVerticalSeam() with an invalid seam
+    - throws a java.lang.ArrayIndexOutOfBoundsException
+    - should throw a java.lang.IllegalArgumentException
+    - failed on trial 1 of 100
+    - entry 0 is not between 0 and 0
+    - invalid seam = { -1 }
+
+==> FAILED
+
+Test 9b: check removeHorizontalSeam() with invalid seam
+  * picture = 10x10.png
+    - fails to throw an exception when calling removeHorizontalSeam() with an invalid seam
+    - failed on trial 1 of 100
+    - distance between pixel 2 and pixel 3 is 2
+    - invalid seam = { 4, 5, 4, 6, 6, 5, 6, 7, 7, 8 }
+
+  * picture = 3x7.png
+    - fails to throw an exception when calling removeHorizontalSeam() with an invalid seam
+    - failed on trial 1 of 100
+    - entry 0 is not between 0 and 6
+    - invalid seam = { -1, 0, 0 }
+
+  * picture = 7x3.png
+    - fails to throw an exception when calling removeHorizontalSeam() with an invalid seam
+    - failed on trial 1 of 100
+    - entry 0 is not between 0 and 2
+    - invalid seam = { -1, 0, 1, 0, 0, 1, 0 }
+
+  * picture = 10x12.png
+    - fails to throw an exception when calling removeHorizontalSeam() with an invalid seam
+    - failed on trial 1 of 100
+    - distance between pixel 8 and pixel 9 is 2
+    - invalid seam = { 7, 6, 6, 6, 5, 6, 6, 6, 5, 7 }
+
+  * picture = 12x10.png
+    - fails to throw an exception when calling removeHorizontalSeam() with an invalid seam
+    - failed on trial 1 of 100
+    - distance between pixel 10 and pixel 11 is 2
+    - invalid seam = { 2, 3, 3, 3, 4, 4, 5, 4, 5, 5, 4, 6 }
+
+  * picture = 1x8.png
+    - throws wrong exception when calling removeHorizontalSeam() with an invalid seam
+    - throws a java.lang.ArrayIndexOutOfBoundsException
+    - should throw a java.lang.IllegalArgumentException
+    - failed on trial 1 of 100
+    - entry 0 is not between 0 and 7
+    - invalid seam = { -1 }
+
+  * picture = 8x1.png
+    - fails to throw an exception when calling removeHorizontalSeam() with an invalid seam
+    - failed on trial 1 of 100
+    - entry 0 is not between 0 and 0
+    - invalid seam = { -1, 0, 0, 0, 0, 0, 0, 0 }
+
+  * picture = 1x1.png
+    - throws wrong exception when calling removeHorizontalSeam() with an invalid seam
+    - throws a java.lang.ArrayIndexOutOfBoundsException
+    - should throw a java.lang.IllegalArgumentException
+    - failed on trial 1 of 100
+    - entry 0 is not between 0 and 0
+    - invalid seam = { -1 }
+
+==> FAILED
+
+Test 9c: check removeHorizontalSeam() and removeVerticalSeam() with null arguments
+  * picture = 6x5.png
+    - throws wrong exception when calling removeHorizontalSeam() with a null argument
+    - throws a java.lang.NullPointerException
+    - should throw a java.lang.IllegalArgumentException
+
+    - throws wrong exception when calling removeVerticalSeam() with a null argument
+    - throws a java.lang.NullPointerException
+    - should throw a java.lang.IllegalArgumentException
+
+  * picture = 3x7.png
+    - throws wrong exception when calling removeHorizontalSeam() with a null argument
+    - throws a java.lang.NullPointerException
+    - should throw a java.lang.IllegalArgumentException
+
+    - throws wrong exception when calling removeVerticalSeam() with a null argument
+    - throws a java.lang.NullPointerException
+    - should throw a java.lang.IllegalArgumentException
+
+==> FAILED
+
+Test 10a: check that client can mutate the Picture object that is passed to the constructor
+==> passed
+
+Test 10b: check that client can mutate the Picture object that is returned by picture()
+==> passed
+
+Test 11: check constructor with null argument
+    - throws wrong exception when calling removeVerticalSeam() with a null argument
+    - throws a java.lang.NullPointerException
+    - should throw a java.lang.IllegalArgumentException
+
+==> FAILED
+
+Test 12a: check intermixed calls to findHorizontalSeam(), findVerticalSeam(),
+          removeHorizontalSeam(), and removeVerticalSeam(), width(), height(),
+          energy(), and picture() made with probabilities p1, p2, p3, p4, p5,
+          p6, p7, and p8, respectively with optimal seams
+  * random 5-by-6 image with p = (0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.5)
+  * random 6-by-5 image with p = (0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5)
+  * random 6-by-6 image with p = (0.1, 0.1, 0.2, 0.2, 0.0, 0.0, 0.0, 0.4)
+  * random 6-by-6 image with p = (0.2, 0.2, 0.0, 0.0, 0.2, 0.2, 0.2, 0.0)
+  * random 6-by-6 image with p = (0.1, 0.1, 0.2, 0.2, 0.1, 0.1, 0.1, 0.1)
+  * random 100-by-110 image with p = (0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.5)
+  * random 110-by-100 image with p = (0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5)
+  * random 110-by-110 image with p = (0.1, 0.1, 0.2, 0.2, 0.0, 0.0, 0.0, 0.4)
+  * random 100-by-100 image with p = (0.2, 0.2, 0.0, 0.0, 0.1, 0.1, 0.2, 0.2)
+  * random 110-by-110 image with p = (0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.2, 0.2)
+==> passed
+
+Test 12b: check intermixed calls to findHorizontalSeam(), findVerticalSeam(),
+          removeHorizontalSeam(), and removeVerticalSeam(), width(), height(),
+          energy(), and picture() made with probabilities p1, p2, p3, p4, p5,
+          p6, p7, and p8, respectively with random seams
+  * random 5-by-6 image with p = (0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.5)
+  * random 6-by-5 image with p = (0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5)
+  * random 6-by-6 image with p = (0.1, 0.1, 0.2, 0.2, 0.0, 0.0, 0.0, 0.4)
+  * random 6-by-6 image with p = (0.2, 0.2, 0.0, 0.0, 0.2, 0.2, 0.2, 0.0)
+  * random 6-by-6 image with p = (0.1, 0.1, 0.2, 0.2, 0.1, 0.1, 0.1, 0.1)
+  * random 100-by-110 image with p = (0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.5)
+  * random 110-by-100 image with p = (0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5)
+  * random 110-by-110 image with p = (0.1, 0.1, 0.2, 0.2, 0.0, 0.0, 0.0, 0.4)
+  * random 100-by-100 image with p = (0.2, 0.2, 0.0, 0.0, 0.1, 0.1, 0.2, 0.2)
+  * random 110-by-110 image with p = (0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.2, 0.2)
+==> passed
+
+Test 12c: check intermixed calls to findHorizontalSeam(), findVerticalSeam(),
+          removeHorizontalSeam(), and removeVerticalSeam(), width(), height(),
+          energy(), and picture() made with probabilities p1, p2, p3, p4, p5,
+          p6, p7, and p8, respectively with optimal seams
+          (tests corner cases when width = 1 and/or height = 1)
+  * random 1-by-8 image with p = (0.1, 0.1, 0.2, 0.0, 0.1, 0.1, 0.2, 0.2)
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    SP.<init>(SP.java:26)
+    SeamCarver.<init>(SeamCarver.java:33)
+    TestSeamCarver.checkRandom(TestSeamCarver.java:1351)
+    TestSeamCarver.test12c(TestSeamCarver.java:1553)
+    TestSeamCarver.main(TestSeamCarver.java:1662)
+
+    - failed on operation 0 of 100
+    - sequence of operations was:
+      SeamCarver carver = new SeamCarver(picture)
+      Picture picture = new Picture(...)
+      
+       1-by-8 picture (RGB values given in hex)
+       #070309 
+       #000209 
+       #050203 
+       #090905 
+       #040701 
+       #090900 
+       #020807 
+       #020202
+
+
+  * random 8-by-1 image with p = (0.1, 0.1, 0.0, 0.2, 0.1, 0.1, 0.2, 0.2)
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    SP.<init>(SP.java:26)
+    SeamCarver.findHorizontalSeam(SeamCarver.java:97)
+    TestSeamCarver.checkRandom(TestSeamCarver.java:1359)
+    TestSeamCarver.test12c(TestSeamCarver.java:1554)
+    TestSeamCarver.main(TestSeamCarver.java:1662)
+
+    - failed on operation 8 of 100
+    - sequence of operations was:
+      SeamCarver carver = new SeamCarver(picture)
+      Picture picture = new Picture(...)
+      
+       8-by-1 picture (RGB values given in hex)
+       #040809 #010908 #060507 #040701 #090303 #030602 #090502 #070008
+
+      carver.picture()
+      carver.height()  ==> 1
+      carver.energy(x, y) for each x and y
+      carver.width()   ==> 8
+      carver.energy(x, y) for each x and y
+      carver.energy(x, y) for each x and y
+      carver.picture()
+      carver.findHorizontalSeam()
+
+  * random 1-by-1 image with p = (0.2, 0.2, 0.0, 0.0, 0.1, 0.1, 0.2, 0.2)
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    SP.<init>(SP.java:26)
+    SeamCarver.<init>(SeamCarver.java:33)
+    TestSeamCarver.checkRandom(TestSeamCarver.java:1351)
+    TestSeamCarver.test12c(TestSeamCarver.java:1555)
+    TestSeamCarver.main(TestSeamCarver.java:1662)
+
+    - failed on operation 0 of 100
+    - sequence of operations was:
+      SeamCarver carver = new SeamCarver(picture)
+      Picture picture = new Picture(...)
+      
+       1-by-1 picture (RGB values given in hex)
+       #090908
+
+
+==> FAILED
+
+
+Total: 20/31 tests passed!
+
+
+================================================================
+********************************************************************************
+*  MEMORY
+********************************************************************************
+
+Analyzing memory of SeamCarver
+*-----------------------------------------------------------
+Running 6 total tests.
+
+Memory usage of a SeamCarver after removing 2 horizontal
+and 2 vertical seams from an n-by-n image.
+
+Maximum allowed memory is ~ 12 n^2 bytes.
+
+                 n       student (bytes)
+-------------------------------------------
+=> FAILED       16        70744
+=> FAILED       32       292440
+=> FAILED       64      1196632
+=> FAILED      128      4847936
+=> FAILED      256     19495704
+=> FAILED      512     78324496
+==> 0/6 tests passed
+
+Total: 0/6 tests passed!
+
+Estimated student memory (bytes) = 300.04 n^2 - 661.01 n + 8009.20   (R^2 = 1.000)
+================================================================
+
+
+
+********************************************************************************
+*  TIMING
+********************************************************************************
+
+Timing SeamCarver
+*-----------------------------------------------------------
+Reference solution is unoptimized.
+
+Running 17 total tests.
+
+Test 1: create a SeamCarver object for a given 736-by-584 picture;
+        then call findHorizontalSeam(), removeHorizontalSeam(),
+        findVerticalSeam(), removeVerticalSeam(), and picture()
+        one each; count total number of calls to methods in Picture
+  * constructor calls        = 1
+  * get()    calls per pixel = 1.0
+  * set()    calls per pixel = 1.0
+  * getRGB() calls per pixel = 0.0
+  * setRGB() calls per pixel = 0.0
+==> passed
+
+Test 2: create a SeamCarver object for a given 736-by-584 picture;
+        then call findHorizontalSeam(), removeHorizontalSeam(),
+        findVerticalSeam(), and removeVerticalSeam(), and picture();
+        once each; count total number of calls to methods in Color
+  * constructor calls per pixel = 1.0
+  * getRed()    calls per pixel = 11.9
+    - maximum allowed           = 8
+
+  * getGreen()  calls per pixel = 11.9
+    - maximum allowed           = 8
+
+  * getBlue()   calls per pixel = 11.9
+    - maximum allowed           = 8
+
+  * getRGB()    calls per pixel = 0.0
+  * equal number of calls to getRed(), getGreen(), and getBlue()
+==> FAILED
+
+Tests 3a-3c: time removeVerticalSeam() for a given 736-by-584 picture
+
+
+Total: 0/17 tests passed: Could not complete tests, which results in a reported score of 0.
+================================================================

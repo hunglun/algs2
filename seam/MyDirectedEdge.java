@@ -15,14 +15,14 @@ public class MyDirectedEdge {
      * @throws IllegalArgumentException if {@code weight} is {@code NaN}
      */
     public MyDirectedEdge(Pair v, Pair w, double weight) {
-        if (v.x < 0) throw new IllegalArgumentException("Vertex names must be nonnegative integers");
-        if (w.x < 0) throw new IllegalArgumentException("Vertex names must be nonnegative integers");
-        if (v.y < 0) throw new IllegalArgumentException("Vertex names must be nonnegative integers");
-        if (w.y < 0) throw new IllegalArgumentException("Vertex names must be nonnegative integers");
+        if (v.x() < 0) throw new IllegalArgumentException("Vertex names must be nonnegative integers");
+        if (w.x() < 0) throw new IllegalArgumentException("Vertex names must be nonnegative integers");
+        if (v.y() < 0) throw new IllegalArgumentException("Vertex names must be nonnegative integers");
+        if (w.y() < 0) throw new IllegalArgumentException("Vertex names must be nonnegative integers");
         
         if (Double.isNaN(weight)) throw new IllegalArgumentException("Weight is NaN");
-        this.v = new Pair(v.x,v.y);
-        this.w = new Pair(w.x,w.y);
+        this.v = new Pair(v.x(),v.y());
+        this.w = new Pair(w.x(),w.y());
         this.weight = weight;
     }
 

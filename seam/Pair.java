@@ -1,5 +1,5 @@
 public class Pair{
-  public int x,y;
+  private int x,y;
   public Pair(int x, int y){
     this.x = x;
     this.y = y;
@@ -8,5 +8,11 @@ public class Pair{
   public String toString() {
     return "[" + x + "," + y + "]" ;
   }
+  public int x(){
+    return x;
+  }
 
+  public int y(){
+    return y;
+  }
 }

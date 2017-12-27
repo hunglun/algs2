@@ -71,7 +71,7 @@ public class TopologicalOrder {
     int h=height;
     this.height=height;
     this.width = width;
-    StdOut.printf("Topological sort - height %d, width %d\n\n", h, w);
+    //StdOut.printf("Topological sort - height %d, width %d\n\n", h, w);
     postorder = new Queue<Pair>();
     marked    = new boolean[w][h];
     for (int i = 0; i < width; i++)
@@ -84,24 +84,29 @@ public class TopologicalOrder {
   
   // run DFS in edge-weighted digraph G from vertex v and compute preorder/postorder
   private void dfs(Pair v, boolean isVertical) {
-    marked[v.x][v.y] = true;
+    marked[v.x()][v.y()] = true;
     for (MyDirectedEdge e : adj(v,isVertical)) {
       Pair w = e.to();
       //StdOut.println(e);
-      if (!marked[w.x][w.y]) {
+      if (!marked[w.x()][w.y()]) {
         dfs(w, isVertical);
       }
     }
     postorder.enqueue(v);
   }
+
+  
+
+
+
   private Iterable<MyDirectedEdge> adj_vertical(Pair v){
     Bag<MyDirectedEdge> nb = new Bag<MyDirectedEdge>();
     
     // handle virtual nodes;
-    if (v.y == this.height - 1) {
-      if(v.x == 1) // the virtual end node
+    if (v.y() == this.height - 1) {
+      if(v.x() == 1) // the virtual end node
         return nb;
-      if(v.x == 0){ // connect virtual start node to the first row
+      if(v.x() == 0){ // connect virtual start node to the first row
         for(int i=0; i<this.width; i++)
           nb.add(new MyDirectedEdge(v,new Pair(i,0),0));
         return nb;
@@ -110,17 +115,17 @@ public class TopologicalOrder {
     };
     
     // connect last row to the end virtual node.
-    if (v.y == this.height - 2) {
+    if (v.y() == this.height - 2) {
       nb.add(new MyDirectedEdge(v,new Pair(1,this.height - 1),0));
       return nb;
     };
     
-    nb.add(new MyDirectedEdge(v, new Pair(v.x,v.y+1),0));
-    if (v.x != 0 ){
-      nb.add(new MyDirectedEdge(v, new Pair(v.x-1,v.y+1),0));
+    nb.add(new MyDirectedEdge(v, new Pair(v.x(),v.y()+1),0));
+    if (v.x() != 0 ){
+      nb.add(new MyDirectedEdge(v, new Pair(v.x()-1,v.y()+1),0));
     }
-    if (v.x != this.width - 1 )
-      nb.add(new MyDirectedEdge(v, new Pair(v.x+1,v.y+1),0));
+    if (v.x() != this.width - 1 )
+      nb.add(new MyDirectedEdge(v, new Pair(v.x()+1,v.y()+1),0));
     //for (  MyDirectedEdge e : nb) StdOut.println(e);
     return nb;
   }

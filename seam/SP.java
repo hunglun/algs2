@@ -12,6 +12,7 @@ public class SP {
   
   public SP(int w, int h, double m[][]){
     h = h + 1;
+   
     this.w = w ;
     this.h = h;
     this.width = w;
@@ -43,7 +44,7 @@ public class SP {
      edgeTo[i][0] = new MyDirectedEdge(new Pair(w,h), new Pair(i,0),0);
      }
      */
-    StdOut.printf("SP - height %d, width %d\n\n", h, w);
+    //StdOut.printf("SP - height %d, width %d\n\n", h, w);
     for(Pair v : top.order()){
       //StdOut.println("top order:  "+ v);
       
@@ -81,10 +82,10 @@ public class SP {
     Bag<MyDirectedEdge> nb = new Bag<MyDirectedEdge>();
     
     // handle virtual nodes;
-    if (v.y == this.height - 1) {
-      if(v.x == 1) // the virtual end node
+    if (v.y() == this.height - 1) {
+      if(v.x() == 1) // the virtual end node
         return nb;
-      if(v.x == 0){ // connect virtual start node to the first row
+      if(v.x() == 0){ // connect virtual start node to the first row
         for(int i=0; i<this.width; i++)
           nb.add(new MyDirectedEdge(v,new Pair(i,0),0));
         return nb;
@@ -93,17 +94,17 @@ public class SP {
     };
     
     // connect last row to the end virtual node.
-    if (v.y == this.height - 2) {
+    if (v.y() == this.height - 2) {
       nb.add(new MyDirectedEdge(v,new Pair(1,this.height - 1),0));
       return nb;
     };
     
-    nb.add(new MyDirectedEdge(v, new Pair(v.x,v.y+1),0));
-    if (v.x != 0 ){
-      nb.add(new MyDirectedEdge(v, new Pair(v.x-1,v.y+1),0));
+    nb.add(new MyDirectedEdge(v, new Pair(v.x(),v.y()+1),0));
+    if (v.x() != 0 ){
+      nb.add(new MyDirectedEdge(v, new Pair(v.x()-1,v.y()+1),0));
     }
-    if (v.x != this.width - 1 )
-      nb.add(new MyDirectedEdge(v, new Pair(v.x+1,v.y+1),0));
+    if (v.x() != this.width - 1 )
+      nb.add(new MyDirectedEdge(v, new Pair(v.x()+1,v.y()+1),0));
     //for (  MyDirectedEdge e : nb) StdOut.println(e);
     return nb;
   }
@@ -120,17 +121,15 @@ public class SP {
   
   
   
-  public int[] horizontalSeam(){
-    return null;
-  }
+ 
   
   public boolean hasPathTo(Pair v) {
     //validateVertex(v);
-    return distTo[v.x][v.y] < Double.POSITIVE_INFINITY;
+    return distTo[v.x()][v.y()] < Double.POSITIVE_INFINITY;
   }
   public double distTo(Pair v) {
 //        validateVertex(v);
-    return distTo[v.x][v.y];
+    return distTo[v.x()][v.y()];
   }
   
   public int[] verticalSeam(){
@@ -140,7 +139,7 @@ public class SP {
 //     validateVertex(v);
     if (!hasPathTo(v)) return null;
     Stack<MyDirectedEdge> path = new Stack<MyDirectedEdge>();
-    for (MyDirectedEdge e = edgeTo[v.x][v.y]; e != null; e = edgeTo[e.from().x][e.from().y]) {
+    for (MyDirectedEdge e = edgeTo[v.x()][v.y()]; e != null; e = edgeTo[e.from().x()][e.from().y()]) {
      // StdOut.println("vertical seam: "+e);
       path.push(e);
     }
@@ -148,7 +147,7 @@ public class SP {
     int count=0;
     path.pop(); // skip the virtual start node.
     while(!path.isEmpty()){
-      apath[count] = path.pop().from().x;
+      apath[count] = path.pop().from().x();
       count++;
     }
   
@@ -159,11 +158,11 @@ public class SP {
     for(MyDirectedEdge e : adj(v, isVertical)){
       Pair w = e.to();
      // StdOut.println(e);
-      if(distTo[w.x][w.y] > distTo[v.x][v.y] + m[w.x][w.y]){
-      //  StdOut.printf("Successfully relaxed : %4.0f ", distTo[w.x][w.y]);
-        distTo[w.x][w.y] = distTo[v.x][v.y] + m[w.x][w.y];        
-       // StdOut.printf("--> %4.0f\n" , distTo[w.x][w.y]);
-        edgeTo[w.x][w.y] = e;
+      if(distTo[w.x()][w.y()] > distTo[v.x()][v.y()] + m[w.x()][w.y()]){
+      //  StdOut.printf("Successfully relaxed : %4.0f ", distTo[w.x()][w.y()]);
+        distTo[w.x()][w.y()] = distTo[v.x()][v.y()] + m[w.x()][w.y()];        
+       // StdOut.printf("--> %4.0f\n" , distTo[w.x()][w.y()]);
+        edgeTo[w.x()][w.y()] = e;
       }
     }
   }

@@ -34,7 +34,7 @@ public class SeamCarver {
     
     
     
-    StdOut.printf("width %d, height %d\n", w, h);
+    //StdOut.printf("width %d, height %d\n", w, h);
     
   } // create a seam carver object based on the given picture
   
