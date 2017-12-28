@@ -107,6 +107,8 @@ public class SeamCarver {
 
   } // sequence of indices for vertical seam
   public    void removeHorizontalSeam(int[] seam)   {
+    if (seam == null) throw new IllegalArgumentException("error");
+    if (seam.length != w) throw new IllegalArgumentException("error");
     int prev = seam[0];
     for(int i : seam){
       if (Math.abs(i - prev) > 1) throw new IllegalArgumentException("error");
@@ -136,7 +138,10 @@ public class SeamCarver {
    sp = new SP(w,h,m);
   } // remove horizontal seam from current picture
   public    void removeVerticalSeam(int[] seam)     {
+     if (seam == null) throw new IllegalArgumentException("error");
+     if (seam.length != h) throw new IllegalArgumentException("error");
     int prev = seam[0];
+    
    for(int i : seam){
      if (Math.abs(i - prev) > 1) throw new IllegalArgumentException("error");
      if(i < 0 ||  i > w -1)  throw new IllegalArgumentException("error");
