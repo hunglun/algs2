@@ -7,7 +7,7 @@
 6. [X] implement outcast class (1h)
 7. [X] debug
 8. [X] optimise
-* TODO solve seam carving [83%]
+* DONE solve seam carving [100%]
 1. [X] understand the problem
 2. [X] watch the lectures (3h)
 3. [X] create stub files
@@ -19,7 +19,7 @@
    - [X] Now implement removeVerticalSeam(). Typically, this method will be called with the output of findVerticalSeam(), but be sure that they work for any seam. To test that your code words, use the client ResizeDemo described in the testing section above.
    - [X] To write removeHorizontalSeam(), transpose the image, call removeVerticalSeam(), and transpose it back.
 5. [X] debug
-6. [ ] optimise
+6. [X] optimise
 
 ** DONE findVerticalSeam
 - [X]  To write findVerticalSeam(), you will want to first make sure
@@ -36,7 +36,17 @@
 
 
 
-* TODO solve baseball elimination
+* TODO solve baseball elimination[11%]
+1) [X] create stub files
+2) [ ] understand the problem
+3) [ ] watch the lectures (1h)
+4) [ ] Write code to read in the input file and store the data.
+5) [ ] Draw by hand the FlowNetwork graph that you want to construct for a few small examples. Write the code to construct the FlowNetwork, print it out using the toString() method, and and make sure that it matches your intent. Do not continue until you have thoroughly tested this stage.
+6) [ ] Compute the maxflow and mincut using the FordFulkerson data type. You can access the value of the flow with the value() method; you can identify which vertices are on the source side of the mincut with the inCut() method.
+7) [ ] The BaseballElimination API contains the public methods that you will implement. For modularity, you will want to add some private helper methods of your own.
+8) [ ] debug
+9) [ ] optimise
+
 * TODO solve boggle
 * TODO solve burrow wheeler
 * TODO understand linear programming
