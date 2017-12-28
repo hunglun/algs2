@@ -9,11 +9,18 @@ public class SeamCarver {
   private int h;
   private double[][]m;
 
-  private Color[][] p_color;
+  private MyColor[][] p_color;
 //  private int[][] red;
 //  private int[][] green;
 //  private int[][] blue;
-  
+  private class MyColor {
+    public int red,green,blue;
+    public MyColor(int red, int green, int blue){
+      this.red = red;
+      this.green = green;
+      this.blue = blue;
+    }
+  }  
   public SeamCarver(Picture picture)                {
     // compute energy matrix
     if (picture == null)  throw new IllegalArgumentException("error");
@@ -21,11 +28,14 @@ public class SeamCarver {
     w = picture.width();
     h = picture.height();
     m = new double[w][h];
-    p_color = new Color[w][h];
+    p_color = new MyColor[w][h];
     
+    Color color;
     for(int i = 0; i < w ; i++){
       for(int j = 0; j < h; j++){
-        p_color[i][j] = picture.get(i,j);
+        color = picture.get(i,j);
+        p_color[i][j] = new MyColor(color.getRed(),color.getGreen(),color.getBlue());
+      
       }
     }
     for(int i = 0; i < w ; i++){
@@ -46,9 +56,11 @@ public class SeamCarver {
   
   public Picture picture()                          {
     Picture pic = new Picture(w, h);
+    MyColor c;
     for(int i = 0; i < w ; i++){
       for(int j = 0; j < h; j++){
-        pic.set(i,j,p_color[i][j]);
+        c = p_color[i][j];
+        pic.set(i,j,new Color (c.red,c.green,c.blue));
       }
     }
     return pic;
@@ -61,13 +73,13 @@ public class SeamCarver {
   } // height of current picture
   private int gx(int x, int y){
 //    StdOut.printf("x : %d, y : %d\n", x, y);
-    Color right = p_color[x+1][y];
-    Color left  = p_color[x-1][y];
+    MyColor right = p_color[x+1][y];
+    MyColor left  = p_color[x-1][y];
     
     // red
-    int r = right.getRed() - left.getRed();
-    int g = right.getGreen() - left.getGreen();
-    int b = right.getBlue() - left.getBlue();
+    int r = right.red - left.red;
+    int g = right.green - left.green;
+    int b = right.blue - left.blue;
     
     return r*r + g*g + b*b;
   }
@@ -76,13 +88,14 @@ public class SeamCarver {
   private int gy(int x, int y){
     
  //  StdOut.printf("x : %d, y : %d\n", x, y);
-    Color right = p_color[x][y+1];
-    Color left  = p_color[x][y-1];
+    MyColor right = p_color[x][y+1];
+    MyColor left  = p_color[x][y-1];
     
     // red
-    int r = right.getRed() - left.getRed();
-    int g = right.getGreen() - left.getGreen();
-    int b = right.getBlue() - left.getBlue();
+    int r = right.red - left.red;
+    int g = right.green - left.green;
+    int b = right.blue - left.blue;
+    
     
     return r*r + g*g + b*b;
   }
