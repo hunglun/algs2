@@ -19,9 +19,11 @@ public class SP {
     this.height = h;
     this.m = new double[w][h];
     for(int i = 0; i < w ; i++){
+      System.arraycopy(m[i],0,this.m[i],0,h-1);
+      /*
       for(int j = 0; j < h-1; j++){
         this.m[i][j] = m[i][j];
-      }
+      }*/
     }
     this.m[0][h-1] = 0;
  
@@ -38,12 +40,7 @@ public class SP {
     // vertical seam only
     TopologicalOrder top = new TopologicalOrder(w,h,m,true);
     distTo[0][h-1] = 0;
-    /*
-     for(int i=0; i< w;i++){
-     distTo[i][0] = m[i][0];
-     edgeTo[i][0] = new MyDirectedEdge(new Pair(w,h), new Pair(i,0),0);
-     }
-     */
+  
     //StdOut.printf("SP - height %d, width %d\n\n", h, w);
     for(Pair v : top.order()){
       //StdOut.println("top order:  "+ v);
@@ -52,30 +49,7 @@ public class SP {
     }
     
     
-    /*
-    for(int j=0; j< h-1;j++){
-      for(int i=0; i< w;i++){
-        
-        StdOut.printf("%4.0f ",m[i][j] );
-      }
-      StdOut.println();
-    }
-    StdOut.println();
-    for(int j=0; j< h;j++){
-      for(int i=0; i< w;i++){
-        
-        StdOut.printf("%4.0f ",distTo[i][j] );
-      }
-      StdOut.println();
-    }
-    
-    for(int j=0; j< h;j++){
-      for(int i=0; i< w;i++){
-        
-        StdOut.println(edgeTo[i][j] );
-      }
-      StdOut.println();
-    }*/
+ 
   }
   
   private Iterable<MyDirectedEdge> adj_vertical(Pair v){

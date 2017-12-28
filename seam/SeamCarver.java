@@ -31,7 +31,7 @@ public class SeamCarver {
        
       }
     }    
-    sp = new SP(w,h,m);
+    //sp = new SP(w,h,m);
     
     
     
@@ -101,11 +101,12 @@ public class SeamCarver {
     sp_t = new SP(h,w,m_t);
     return sp_t.verticalSeam();   
   } // sequence of indices for horizontal seam
+  
   public   int[] findVerticalSeam()                 {
-   sp = new SP(w,h,m);
+    sp = new SP(w,h,m);
     return sp.verticalSeam();
-
   } // sequence of indices for vertical seam
+  
   public    void removeHorizontalSeam(int[] seam)   {
     if (seam == null) throw new IllegalArgumentException("error");
     if (seam.length != w) throw new IllegalArgumentException("error");
@@ -161,11 +162,7 @@ public class SeamCarver {
     
     for(int j = 0; j < h; j++){
       for(int i = 0; i < w ; i++){
-        // TODO optimise
-        /* if (i >= seam[j]){
-         m[i][j] = m[i+1][j]; // shift array to fill in the hole left by the vertical seam.
-         }
-         */
+        
         if (Math.abs(i - seam[j]) < 2){
           m[i][j] = energy(i,j);
         }
