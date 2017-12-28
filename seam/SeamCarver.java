@@ -154,6 +154,7 @@ public class SeamCarver {
         
         if (i >= seam[j]){
           p_color[i][j] = p_color[i+1][j];
+          m[i][j] = m[i+1][j];
         }
       }
     }  
@@ -165,10 +166,12 @@ public class SeamCarver {
          m[i][j] = m[i+1][j]; // shift array to fill in the hole left by the vertical seam.
          }
          */
-        m[i][j] = energy(i,j);
+        if (Math.abs(i - seam[j]) < 2){
+          m[i][j] = energy(i,j);
+        }
         //StdOut.printf("%10.2f",m[i][j]);
       }
-      //StdOut.println();
+     // StdOut.println();
     }   
     
   } // remove vertical seam from current picture
