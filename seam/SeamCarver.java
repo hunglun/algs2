@@ -11,11 +11,11 @@ public class SeamCarver {
   private MyColor[][] p_color;
 
   private class MyColor {
-    public int red,green,blue;
+    public char red,green,blue;
     public MyColor(int red, int green, int blue){
-      this.red = red;
-      this.green = green;
-      this.blue = blue;
+      this.red = (char)red;
+      this.green = (char)green;
+      this.blue = (char)blue;
     }
   }  
   public SeamCarver(Picture picture)                {
