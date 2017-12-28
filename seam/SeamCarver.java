@@ -14,12 +14,19 @@ public class SeamCarver {
   public SeamCarver(Picture picture)                {
     // compute energy matrix
     if (picture == null)  throw new IllegalArgumentException("error");
-    this.picture = picture;
+  
     w = picture.width();
     h = picture.height();
     m = new float[w][h];
     
-    
+    this.picture = new Picture(w, h);
+    Color c;
+    for(int i = 0; i < w ; i++){
+      for(int j = 0; j < h; j++){
+        c = picture.get(i,j);
+        this.picture.set(i,j,c);
+      }
+    }
     for(int i = 0; i < w ; i++){
       for(int j = 0; j < h; j++){
         m[i][j] = (float)energy(i,j);

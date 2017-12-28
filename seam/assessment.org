@@ -7,24 +7,24 @@ API:          PASSED
 
 Findbugs:     FAILED (3 warnings)
 PMD:          PASSED
-Checkstyle:   FAILED (0 errors, 215 warnings)
+Checkstyle:   FAILED (0 errors, 234 warnings)
 
-Correctness:  31/31 tests passed
-Memory:       0/6 tests passed
+Correctness:  26/31 tests passed
+Memory:       6/6 tests passed
 Timing:       0/17 tests passed
 
-Aggregate score: 70.00%
+Aggregate score: 70.32%
 [Compilation: 5%, API: 5%, Findbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
 
 ASSESSMENT DETAILS
 
 The following files were submitted:
 ----------------------------------
-2.3K Dec 28 09:15 MyDirectedEdge.java
- 251 Dec 28 09:15 Pair.java
-4.6K Dec 28 09:15 SP.java
-4.8K Dec 28 09:15 SeamCarver.java
-6.9K Dec 28 09:15 TopologicalOrder.java
+2.0K Dec 28 14:11 MyDirectedEdge.java
+ 251 Dec 28 14:11 Pair.java
+4.0K Dec 28 14:11 SP.java
+4.7K Dec 28 14:11 SeamCarver.java
+6.9K Dec 28 14:11 TopologicalOrder.java
 
 
 ********************************************************************************
@@ -54,8 +54,8 @@ SeamCarver:
 % findbugs *.class
 *-----------------------------------------------------------
 M D UP_UNUSED_PARAMETER UP: Static or private method TopologicalOrder.adj_horizontal(Pair) has unused parameters  At TopologicalOrder.java:[line 134]
-M D UP_UNUSED_PARAMETER UP: Static or private method SP.adj_horizontal(Pair) has unused parameters  At SP.java:[line 113]
-L D PZLA_PREFER_ZERO_LENGTH_ARRAYS PZLA: Should 'verticalPathTo()' return a zero-length array instead of null?  At SP.java:[line 148]
+M D UP_UNUSED_PARAMETER UP: Static or private method SP.adj_horizontal(Pair) has unused parameters  At SP.java:[line 87]
+L D PZLA_PREFER_ZERO_LENGTH_ARRAYS PZLA: Should 'verticalPathTo()' return a zero-length array instead of null?  At SP.java:[line 122]
 Warnings generated: 3
 
 
@@ -71,12 +71,11 @@ SP.java:10: The private instance (or static) variable 'height' can be made 'fina
 SP.java:10: The private instance (or static) variable 'w' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
 SP.java:10: The private instance (or static) variable 'width' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
 SP.java:11: The private instance (or static) variable 'm' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
-SP.java:94: There appears to be a spurious semicolon. [EmptyStatementNotInLoop]
-SP.java:100: There appears to be a spurious semicolon. [EmptyStatementNotInLoop]
-SP.java:111: Avoid unused parameter variables, such as 'v'. [UnusedFormalParameter]
-SeamCarver.java:10: Can you replace the instance (or static) variable 'p' with a local variable? [SingularField]
-SeamCarver.java:11: Can you replace the instance (or static) variable 'm_t' with a local variable? [SingularField]
-SeamCarver.java:12: Can you replace the instance (or static) variable 'sp_t' with a local variable? [SingularField]
+SP.java:68: There appears to be a spurious semicolon. [EmptyStatementNotInLoop]
+SP.java:74: There appears to be a spurious semicolon. [EmptyStatementNotInLoop]
+SP.java:85: Avoid unused parameter variables, such as 'v'. [UnusedFormalParameter]
+SeamCarver.java:10: The private instance (or static) variable 'picture' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+SeamCarver.java:98: Avoid naming non-fields with the prefix m_ [MisleadingVariableName]
 TopologicalOrder.java:60: The private instance (or static) variable 'postorder' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
 TopologicalOrder.java:66: The private instance (or static) variable 'height' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
 TopologicalOrder.java:67: The private instance (or static) variable 'width' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
@@ -84,7 +83,7 @@ TopologicalOrder.java:68: Avoid unused parameter variables, such as 'm'. [Unused
 TopologicalOrder.java:115: There appears to be a spurious semicolon. [EmptyStatementNotInLoop]
 TopologicalOrder.java:121: There appears to be a spurious semicolon. [EmptyStatementNotInLoop]
 TopologicalOrder.java:132: Avoid unused parameter variables, such as 'v'. [UnusedFormalParameter]
-PMD ends with 20 warnings.
+PMD ends with 19 warnings.
 
 
 ================================================================
@@ -94,7 +93,7 @@ PMD ends with 20 warnings.
 *-----------------------------------------------------------
 [WARN] MyDirectedEdge.java:24:33: ',' is not followed by whitespace. [WhitespaceAfter]
 [WARN] MyDirectedEdge.java:25:33: ',' is not followed by whitespace. [WhitespaceAfter]
-[WARN] MyDirectedEdge.java:67:76: ',' is not followed by whitespace. [WhitespaceAfter]
+[WARN] MyDirectedEdge.java:60:76: ',' is not followed by whitespace. [WhitespaceAfter]
 [WARN] Pair.java:1:18: '{' is not preceded with whitespace. [WhitespaceAround]
 [WARN] Pair.java:2:17: ',' is not followed by whitespace. [WhitespaceAfter]
 [WARN] Pair.java:3:28: '{' is not preceded with whitespace. [WhitespaceAround]
@@ -103,36 +102,36 @@ PMD ends with 20 warnings.
 [WARN] Pair.java:15:17: '{' is not preceded with whitespace. [WhitespaceAround]
 [WARN] SeamCarver.java:2:8: Unused import statement for 'edu.princeton.cs.algs4.Bag'. [UnusedImports]
 [WARN] SeamCarver.java:4:8: Unused import statement for 'edu.princeton.cs.algs4.StdOut'. [UnusedImports]
-[WARN] SeamCarver.java:5:8: Unused import statement for 'edu.princeton.cs.algs4.IndexMinPQ'. [UnusedImports]
-[WARN] SeamCarver.java:6:8: Unused import statement for 'edu.princeton.cs.algs4.Queue'. [UnusedImports]
-[WARN] SeamCarver.java:11:24: The instance variable 'm_t' must start with a lowercase letter and use camelCase. [MemberName]
-[WARN] SeamCarver.java:12:18: The instance variable 'sp_t' must start with a lowercase letter and use camelCase. [MemberName]
-[WARN] SeamCarver.java:13:21: The instance variable 'p_color' must start with a lowercase letter and use camelCase. [MemberName]
-[WARN] SeamCarver.java:23:8: 'for' is not followed by whitespace. [WhitespaceAfter]
-[WARN] SeamCarver.java:23:25: ';' is preceded with whitespace. [NoWhitespaceBefore]
-[WARN] SeamCarver.java:23:32: '{' is not preceded with whitespace. [WhitespaceAround]
-[WARN] SeamCarver.java:24:10: 'for' is not followed by whitespace. [WhitespaceAfter]
-[WARN] SeamCarver.java:24:33: '{' is not preceded with whitespace. [WhitespaceAround]
-[WARN] SeamCarver.java:25:33: ',' is not followed by whitespace. [WhitespaceAfter]
-[WARN] SeamCarver.java:28:8: 'for' is not followed by whitespace. [WhitespaceAfter]
-[WARN] SeamCarver.java:28:25: ';' is preceded with whitespace. [NoWhitespaceBefore]
-[WARN] SeamCarver.java:28:32: '{' is not preceded with whitespace. [WhitespaceAround]
-[WARN] SeamCarver.java:29:10: 'for' is not followed by whitespace. [WhitespaceAfter]
-[WARN] SeamCarver.java:29:33: '{' is not preceded with whitespace. [WhitespaceAround]
-[WARN] SeamCarver.java:30:28: ',' is not followed by whitespace. [WhitespaceAfter]
-[WARN] SeamCarver.java:34:19: ',' is not followed by whitespace. [WhitespaceAfter]
-[WARN] SeamCarver.java:34:21: ',' is not followed by whitespace. [WhitespaceAfter]
-[WARN] SeamCarver.java:38:7: '//' or '/*' is not followed by whitespace. [WhitespaceAfter]
+[WARN] SeamCarver.java:9:11: Use the primitive type 'double' instead of the primitive type 'float'. [Float]
+[WARN] SeamCarver.java:21:13: Use the primitive type 'double' instead of the primitive type 'float'. [Float]
+[WARN] SeamCarver.java:24:8: 'for' is not followed by whitespace. [WhitespaceAfter]
+[WARN] SeamCarver.java:24:25: ';' is preceded with whitespace. [NoWhitespaceBefore]
+[WARN] SeamCarver.java:24:32: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] SeamCarver.java:25:10: 'for' is not followed by whitespace. [WhitespaceAfter]
+[WARN] SeamCarver.java:25:33: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] SeamCarver.java:26:20: Use the primitive type 'double' instead of the primitive type 'float'. [Float]
+[WARN] SeamCarver.java:26:26: Typecast is not followed by whitespace. [WhitespaceAfter]
+[WARN] SeamCarver.java:26:35: ',' is not followed by whitespace. [WhitespaceAfter]
+[WARN] SeamCarver.java:30:7: '//' or '/*' is not followed by whitespace. [WhitespaceAfter]
+[WARN] SeamCarver.java:34:7: '//' or '/*' is not followed by whitespace. [WhitespaceAfter]
 [WARN] SeamCarver.java:46:8: 'for' is not followed by whitespace. [WhitespaceAfter]
 [WARN] SeamCarver.java:46:25: ';' is preceded with whitespace. [NoWhitespaceBefore]
 [WARN] SeamCarver.java:46:32: '{' is not preceded with whitespace. [WhitespaceAround]
 [WARN] SeamCarver.java:47:10: 'for' is not followed by whitespace. [WhitespaceAfter]
 [WARN] SeamCarver.java:47:33: '{' is not preceded with whitespace. [WhitespaceAround]
-[WARN] SeamCarver.java:48:19: ',' is not followed by whitespace. [WhitespaceAfter]
-[WARN] SeamCarver.java:48:21: ',' is not followed by whitespace. [WhitespaceAfter]
-[WARN] SeamCarver.java:59:31: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] SeamCarver.java:48:32: ',' is not followed by whitespace. [WhitespaceAfter]
+[WARN] SeamCarver.java:49:19: ',' is not followed by whitespace. [WhitespaceAfter]
+[WARN] SeamCarver.java:49:21: ',' is not followed by whitespace. [WhitespaceAfter]
+[WARN] SeamCarver.java:60:31: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] SeamCarver.java:62:35: ',' is not followed by whitespace. [WhitespaceAfter]
+[WARN] SeamCarver.java:63:35: ',' is not followed by whitespace. [WhitespaceAfter]
+[WARN] SeamCarver.java:74:31: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] SeamCarver.java:77:38: ',' is not followed by whitespace. [WhitespaceAfter]
+[WARN] SeamCarver.java:78:38: ',' is not followed by whitespace. [WhitespaceAfter]
+[WARN] SeamCarver.java:90:10: '>' is not preceded with whitespace. [WhitespaceAround]
+[WARN] SeamCarver.java:90:11: '>' is not followed by whitespace. [WhitespaceAround]
 ...
-Checkstyle ends with 0 errors and 215 warnings.
+Checkstyle ends with 0 errors and 234 warnings.
 
 % custom checkstyle checks for SeamCarver.java
 *-----------------------------------------------------------
@@ -406,10 +405,14 @@ Test 9c: check removeHorizontalSeam() and removeVerticalSeam() with null argumen
 ==> passed
 
 Test 10a: check that client can mutate the Picture object that is passed to the constructor
-==> passed
+    - picture() returns a reference to argument picture
+==> FAILED
 
 Test 10b: check that client can mutate the Picture object that is returned by picture()
-==> passed
+    - repeated calls to picture() return reference to same Picture object
+    - so, if the client mutates their copy, picture() will return wrong value
+
+==> FAILED
 
 Test 11: check constructor with null argument
 ==> passed
@@ -419,32 +422,247 @@ Test 12a: check intermixed calls to findHorizontalSeam(), findVerticalSeam(),
           energy(), and picture() made with probabilities p1, p2, p3, p4, p5,
           p6, p7, and p8, respectively with optimal seams
   * random 5-by-6 image with p = (0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.5)
+    - failed on operation 4 of 5
+    - picture() returns wrong value
+    - student   picture is 5-by-6
+    - reference picture is 5-by-3
+    - sequence of operations was:
+      SeamCarver carver = new SeamCarver(picture)
+      Picture picture = new Picture(...)
+      
+       5-by-6 picture (RGB values given in hex)
+       #040504 #060006 #040008 #050804 #000800 
+       #070205 #090706 #060708 #000405 #060103 
+       #080604 #050501 #030103 #080900 #010003 
+       #090502 #010307 #070304 #060409 #020103 
+       #040000 #080905 #030808 #020608 #000905 
+       #000606 #070406 #040402 #070508 #010108
+
+      carver.removeHorizontalSeam()
+      carver.removeHorizontalSeam()
+      carver.removeHorizontalSeam()
+      carver.picture()
+
   * random 6-by-5 image with p = (0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5)
+    - failed on operation 3 of 5
+    - picture() returns wrong value
+    - student   picture is 6-by-5
+    - reference picture is 5-by-5
+    - sequence of operations was:
+      SeamCarver carver = new SeamCarver(picture)
+      Picture picture = new Picture(...)
+      
+       6-by-5 picture (RGB values given in hex)
+       #070308 #080300 #050803 #090700 #010701 #040207 
+       #060900 #000103 #080401 #090506 #010401 #090809 
+       #040101 #050301 #070001 #000307 #060500 #090500 
+       #030008 #040502 #010109 #090708 #070502 #080205 
+       #090308 #040508 #020405 #090507 #040607 #000307
+
+      carver.removeVerticalSeam()
+      carver.picture()
+      carver.picture()
+
   * random 6-by-6 image with p = (0.1, 0.1, 0.2, 0.2, 0.0, 0.0, 0.0, 0.4)
+    - failed on operation 4 of 5
+    - picture() returns wrong value
+    - student   picture is 6-by-6
+    - reference picture is 5-by-4
+    - sequence of operations was:
+      SeamCarver carver = new SeamCarver(picture)
+      Picture picture = new Picture(...)
+      
+       6-by-6 picture (RGB values given in hex)
+       #070800 #030902 #060906 #090907 #080202 #090607 
+       #060207 #060304 #070204 #010308 #040401 #000907 
+       #070007 #090108 #040206 #000906 #010201 #010608 
+       #040101 #030602 #010502 #060204 #090703 #070308 
+       #060607 #050406 #070800 #000805 #020701 #060105 
+       #060801 #090201 #060200 #080506 #070000 #080809
+
+      carver.removeVerticalSeam()
+      carver.removeHorizontalSeam()
+      carver.removeHorizontalSeam()
+      carver.picture()
+
   * random 6-by-6 image with p = (0.2, 0.2, 0.0, 0.0, 0.2, 0.2, 0.2, 0.0)
   * random 6-by-6 image with p = (0.1, 0.1, 0.2, 0.2, 0.1, 0.1, 0.1, 0.1)
   * random 100-by-110 image with p = (0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.5)
+    - failed on operation 7 of 100
+    - picture() returns wrong value
+    - student   picture is 100-by-110
+    - reference picture is 100-by-104
+    - sequence of operations was:
+      SeamCarver carver = new SeamCarver(picture)
+      carver.removeHorizontalSeam()
+      carver.removeHorizontalSeam()
+      carver.removeHorizontalSeam()
+      carver.removeHorizontalSeam()
+      carver.removeHorizontalSeam()
+      carver.removeHorizontalSeam()
+      carver.picture()
+
   * random 110-by-100 image with p = (0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5)
+    - failed on operation 8 of 100
+    - picture() returns wrong value
+    - student   picture is 110-by-100
+    - reference picture is 104-by-100
+    - sequence of operations was:
+      SeamCarver carver = new SeamCarver(picture)
+      carver.removeVerticalSeam()
+      carver.removeVerticalSeam()
+      carver.removeVerticalSeam()
+      carver.removeVerticalSeam()
+      carver.removeVerticalSeam()
+      carver.removeVerticalSeam()
+      carver.picture()
+      carver.picture()
+
   * random 110-by-110 image with p = (0.1, 0.1, 0.2, 0.2, 0.0, 0.0, 0.0, 0.4)
+    - failed on operation 3 of 100
+    - picture() returns wrong value
+    - student   picture is 110-by-110
+    - reference picture is 110-by-109
+    - sequence of operations was:
+      SeamCarver carver = new SeamCarver(picture)
+      carver.removeHorizontalSeam()
+      carver.findVerticalSeam()
+      carver.picture()
+
   * random 100-by-100 image with p = (0.2, 0.2, 0.0, 0.0, 0.1, 0.1, 0.2, 0.2)
   * random 110-by-110 image with p = (0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.2, 0.2)
-==> passed
+    - failed on operation 13 of 100
+    - picture() returns wrong value
+    - student   picture is 110-by-110
+    - reference picture is 109-by-110
+    - sequence of operations was:
+      SeamCarver carver = new SeamCarver(picture)
+      carver.picture()
+      carver.height()  ==> 110
+      carver.energy(x, y) for each x and y
+      carver.findVerticalSeam()
+      carver.energy(x, y) for each x and y
+      carver.findVerticalSeam()
+      carver.width()   ==> 110
+      carver.findHorizontalSeam()
+      carver.energy(x, y) for each x and y
+      carver.removeVerticalSeam()
+      carver.findVerticalSeam()
+      carver.picture()
+      carver.picture()
+
+==> FAILED
 
 Test 12b: check intermixed calls to findHorizontalSeam(), findVerticalSeam(),
           removeHorizontalSeam(), and removeVerticalSeam(), width(), height(),
           energy(), and picture() made with probabilities p1, p2, p3, p4, p5,
           p6, p7, and p8, respectively with random seams
   * random 5-by-6 image with p = (0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.5)
+    - failed on operation 5 of 5
+    - picture() returns wrong value
+    - student   picture is 5-by-6
+    - reference picture is 5-by-5
+    - sequence of operations was:
+      SeamCarver carver = new SeamCarver(picture)
+      Picture picture = new Picture(...)
+      
+       5-by-6 picture (RGB values given in hex)
+       #010106 #060905 #060605 #020501 #000703 
+       #080608 #010700 #090906 #020506 #000208 
+       #090109 #020806 #040003 #010803 #070109 
+       #070006 #030800 #050409 #000307 #010905 
+       #080900 #020408 #030906 #030702 #080308 
+       #090607 #060006 #030307 #030706 #030609
+
+      carver.picture()
+      carver.picture()
+      carver.picture()
+      carver.removeHorizontalSeam()
+      carver.picture()
+
   * random 6-by-5 image with p = (0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5)
   * random 6-by-6 image with p = (0.1, 0.1, 0.2, 0.2, 0.0, 0.0, 0.0, 0.4)
+    - failed on operation 5 of 5
+    - picture() returns wrong value
+    - student   picture is 6-by-6
+    - reference picture is 5-by-4
+    - sequence of operations was:
+      SeamCarver carver = new SeamCarver(picture)
+      Picture picture = new Picture(...)
+      
+       6-by-6 picture (RGB values given in hex)
+       #040202 #040101 #080800 #070208 #060600 #060206 
+       #080703 #030906 #090207 #060500 #080200 #060307 
+       #060706 #090808 #020803 #030306 #050502 #010109 
+       #040105 #090701 #060507 #040000 #020502 #060303 
+       #070901 #020106 #080005 #000806 #040404 #050905 
+       #080102 #090607 #090708 #050001 #050306 #080609
+
+      carver.removeHorizontalSeam()
+      carver.removeVerticalSeam()
+      carver.picture()
+      carver.removeHorizontalSeam()
+      carver.picture()
+
   * random 6-by-6 image with p = (0.2, 0.2, 0.0, 0.0, 0.2, 0.2, 0.2, 0.0)
   * random 6-by-6 image with p = (0.1, 0.1, 0.2, 0.2, 0.1, 0.1, 0.1, 0.1)
   * random 100-by-110 image with p = (0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.5)
+    - failed on operation 4 of 100
+    - picture() returns wrong value
+    - student   picture is 100-by-110
+    - reference picture is 100-by-108
+    - sequence of operations was:
+      SeamCarver carver = new SeamCarver(picture)
+      carver.picture()
+      carver.removeHorizontalSeam()
+      carver.removeHorizontalSeam()
+      carver.picture()
+
   * random 110-by-100 image with p = (0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5)
+    - failed on operation 4 of 100
+    - picture() returns wrong value
+    - student   picture is 110-by-100
+    - reference picture is 109-by-100
+    - sequence of operations was:
+      SeamCarver carver = new SeamCarver(picture)
+      carver.picture()
+      carver.removeVerticalSeam()
+      carver.picture()
+      carver.picture()
+
   * random 110-by-110 image with p = (0.1, 0.1, 0.2, 0.2, 0.0, 0.0, 0.0, 0.4)
+    - failed on operation 9 of 100
+    - picture() returns wrong value
+    - student   picture is 110-by-110
+    - reference picture is 107-by-109
+    - sequence of operations was:
+      SeamCarver carver = new SeamCarver(picture)
+      carver.picture()
+      carver.picture()
+      carver.removeVerticalSeam()
+      carver.removeVerticalSeam()
+      carver.picture()
+      carver.removeHorizontalSeam()
+      carver.removeVerticalSeam()
+      carver.picture()
+      carver.picture()
+
   * random 100-by-100 image with p = (0.2, 0.2, 0.0, 0.0, 0.1, 0.1, 0.2, 0.2)
   * random 110-by-110 image with p = (0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.2, 0.2)
-==> passed
+    - failed on operation 6 of 100
+    - picture() returns wrong value
+    - student   picture is 110-by-110
+    - reference picture is 109-by-110
+    - sequence of operations was:
+      SeamCarver carver = new SeamCarver(picture)
+      carver.findVerticalSeam()
+      carver.findVerticalSeam()
+      carver.removeVerticalSeam()
+      carver.energy(x, y) for each x and y
+      carver.picture()
+      carver.picture()
+
+==> FAILED
 
 Test 12c: check intermixed calls to findHorizontalSeam(), findVerticalSeam(),
           removeHorizontalSeam(), and removeVerticalSeam(), width(), height(),
@@ -452,12 +670,64 @@ Test 12c: check intermixed calls to findHorizontalSeam(), findVerticalSeam(),
           p6, p7, and p8, respectively with optimal seams
           (tests corner cases when width = 1 and/or height = 1)
   * random 1-by-8 image with p = (0.1, 0.1, 0.2, 0.0, 0.1, 0.1, 0.2, 0.2)
+    - failed on operation 10 of 100
+    - picture() returns wrong value
+    - student   picture is 1-by-8
+    - reference picture is 1-by-7
+    - sequence of operations was:
+      SeamCarver carver = new SeamCarver(picture)
+      Picture picture = new Picture(...)
+      
+       1-by-8 picture (RGB values given in hex)
+       #020605 
+       #060108 
+       #080902 
+       #030209 
+       #030800 
+       #060704 
+       #040607 
+       #040208
+
+      carver.findVerticalSeam()
+      carver.width()   ==> 1
+      carver.findHorizontalSeam()
+      carver.energy(x, y) for each x and y
+      carver.picture()
+      carver.height()  ==> 8
+      carver.findVerticalSeam()
+      carver.picture()
+      carver.removeHorizontalSeam()
+      carver.picture()
+
   * random 8-by-1 image with p = (0.1, 0.1, 0.0, 0.2, 0.1, 0.1, 0.2, 0.2)
+    - failed on operation 11 of 100
+    - picture() returns wrong value
+    - student   picture is 8-by-1
+    - reference picture is 7-by-1
+    - sequence of operations was:
+      SeamCarver carver = new SeamCarver(picture)
+      Picture picture = new Picture(...)
+      
+       8-by-1 picture (RGB values given in hex)
+       #080405 #050506 #020607 #020104 #080903 #060903 #040201 #090002
+
+      carver.width()   ==> 8
+      carver.picture()
+      carver.picture()
+      carver.removeVerticalSeam()
+      carver.width()   ==> 7
+      carver.picture()
+      carver.energy(x, y) for each x and y
+      carver.energy(x, y) for each x and y
+      carver.height()  ==> 1
+      carver.energy(x, y) for each x and y
+      carver.picture()
+
   * random 1-by-1 image with p = (0.2, 0.2, 0.0, 0.0, 0.1, 0.1, 0.2, 0.2)
-==> passed
+==> FAILED
 
 
-Total: 31/31 tests passed!
+Total: 26/31 tests passed!
 
 
 ================================================================
@@ -476,17 +746,17 @@ Maximum allowed memory is ~ 12 n^2 bytes.
 
                  n       student (bytes)
 -------------------------------------------
-=> FAILED       16        72352
-=> FAILED       32       295744
-=> FAILED       64      1203520
-=> FAILED      128      4862120
-=> FAILED      256     19548280
-=> FAILED      512     78369872
-==> 0/6 tests passed
+=> passed       16         4192
+=> passed       32        10848
+=> passed       64        36448
+=> passed      128       136808
+=> passed      256       534120
+=> passed      512      2115176
+==> 6/6 tests passed
 
-Total: 0/6 tests passed!
+Total: 6/6 tests passed!
 
-Estimated student memory (bytes) = 299.66 n^2 - 358.48 n + 122.23   (R^2 = 1.000)
+Estimated student memory (bytes) = 8.00 n^2 + 32.07 n + 1630.28   (R^2 = 1.000)
 ================================================================
 
 
@@ -506,8 +776,8 @@ Test 1: create a SeamCarver object for a given 736-by-584 picture;
         findVerticalSeam(), removeVerticalSeam(), and picture()
         one each; count total number of calls to methods in Picture
   * constructor calls        = 1
-  * get()    calls per pixel = 1.0
-  * set()    calls per pixel = 1.0
+  * get()    calls per pixel = 10.4
+  * set()    calls per pixel = 2.5
   * getRGB() calls per pixel = 0.0
   * setRGB() calls per pixel = 0.0
 ==> passed
@@ -516,7 +786,7 @@ Test 2: create a SeamCarver object for a given 736-by-584 picture;
         then call findHorizontalSeam(), removeHorizontalSeam(),
         findVerticalSeam(), and removeVerticalSeam(), and picture();
         once each; count total number of calls to methods in Color
-  * constructor calls per pixel = 1.0
+  * constructor calls per pixel = 10.4
   * getRed()    calls per pixel = 8.0
   * getGreen()  calls per pixel = 8.0
   * getBlue()   calls per pixel = 8.0
@@ -525,9 +795,9 @@ Test 2: create a SeamCarver object for a given 736-by-584 picture;
 ==> passed
 
 Tests 3a-3c: time removeVerticalSeam() for a given 736-by-584 picture
-  * student   solution calls per second:     268.42
-  * reference solution calls per second:      55.38
-  * reference / student ratio:                 0.21
+  * student   solution calls per second:      30.20
+  * reference solution calls per second:      45.42
+  * reference / student ratio:                 1.50
 
 => passed      student <= 150.0x reference
 => passed      student <=  15.0x reference
