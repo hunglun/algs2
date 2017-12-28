@@ -2,7 +2,7 @@ import edu.princeton.cs.algs4.StdOut;
 public class MyDirectedEdge { 
     private final Pair v;
     private final Pair w;
-    private final double weight;
+
 
     /**
      * Initializes a directed edge from vertex {@code v} to vertex {@code w} with
@@ -23,7 +23,7 @@ public class MyDirectedEdge {
         if (Double.isNaN(weight)) throw new IllegalArgumentException("Weight is NaN");
         this.v = new Pair(v.x(),v.y());
         this.w = new Pair(w.x(),w.y());
-        this.weight = weight;
+  
     }
 
     /**
@@ -42,20 +42,13 @@ public class MyDirectedEdge {
         return w;
     }
 
-    /**
-     * Returns the weight of the directed edge.
-     * @return the weight of the directed edge
-     */
-    public double weight() {
-        return weight;
-    }
 
     /**
      * Returns a string representation of the directed edge.
      * @return a string representation of the directed edge
      */
     public String toString() {
-        return v + "->" + w + " " + String.format("%5.2f", weight);
+        return v + "->" + w;
     }
 
     /**

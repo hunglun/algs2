@@ -32,7 +32,6 @@ public class SeamCarver {
       for(int j = 0; j < h; j++){
         color = picture.get(i,j);
         p_color[i][j] = new MyColor(color.getRed(),color.getGreen(),color.getBlue());
-      
       }
     }
     for(int i = 0; i < w ; i++){
