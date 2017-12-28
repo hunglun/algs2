@@ -102,7 +102,7 @@ public class SeamCarver {
     return sp_t.verticalSeam();   
   } // sequence of indices for horizontal seam
   public   int[] findVerticalSeam()                 {
-   
+   sp = new SP(w,h,m);
     return sp.verticalSeam();
 
   } // sequence of indices for vertical seam
@@ -135,41 +135,41 @@ public class SeamCarver {
    //  StdOut.println();
    }   
    
-   sp = new SP(w,h,m);
+   
   } // remove horizontal seam from current picture
   public    void removeVerticalSeam(int[] seam)     {
-     if (seam == null) throw new IllegalArgumentException("error");
-     if (seam.length != h) throw new IllegalArgumentException("error");
+    if (seam == null) throw new IllegalArgumentException("error");
+    if (seam.length != h) throw new IllegalArgumentException("error");
     int prev = seam[0];
     
-   for(int i : seam){
-     if (Math.abs(i - prev) > 1) throw new IllegalArgumentException("error");
-     if(i < 0 ||  i > w -1)  throw new IllegalArgumentException("error");
-     prev = i;
-   }
+    for(int i : seam){
+      if (Math.abs(i - prev) > 1) throw new IllegalArgumentException("error");
+      if(i < 0 ||  i > w -1)  throw new IllegalArgumentException("error");
+      prev = i;
+    }
     
     w = w - 1;
-   for(int j = 0; j < h; j++){
-     for(int i = 0; i < w ; i++){
-       
-       if (i >= seam[j]){
-         p_color[i][j] = p_color[i+1][j];
-       }
-     }
-   }  
-   
-   for(int j = 0; j < h; j++){
-     for(int i = 0; i < w ; i++){
-       // TODO optimise
-      /* if (i >= seam[j]){
+    for(int j = 0; j < h; j++){
+      for(int i = 0; i < w ; i++){
+        
+        if (i >= seam[j]){
+          p_color[i][j] = p_color[i+1][j];
+        }
+      }
+    }  
+    
+    for(int j = 0; j < h; j++){
+      for(int i = 0; i < w ; i++){
+        // TODO optimise
+        /* if (i >= seam[j]){
          m[i][j] = m[i+1][j]; // shift array to fill in the hole left by the vertical seam.
-       }
-       */
-       m[i][j] = energy(i,j);
-       //StdOut.printf("%10.2f",m[i][j]);
-     }
-     //StdOut.println();
-   }   
-   sp = new SP(w,h,m);
+         }
+         */
+        m[i][j] = energy(i,j);
+        //StdOut.printf("%10.2f",m[i][j]);
+      }
+      //StdOut.println();
+    }   
+    
   } // remove vertical seam from current picture
 }

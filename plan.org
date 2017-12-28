@@ -7,7 +7,7 @@
 6. [X] implement outcast class (1h)
 7. [X] debug
 8. [X] optimise
-* TODO solve seam carving [66%]
+* TODO solve seam carving [83%]
 1. [X] understand the problem
 2. [X] watch the lectures (3h)
 3. [X] create stub files
@@ -18,7 +18,7 @@
    - [X] To write findHorizontalSeam(), transpose the image, call findVerticalSeam(), and transpose it back.
    - [X] Now implement removeVerticalSeam(). Typically, this method will be called with the output of findVerticalSeam(), but be sure that they work for any seam. To test that your code words, use the client ResizeDemo described in the testing section above.
    - [X] To write removeHorizontalSeam(), transpose the image, call removeVerticalSeam(), and transpose it back.
-5. [ ] debug
+5. [X] debug
 6. [ ] optimise
 
 ** DONE findVerticalSeam
