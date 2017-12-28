@@ -2,17 +2,14 @@ import edu.princeton.cs.algs4.Picture;
 import edu.princeton.cs.algs4.Bag;
 import java.awt.Color;
 import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.IndexMinPQ;
-import edu.princeton.cs.algs4.Queue;
+
 public class SeamCarver {
   private int w;
   private int h;
   private double[][]m;
 
   private MyColor[][] p_color;
-//  private int[][] red;
-//  private int[][] green;
-//  private int[][] blue;
+
   private class MyColor {
     public int red,green,blue;
     public MyColor(int red, int green, int blue){
