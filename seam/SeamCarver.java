@@ -7,22 +7,21 @@ import edu.princeton.cs.algs4.Queue;
 public class SeamCarver {
   private int w;
   private int h;
-  private final Picture p;
   private double[][]m, m_t;
-  private SP sp, sp_t;
+  private SP sp;
   private Color[][] p_color;
   public SeamCarver(Picture picture)                {
     // compute energy matrix
     if (picture == null)  throw new IllegalArgumentException("error");
-    p = picture;
-    w = p.width();
-    h = p.height();
+    
+    w = picture.width();
+    h = picture.height();
     m = new double[w][h];
     p_color = new Color[w][h];
     
     for(int i = 0; i < w ; i++){
       for(int j = 0; j < h; j++){
-        p_color[i][j] = p.get(i,j);
+        p_color[i][j] = picture.get(i,j);
       }
     }
     for(int i = 0; i < w ; i++){
@@ -92,6 +91,7 @@ public class SeamCarver {
   } // energy of pixel at column x and row y
   public   int[] findHorizontalSeam()    
   {
+    SP sp_t;
     m_t = new double[h][w];
     for(int i = 0; i < h ; i++){
       for(int j = 0; j < w; j++){
