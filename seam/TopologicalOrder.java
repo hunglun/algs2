@@ -79,7 +79,7 @@ public class TopologicalOrder {
       if (!marked[i][j]) dfs(new Pair(i,j),isVertical);
     
     if (!marked[0][h-1]) dfs(new Pair(0,h-1),isVertical);
-    if (!marked[1][h-1]) dfs(new Pair(1,h-1),isVertical);
+    
   }
   
   // run DFS in edge-weighted digraph G from vertex v and compute preorder/postorder
@@ -116,7 +116,7 @@ public class TopologicalOrder {
     
     // connect last row to the end virtual node.
     if (v.y() == this.height - 2) {
-      nb.add(new MyDirectedEdge(v,new Pair(1,this.height - 1),0));
+      //nb.add(new MyDirectedEdge(v,new Pair(1,this.height - 1),0));
       return nb;
     };
     

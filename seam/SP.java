@@ -24,7 +24,7 @@ public class SP {
       }
     }
     this.m[0][h-1] = 0;
-    this.m[1][h-1] = 0;
+ 
     
     // SP algorithm initialisation
     // TODO compute it for vertical seam in a separate method.
@@ -95,7 +95,7 @@ public class SP {
     
     // connect last row to the end virtual node.
     if (v.y() == this.height - 2) {
-      nb.add(new MyDirectedEdge(v,new Pair(1,this.height - 1),0));
+      //nb.add(new MyDirectedEdge(v,new Pair(1,this.height - 1),0));
       return nb;
     };
     
@@ -133,21 +133,29 @@ public class SP {
   }
   
   public int[] verticalSeam(){
-    return verticalPathTo(new Pair(1,h-1));
+    double min = Double.POSITIVE_INFINITY;
+    int end = 0;
+    for(int i = 0; i < w; i++){
+      if (min > distTo[i][h-2]){
+        min = distTo[i][h-2];
+        end = i;
+      }
+    }
+    return verticalPathTo(new Pair(end,h-2));
   }
   public int[] verticalPathTo(Pair v){
 //     validateVertex(v);
     if (!hasPathTo(v)) return null;
     Stack<MyDirectedEdge> path = new Stack<MyDirectedEdge>();
     for (MyDirectedEdge e = edgeTo[v.x()][v.y()]; e != null; e = edgeTo[e.from().x()][e.from().y()]) {
-     // StdOut.println("vertical seam: "+e);
+     //StdOut.println("vertical seam: "+e);
       path.push(e);
     }
-    int[] apath = new int[path.size()-1];
+    int[] apath = new int[path.size()];
     int count=0;
-    path.pop(); // skip the virtual start node.
+    //path.pop(); // skip the virtual start node.
     while(!path.isEmpty()){
-      apath[count] = path.pop().from().x();
+      apath[count] = path.pop().to().x();
       count++;
     }
   
