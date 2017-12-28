@@ -7,9 +7,13 @@ import edu.princeton.cs.algs4.Queue;
 public class SeamCarver {
   private int w;
   private int h;
-  private double[][]m, m_t;
-  private SP sp;
+  private double[][]m;
+
   private Color[][] p_color;
+//  private int[][] red;
+//  private int[][] green;
+//  private int[][] blue;
+  
   public SeamCarver(Picture picture)                {
     // compute energy matrix
     if (picture == null)  throw new IllegalArgumentException("error");
@@ -92,7 +96,7 @@ public class SeamCarver {
   public   int[] findHorizontalSeam()    
   {
     SP sp_t;
-    m_t = new double[h][w];
+    double [][]m_t = new double[h][w];
     for(int i = 0; i < h ; i++){
       for(int j = 0; j < w; j++){
         m_t[i][j] = m[j][i];
@@ -103,7 +107,7 @@ public class SeamCarver {
   } // sequence of indices for horizontal seam
   
   public   int[] findVerticalSeam()                 {
-    sp = new SP(w,h,m);
+    SP sp = new SP(w,h,m);
     return sp.verticalSeam();
   } // sequence of indices for vertical seam
   
