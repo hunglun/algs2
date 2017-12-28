@@ -65,7 +65,7 @@ public class TopologicalOrder {
    */
   private int height;
   private int width;
-  public TopologicalOrder(int width, int height, double[][] m, boolean isVertical) {
+  public TopologicalOrder(int width, int height, float[][] m, boolean isVertical) {
        
     int w=width;
     int h=height;
@@ -163,7 +163,7 @@ public class TopologicalOrder {
   public static void main(String[] args) {
 //        In in = new In(args[0]);
 //        Digraph G = new Digraph(in);
-    double m[][] = {
+    float m[][] = {
       {1,2,3},
       {4,5,6},
       {7,8,9}      

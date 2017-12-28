@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdOut;
 public class SeamCarver {
   private int w;
   private int h;
-  private double[][]m;
+  private float[][]m;
 
   private MyColor[][] p_color;
 
@@ -24,7 +24,7 @@ public class SeamCarver {
     
     w = picture.width();
     h = picture.height();
-    m = new double[w][h];
+    m = new float[w][h];
     p_color = new MyColor[w][h];
     
     Color color;
@@ -36,7 +36,7 @@ public class SeamCarver {
     }
     for(int i = 0; i < w ; i++){
       for(int j = 0; j < h; j++){
-        m[i][j] = energy(i,j);
+        m[i][j] = (float)energy(i,j);
        
       }
     }    
@@ -105,7 +105,7 @@ public class SeamCarver {
   public   int[] findHorizontalSeam()    
   {
     SP sp_t;
-    double [][]m_t = new double[h][w];
+    float [][]m_t = new float[h][w];
     for(int i = 0; i < h ; i++){
       for(int j = 0; j < w; j++){
         m_t[i][j] = m[j][i];
@@ -143,7 +143,7 @@ public class SeamCarver {
     
    for(int j = 0; j < h; j++){
      for(int i = 0; i < w ; i++){
-       m[i][j] = energy(i,j);
+       m[i][j] = (float)energy(i,j);
   //     StdOut.printf("%10.2f",m[i][j]);
      }
    //  StdOut.println();
@@ -177,7 +177,7 @@ public class SeamCarver {
       for(int i = 0; i < w ; i++){
         
         if (Math.abs(i - seam[j]) < 2){
-          m[i][j] = energy(i,j);
+          m[i][j] = (float)energy(i,j);
         }
         //StdOut.printf("%10.2f",m[i][j]);
       }

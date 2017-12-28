@@ -5,19 +5,19 @@ import edu.princeton.cs.algs4.Stack;
 import edu.princeton.cs.algs4.Bag;
 import edu.princeton.cs.algs4.StdOut;
 public class SP {
-  private double distTo[][];
+  private float distTo[][];
   private MyDirectedEdge edgeTo[][];
   private int w,h, width, height;
-  private double m[][];
+  private float m[][];
   
-  public SP(int w, int h, double m[][]){
+  public SP(int w, int h, float m[][]){
     h = h + 1;
    
     this.w = w ;
     this.h = h;
     this.width = w;
     this.height = h;
-    this.m = new double[w][h];
+    this.m = new float[w][h];
     for(int i = 0; i < w ; i++){
       System.arraycopy(m[i],0,this.m[i],0,h-1);
       /*
@@ -31,11 +31,11 @@ public class SP {
     // SP algorithm initialisation
     // TODO compute it for vertical seam in a separate method.
     
-    distTo = new double[w][h];
+    distTo = new float[w][h];
     edgeTo = new MyDirectedEdge[w][h];
     for(int i = 0; i < w; i++)
       for(int j = 0; j < h; j++)
-      distTo[i][j] = Double.POSITIVE_INFINITY;
+      distTo[i][j] = Float.POSITIVE_INFINITY;
     
     // vertical seam only
     TopologicalOrder top = new TopologicalOrder(w,h,m,true);
