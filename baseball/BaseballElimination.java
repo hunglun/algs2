@@ -72,9 +72,33 @@ public class BaseballElimination{
     return stat1.game[stat2.id];
   }    // number of remaining games between team1 and team2
   public          boolean isEliminated(String team){
+    // trivial case
+    if (isTriviallyEliminated(team)) return true;
+    
+    // nontrivial case
     return true;
   }              // is given team eliminated?
+  
+  private boolean isTriviallyEliminated(String team){
+    //w[x] + r[x] < w[i]
+    int wx = wins(team);
+    int rx = remaining(team);
+    
+    for(String other : teams()){
+      if (wx + rx < wins(other)) return true;
+    }
+    return false;
+  }
+  private Iterable<String> certificateOfTrivialElimination(String team){
+    
+    Bag<String> teams = new Bag<String>();
+    for(String t : teams()){
+      if (t !=  team) teams.add(t);        
+    }
+    return teams;
+  }
   public Iterable<String> certificateOfElimination(String team){
+    if (isTriviallyEliminated(team)) return certificateOfTrivialElimination(team);
     return scoreboard.keys();
   }  // subset R of teams that eliminates given team; null if not eliminated
   public static void main(String[] args) {
