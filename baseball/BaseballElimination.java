@@ -10,72 +10,63 @@ import edu.princeton.cs.algs4.FlowEdge;
 import edu.princeton.cs.algs4.FordFulkerson;
 
 public class BaseballElimination{
-  private ST<String, Stat> scoreboard;
+  private ST<String, Integer> scoreboard;
+  private int[] w,l,r;
+  private int[][] g;
   private int numberOfTeams;
   public BaseballElimination(String filename){
     if (filename == null) throw new IllegalArgumentException("invalid filename"); 
     In in = new In(filename);
     if (in == null) throw new IllegalArgumentException("file can't be opened."); 
-    int win, loss, remain;
-    int[] game;
+    
     String name;
-    scoreboard = new ST<String, Stat>();
+    scoreboard = new ST<String, Integer>();
     
     // reading the input
     numberOfTeams = in.readInt();
-    game = new int[numberOfTeams];
+    w = new int[numberOfTeams];
+    l = new int[numberOfTeams];
+    r = new int[numberOfTeams];
+    g = new int[numberOfTeams][numberOfTeams];
     for(int i=0; i<numberOfTeams; i++){
       name = in.readString();
-      win = in.readInt();
-      loss = in.readInt();
-      remain = in.readInt();
+      w[i] = in.readInt();
+      l[i] = in.readInt();
+      r[i] = in.readInt();
       for(int j=0; j<numberOfTeams; j++){
-        game[j]=in.readInt();
+        g[i][j]=in.readInt();
       }
-      scoreboard.put(name, new Stat(i, win,loss,remain,game));
+      scoreboard.put(name, i);
     }
   }                    // create a baseball division from given filename in format specified below
-  private class Stat{
-    public int id, win, loss, remain;
-    public int[] game;
-    public Stat(int id, int win, int loss, int remain, int[] game){
-      this.id = id;
-      this.win = win;
-      this.loss = loss;
-      this.remain = remain;
-      this.game = new int[game.length];
-      for(int j=0; j< game.length; j++){
-        this.game[j] = game[j];
-      }
-    }
-  }
+
   public              int numberOfTeams(){
-    return scoreboard.size();
+    return numberOfTeams;
   }                        // number of teams
   public Iterable<String> teams(){
     return scoreboard.keys();
   }                                // all teams
   public              int wins(String team){
-    Stat stat = scoreboard.get(team);
+    Integer stat = scoreboard.get(team);
     if (stat == null)  throw new IllegalArgumentException("error");
-    return stat.win;
+    return w[stat];
   }                      // number of wins for given team
   public              int losses(String team){
-    Stat stat = scoreboard.get(team);
+    Integer stat = scoreboard.get(team);
     if (stat == null)  throw new IllegalArgumentException("error");
-    return stat.loss;
+    return l[stat];
   }                    // number of losses for given team
   public              int remaining(String team){
-    Stat stat = scoreboard.get(team);
+    Integer stat = scoreboard.get(team);
     if (stat == null)  throw new IllegalArgumentException("error");
-    return stat.remain;
+    return r[stat];
   }                 // number of remaining games for given team
   public              int against(String team1, String team2){
-    Stat stat1 = scoreboard.get(team1);
+    Integer stat1 = scoreboard.get(team1);
     if (stat1 == null)  throw new IllegalArgumentException("error");
-    Stat stat2 = scoreboard.get(team2);
+    Integer stat2 = scoreboard.get(team2);
     if (stat2 == null)  throw new IllegalArgumentException("error");
-    return stat1.game[stat2.id];
+    return g[stat1][stat2];
   }    // number of remaining games between team1 and team2
   public          boolean isEliminated(String team){
     // trivial case
@@ -90,7 +81,7 @@ public class BaseballElimination{
 // add flow edges
     
     
-    Queue<Stat> otherTeams = new Queue<Stat>();
+    Queue<Integer> otherTeams = new Queue<Integer>();
     for(String key : scoreboard){
       if(key == team) continue;
       otherTeams.enqueue(scoreboard.get(key));
@@ -98,12 +89,12 @@ public class BaseballElimination{
     
     // link game vertices and team vertices
     int gameid = numberOfTeams;
-    Stat home;
+    int home;
     while(!otherTeams.isEmpty()){
       home = otherTeams.dequeue();
-      for (Stat guest : otherTeams){        
-        fn.addEdge(new FlowEdge(gameid, guest.id,Double.POSITIVE_INFINITY));
-        fn.addEdge(new FlowEdge(gameid, home.id,Double.POSITIVE_INFINITY));
+      for (int guest : otherTeams){        
+        fn.addEdge(new FlowEdge(gameid, guest,Double.POSITIVE_INFINITY));
+        fn.addEdge(new FlowEdge(gameid, home,Double.POSITIVE_INFINITY));
         gameid++;
       }
     }
