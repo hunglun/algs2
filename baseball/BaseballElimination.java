@@ -1,24 +1,95 @@
-public BaseballElimination(String filename){}                    // create a baseball division from given filename in format specified below
-public              int numberOfTeams(){}                        // number of teams
-public Iterable<String> teams(){}                                // all teams
-public              int wins(String team){}                      // number of wins for given team
-public              int losses(String team){}                    // number of losses for given team
-public              int remaining(String team){}                 // number of remaining games for given team
-public              int against(String team1, String team2){}    // number of remaining games between team1 and team2
-public          boolean isEliminated(String team){}              // is given team eliminated?
-public Iterable<String> certificateOfElimination(String team){}  // subset R of teams that eliminates given team; null if not eliminated
-public static void main(String[] args) {
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.ST;
+import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.Bag;
+
+public class BaseballElimination{
+  private ST<String, Stat> scoreboard;
+  public BaseballElimination(String filename){
+    if (filename == null) throw new IllegalArgumentException("invalid filename"); 
+    In in = new In(filename);
+    if (in == null) throw new IllegalArgumentException("file can't be opened."); 
+    int win, loss, remain;
+    int[] game;
+    String name;
+    scoreboard = new ST<String, Stat>();
+    
+    // reading the input
+    int num = in.readInt();
+    game = new int[num];
+    for(int i=0; i<num; i++){
+      name = in.readString();
+      win = in.readInt();
+      loss = in.readInt();
+      remain = in.readInt();
+      for(int j=0; j<num; j++){
+        game[j]=in.readInt();
+      }
+      scoreboard.put(name, new Stat(i, win,loss,remain,game));
+    }
+  }                    // create a baseball division from given filename in format specified below
+  private class Stat{
+    public int id, win, loss, remain;
+    public int[] game;
+    public Stat(int id, int win, int loss, int remain, int[] game){
+      this.id = id;
+      this.win = win;
+      this.loss = loss;
+      this.remain = remain;
+      this.game = new int[game.length];
+      for(int j=0; j< game.length; j++){
+        this.game[j] = game[j];
+      }
+    }
+  }
+  public              int numberOfTeams(){
+    return scoreboard.size();
+  }                        // number of teams
+  public Iterable<String> teams(){
+    return scoreboard.keys();
+  }                                // all teams
+  public              int wins(String team){
+    Stat stat = scoreboard.get(team);
+    if (stat == null)  throw new IllegalArgumentException("error");
+    return stat.win;
+  }                      // number of wins for given team
+  public              int losses(String team){
+    Stat stat = scoreboard.get(team);
+    if (stat == null)  throw new IllegalArgumentException("error");
+    return stat.loss;
+  }                    // number of losses for given team
+  public              int remaining(String team){
+    Stat stat = scoreboard.get(team);
+    if (stat == null)  throw new IllegalArgumentException("error");
+    return stat.remain;
+  }                 // number of remaining games for given team
+  public              int against(String team1, String team2){
+    Stat stat1 = scoreboard.get(team1);
+    if (stat1 == null)  throw new IllegalArgumentException("error");
+    Stat stat2 = scoreboard.get(team2);
+    if (stat2 == null)  throw new IllegalArgumentException("error");
+    return stat1.game[stat2.id];
+  }    // number of remaining games between team1 and team2
+  public          boolean isEliminated(String team){
+    return true;
+  }              // is given team eliminated?
+  public Iterable<String> certificateOfElimination(String team){
+    return scoreboard.keys();
+  }  // subset R of teams that eliminates given team; null if not eliminated
+  public static void main(String[] args) {
     BaseballElimination division = new BaseballElimination(args[0]);
     for (String team : division.teams()) {
-        if (division.isEliminated(team)) {
-            StdOut.print(team + " is eliminated by the subset R = { ");
-            for (String t : division.certificateOfElimination(team)) {
-                StdOut.print(t + " ");
-            }
-            StdOut.println("}");
+      if (division.isEliminated(team)) {
+        StdOut.print(team + " is eliminated by the subset R = { ");
+        for (String t : division.certificateOfElimination(team)) {
+          StdOut.print(t + " ");
         }
-        else {
-            StdOut.println(team + " is not eliminated");
-        }
+        StdOut.println("}");
+      }
+      else {
+        StdOut.println(team + " is not eliminated");
+      }
     }
+  }
 }
