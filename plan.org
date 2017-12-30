@@ -36,7 +36,7 @@
 
 
 
-* TODO solve baseball elimination[50%]
+* TODO solve baseball elimination[80%]
 1) [X] create stub files
 2) [X] understand the problem
 3) [X] understand the solution concept
@@ -46,14 +46,14 @@
    FlowNetwork, print it out using the toString() method, and and make
    sure that it matches your intent. Do not continue until you have
    thoroughly tested this stage.
-6) [ ] Compute the maxflow and mincut using the FordFulkerson data
+6) [X] Compute the maxflow and mincut using the FordFulkerson data
    type. You can access the value of the flow with the value() method;
    you can identify which vertices are on the source side of the
    mincut with the inCut() method.
-7) [ ] The BaseballElimination API contains the public methods that
+7) [X] The BaseballElimination API contains the public methods that
    you will implement. For modularity, you will want to add some
    private helper methods of your own.
-8) [ ] add corner cases for invalid input
+8) [X] add corner cases for invalid input
 9) [ ] debug
 10) [ ] optimise
 

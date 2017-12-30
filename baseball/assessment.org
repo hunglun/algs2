@@ -1,0 +1,814 @@
+See the Assessment Guide for information on how to interpret this report.
+
+ASSESSMENT SUMMARY
+
+Compilation:  PASSED
+API:          PASSED
+
+Findbugs:     FAILED (3 warnings)
+PMD:          PASSED
+Checkstyle:   FAILED (0 errors, 71 warnings)
+
+Correctness:  8/23 tests passed
+Memory:       0/4 tests passed
+Timing:       0/1 tests passed
+
+Aggregate score: 30.87%
+[Compilation: 5%, API: 5%, Findbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
+
+ASSESSMENT DETAILS
+
+The following files were submitted:
+----------------------------------
+6.2K Dec 30 04:18 BaseballElimination.java
+
+
+********************************************************************************
+*  COMPILING                                                                    
+********************************************************************************
+
+
+% javac BaseballElimination.java
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+Checking the APIs of your programs.
+*-----------------------------------------------------------
+BaseballElimination:
+
+================================================================
+
+
+********************************************************************************
+*  CHECKING STYLE AND COMMON BUG PATTERNS                                       
+********************************************************************************
+
+
+% findbugs *.class
+*-----------------------------------------------------------
+M C UNNC_UNNECESSARY_NEW_NULL_CHECK UNNC: Method new BaseballElimination(String) checks the result of a new allocation  At BaseballElimination.java:[line 22]
+H B ES_COMPARING_PARAMETER_STRING_WITH_EQ ES: Compares two strings for reference equality using '==' or '!='. Use the 'equals()' method for object equality (to check whether two strings correspond to the same sequence of characters).  At BaseballElimination.java:[line 91]
+L D FE_FLOATING_POINT_EQUALITY FE: Tests for exact floating-point equality. Because floating-point calculations may involve rounding, the calculated values may be imprecise.  At BaseballElimination.java:[line 140]
+Warnings generated: 3
+
+
+================================================================
+
+
+% pmd .
+*-----------------------------------------------------------
+BaseballElimination.java:13: The private instance (or static) variable 'scoreboard' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+BaseballElimination.java:14: The private instance (or static) variable 'l' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+BaseballElimination.java:14: The private instance (or static) variable 'r' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+BaseballElimination.java:14: The private instance (or static) variable 'w' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+BaseballElimination.java:15: The private instance (or static) variable 'g' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+BaseballElimination.java:16: The private instance (or static) variable 'names' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+BaseballElimination.java:17: The private instance (or static) variable 'numberOfTeams' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+PMD ends with 7 warnings.
+
+
+================================================================
+
+
+% checkstyle *.java
+*-----------------------------------------------------------
+[WARN] BaseballElimination.java:3:8: Unused import statement for 'edu.princeton.cs.algs4.StdIn'. [UnusedImports]
+[WARN] BaseballElimination.java:6:8: Unused import statement for 'edu.princeton.cs.algs4.Stack'. [UnusedImports]
+[WARN] BaseballElimination.java:12:33: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BaseballElimination.java:14:19: ',' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BaseballElimination.java:14:19: Do not use the letter 'l' as an instance variable name. It is hard to distinguish from the number '1'. [MemberName]
+[WARN] BaseballElimination.java:14:21: ',' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BaseballElimination.java:19:46: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BaseballElimination.java:34:8: 'for' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BaseballElimination.java:34:14: '=' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BaseballElimination.java:34:15: '=' is not followed by whitespace. [WhitespaceAround]
+[WARN] BaseballElimination.java:34:19: '<' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BaseballElimination.java:34:20: '<' is not followed by whitespace. [WhitespaceAround]
+[WARN] BaseballElimination.java:34:39: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BaseballElimination.java:39:15: '=' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BaseballElimination.java:39:16: '=' is not followed by whitespace. [WhitespaceAround]
+[WARN] BaseballElimination.java:40:10: 'for' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BaseballElimination.java:40:16: '=' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BaseballElimination.java:40:17: '=' is not followed by whitespace. [WhitespaceAround]
+[WARN] BaseballElimination.java:40:21: '<' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BaseballElimination.java:40:22: '<' is not followed by whitespace. [WhitespaceAround]
+[WARN] BaseballElimination.java:40:41: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BaseballElimination.java:41:16: '=' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BaseballElimination.java:41:17: '=' is not followed by whitespace. [WhitespaceAround]
+[WARN] BaseballElimination.java:47:42: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BaseballElimination.java:50:34: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BaseballElimination.java:53:44: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BaseballElimination.java:54:5: Use the primitive type instead of the corresponding wrapper type 'Integer'. For example, use 'boolean' instead of 'Boolean'. [WrapperType]
+[WARN] BaseballElimination.java:58:46: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BaseballElimination.java:59:5: Use the primitive type instead of the corresponding wrapper type 'Integer'. For example, use 'boolean' instead of 'Boolean'. [WrapperType]
+[WARN] BaseballElimination.java:63:49: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BaseballElimination.java:64:5: Use the primitive type instead of the corresponding wrapper type 'Integer'. For example, use 'boolean' instead of 'Boolean'. [WrapperType]
+[WARN] BaseballElimination.java:68:62: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BaseballElimination.java:69:5: Use the primitive type instead of the corresponding wrapper type 'Integer'. For example, use 'boolean' instead of 'Boolean'. [WrapperType]
+[WARN] BaseballElimination.java:71:5: Use the primitive type instead of the corresponding wrapper type 'Integer'. For example, use 'boolean' instead of 'Boolean'. [WrapperType]
+[WARN] BaseballElimination.java:76:52: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BaseballElimination.java:78:37: ')' is preceded with whitespace. [ParenPad]
+[WARN] BaseballElimination.java:90:8: 'for' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BaseballElimination.java:90:33: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BaseballElimination.java:91:9: 'if' is not followed by whitespace. [WhitespaceAfter]
+...
+Checkstyle ends with 0 errors and 71 warning.
+
+% custom checkstyle checks for BaseballElimination.java
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+********************************************************************************
+*  TESTING CORRECTNESS
+********************************************************************************
+
+Testing correctness of BaseballElimination
+*-----------------------------------------------------------
+Running 23 total tests.
+
+Test 1: check numberOfTeams()
+  * teams4.txt
+  * teams5.txt
+  * teams8.txt
+  * teams10.txt
+  * teams29.txt
+  * teams48.txt
+==> passed
+
+Test 2: check teams()
+  * teams4.txt
+  * teams5.txt
+  * teams8.txt
+  * teams10.txt
+  * teams29.txt
+  * teams48.txt
+==> passed
+
+Test 3: check wins()
+  * teams4.txt
+  * teams5.txt
+  * teams8.txt
+  * teams10.txt
+  * teams29.txt
+  * teams48.txt
+==> passed
+
+Test 4: check losses()
+  * teams4.txt
+  * teams5.txt
+  * teams8.txt
+  * teams10.txt
+  * teams29.txt
+  * teams48.txt
+==> passed
+
+Test 5: check remaining()
+  * teams4.txt
+  * teams5.txt
+  * teams8.txt
+  * teams10.txt
+  * teams29.txt
+  * teams48.txt
+==> passed
+
+Test 6: check against()
+  * teams4.txt
+  * teams5.txt
+  * teams8.txt
+  * teams10.txt
+  * teams29.txt
+  * teams48.txt
+==> passed
+
+Test 7a: check isEliminated() when n = 4
+  * teams4.txt
+    java.lang.IllegalArgumentException: vertex 8 is not between 0 and 7
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkIsEliminated(TestBaseballElimination.java:162)
+    TestBaseballElimination.test7a(TestBaseballElimination.java:548)
+    TestBaseballElimination.main(TestBaseballElimination.java:774)
+
+  * teams4a.txt
+    java.lang.IllegalArgumentException: vertex 8 is not between 0 and 7
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkIsEliminated(TestBaseballElimination.java:162)
+    TestBaseballElimination.test7a(TestBaseballElimination.java:549)
+    TestBaseballElimination.main(TestBaseballElimination.java:774)
+
+  * teams4b.txt
+    java.lang.IllegalArgumentException: vertex 8 is not between 0 and 7
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkIsEliminated(TestBaseballElimination.java:162)
+    TestBaseballElimination.test7a(TestBaseballElimination.java:550)
+    TestBaseballElimination.main(TestBaseballElimination.java:774)
+
+==> FAILED
+
+Test 7b: check isEliminated() when n = 5
+  * teams5.txt
+    java.lang.IllegalArgumentException: vertex 12 is not between 0 and 11
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkIsEliminated(TestBaseballElimination.java:162)
+    TestBaseballElimination.test7b(TestBaseballElimination.java:555)
+    TestBaseballElimination.main(TestBaseballElimination.java:777)
+
+  * teams5a.txt
+    java.lang.IllegalArgumentException: vertex 12 is not between 0 and 11
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkIsEliminated(TestBaseballElimination.java:162)
+    TestBaseballElimination.test7b(TestBaseballElimination.java:556)
+    TestBaseballElimination.main(TestBaseballElimination.java:777)
+
+  * teams5b.txt
+    java.lang.IllegalArgumentException: vertex 12 is not between 0 and 11
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkIsEliminated(TestBaseballElimination.java:162)
+    TestBaseballElimination.test7b(TestBaseballElimination.java:557)
+    TestBaseballElimination.main(TestBaseballElimination.java:777)
+
+  * teams5c.txt
+    java.lang.IllegalArgumentException: vertex 12 is not between 0 and 11
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkIsEliminated(TestBaseballElimination.java:162)
+    TestBaseballElimination.test7b(TestBaseballElimination.java:558)
+    TestBaseballElimination.main(TestBaseballElimination.java:777)
+
+==> FAILED
+
+Test 7c: check isEliminated() when n = 6 to 19
+  * teams7.txt
+    java.lang.IllegalArgumentException: vertex 23 is not between 0 and 22
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkIsEliminated(TestBaseballElimination.java:162)
+    TestBaseballElimination.test7c(TestBaseballElimination.java:563)
+    TestBaseballElimination.main(TestBaseballElimination.java:780)
+
+  * teams8.txt
+    java.lang.IllegalArgumentException: vertex 30 is not between 0 and 29
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkIsEliminated(TestBaseballElimination.java:162)
+    TestBaseballElimination.test7c(TestBaseballElimination.java:564)
+    TestBaseballElimination.main(TestBaseballElimination.java:780)
+
+  * teams10.txt
+    java.lang.IllegalArgumentException: vertex 47 is not between 0 and 46
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkIsEliminated(TestBaseballElimination.java:162)
+    TestBaseballElimination.test7c(TestBaseballElimination.java:565)
+    TestBaseballElimination.main(TestBaseballElimination.java:780)
+
+  * teams12.txt
+    java.lang.IllegalArgumentException: vertex 68 is not between 0 and 67
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkIsEliminated(TestBaseballElimination.java:162)
+    TestBaseballElimination.test7c(TestBaseballElimination.java:566)
+    TestBaseballElimination.main(TestBaseballElimination.java:780)
+
+  * teams12-allgames.txt
+    java.lang.IllegalArgumentException: vertex 68 is not between 0 and 67
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkIsEliminated(TestBaseballElimination.java:162)
+    TestBaseballElimination.test7c(TestBaseballElimination.java:567)
+    TestBaseballElimination.main(TestBaseballElimination.java:780)
+
+==> FAILED
+
+Test 7d: check isEliminated() when n = 20 to 30
+  * teams24.txt
+    java.lang.IllegalArgumentException: vertex 278 is not between 0 and 277
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkIsEliminated(TestBaseballElimination.java:162)
+    TestBaseballElimination.test7d(TestBaseballElimination.java:572)
+    TestBaseballElimination.main(TestBaseballElimination.java:783)
+
+  * teams29.txt
+    java.lang.IllegalArgumentException: vertex 408 is not between 0 and 407
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkIsEliminated(TestBaseballElimination.java:162)
+    TestBaseballElimination.test7d(TestBaseballElimination.java:573)
+    TestBaseballElimination.main(TestBaseballElimination.java:783)
+
+  * teams30.txt
+    java.lang.IllegalArgumentException: vertex 437 is not between 0 and 436
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkIsEliminated(TestBaseballElimination.java:162)
+    TestBaseballElimination.test7d(TestBaseballElimination.java:574)
+    TestBaseballElimination.main(TestBaseballElimination.java:783)
+
+==> FAILED
+
+Test 7e: check isEliminated() when n = 30 to 50
+  * teams32.txt
+    java.lang.IllegalArgumentException: vertex 498 is not between 0 and 497
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkIsEliminated(TestBaseballElimination.java:162)
+    TestBaseballElimination.test7e(TestBaseballElimination.java:579)
+    TestBaseballElimination.main(TestBaseballElimination.java:786)
+
+  * teams36.txt
+    java.lang.IllegalArgumentException: vertex 632 is not between 0 and 631
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkIsEliminated(TestBaseballElimination.java:162)
+    TestBaseballElimination.test7e(TestBaseballElimination.java:580)
+    TestBaseballElimination.main(TestBaseballElimination.java:786)
+
+  * teams42.txt
+    java.lang.IllegalArgumentException: vertex 863 is not between 0 and 862
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkIsEliminated(TestBaseballElimination.java:162)
+    TestBaseballElimination.test7e(TestBaseballElimination.java:581)
+    TestBaseballElimination.main(TestBaseballElimination.java:786)
+
+  * teams48.txt
+    java.lang.IllegalArgumentException: vertex 1130 is not between 0 and 1129
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkIsEliminated(TestBaseballElimination.java:162)
+    TestBaseballElimination.test7e(TestBaseballElimination.java:582)
+    TestBaseballElimination.main(TestBaseballElimination.java:786)
+
+==> FAILED
+
+Test 8: check that isEliminated() is consistent with certificateOfElimination()
+  * teams4.txt
+    java.lang.IllegalArgumentException: vertex 8 is not between 0 and 7
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkConsistent(TestBaseballElimination.java:210)
+    TestBaseballElimination.test8(TestBaseballElimination.java:589)
+    TestBaseballElimination.main(TestBaseballElimination.java:789)
+
+  * teams5.txt
+    java.lang.IllegalArgumentException: vertex 12 is not between 0 and 11
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkConsistent(TestBaseballElimination.java:210)
+    TestBaseballElimination.test8(TestBaseballElimination.java:590)
+    TestBaseballElimination.main(TestBaseballElimination.java:789)
+
+  * teams8.txt
+    java.lang.IllegalArgumentException: vertex 30 is not between 0 and 29
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkConsistent(TestBaseballElimination.java:210)
+    TestBaseballElimination.test8(TestBaseballElimination.java:591)
+    TestBaseballElimination.main(TestBaseballElimination.java:789)
+
+  * teams10.txt
+    java.lang.IllegalArgumentException: vertex 47 is not between 0 and 46
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkConsistent(TestBaseballElimination.java:210)
+    TestBaseballElimination.test8(TestBaseballElimination.java:592)
+    TestBaseballElimination.main(TestBaseballElimination.java:789)
+
+  * teams29.txt
+    java.lang.IllegalArgumentException: vertex 408 is not between 0 and 407
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkConsistent(TestBaseballElimination.java:210)
+    TestBaseballElimination.test8(TestBaseballElimination.java:593)
+    TestBaseballElimination.main(TestBaseballElimination.java:789)
+
+  * teams48.txt
+    java.lang.IllegalArgumentException: vertex 1130 is not between 0 and 1129
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkConsistent(TestBaseballElimination.java:210)
+    TestBaseballElimination.test8(TestBaseballElimination.java:594)
+    TestBaseballElimination.main(TestBaseballElimination.java:789)
+
+==> FAILED
+
+Test 9a: check certificateOfElimination() when n = 4
+  * teams4.txt
+    java.lang.IllegalArgumentException: vertex 8 is not between 0 and 7
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkCertificateOfElimination(TestBaseballElimination.java:239)
+    TestBaseballElimination.test9a(TestBaseballElimination.java:602)
+    TestBaseballElimination.main(TestBaseballElimination.java:792)
+
+  * teams4a.txt
+    java.lang.IllegalArgumentException: vertex 8 is not between 0 and 7
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkCertificateOfElimination(TestBaseballElimination.java:239)
+    TestBaseballElimination.test9a(TestBaseballElimination.java:603)
+    TestBaseballElimination.main(TestBaseballElimination.java:792)
+
+  * teams4b.txt
+    java.lang.IllegalArgumentException: vertex 8 is not between 0 and 7
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkCertificateOfElimination(TestBaseballElimination.java:239)
+    TestBaseballElimination.test9a(TestBaseballElimination.java:604)
+    TestBaseballElimination.main(TestBaseballElimination.java:792)
+
+==> FAILED
+
+Test 9b: check certificateOfElimination() when n = 5
+  * teams5.txt
+    java.lang.IllegalArgumentException: vertex 12 is not between 0 and 11
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkCertificateOfElimination(TestBaseballElimination.java:239)
+    TestBaseballElimination.test9b(TestBaseballElimination.java:609)
+    TestBaseballElimination.main(TestBaseballElimination.java:795)
+
+  * teams5a.txt
+    java.lang.IllegalArgumentException: vertex 12 is not between 0 and 11
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkCertificateOfElimination(TestBaseballElimination.java:239)
+    TestBaseballElimination.test9b(TestBaseballElimination.java:610)
+    TestBaseballElimination.main(TestBaseballElimination.java:795)
+
+  * teams5b.txt
+    java.lang.IllegalArgumentException: vertex 12 is not between 0 and 11
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkCertificateOfElimination(TestBaseballElimination.java:239)
+    TestBaseballElimination.test9b(TestBaseballElimination.java:611)
+    TestBaseballElimination.main(TestBaseballElimination.java:795)
+
+  * teams5c.txt
+    java.lang.IllegalArgumentException: vertex 12 is not between 0 and 11
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkCertificateOfElimination(TestBaseballElimination.java:239)
+    TestBaseballElimination.test9b(TestBaseballElimination.java:612)
+    TestBaseballElimination.main(TestBaseballElimination.java:795)
+
+==> FAILED
+
+Test 9c: check certificateOfElimination() when n = 6 to 20
+  * teams7.txt
+    java.lang.IllegalArgumentException: vertex 23 is not between 0 and 22
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkCertificateOfElimination(TestBaseballElimination.java:239)
+    TestBaseballElimination.test9c(TestBaseballElimination.java:617)
+    TestBaseballElimination.main(TestBaseballElimination.java:798)
+
+  * teams8.txt
+    java.lang.IllegalArgumentException: vertex 30 is not between 0 and 29
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkCertificateOfElimination(TestBaseballElimination.java:239)
+    TestBaseballElimination.test9c(TestBaseballElimination.java:618)
+    TestBaseballElimination.main(TestBaseballElimination.java:798)
+
+  * teams10.txt
+    java.lang.IllegalArgumentException: vertex 47 is not between 0 and 46
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkCertificateOfElimination(TestBaseballElimination.java:239)
+    TestBaseballElimination.test9c(TestBaseballElimination.java:619)
+    TestBaseballElimination.main(TestBaseballElimination.java:798)
+
+  * teams12.txt
+    java.lang.IllegalArgumentException: vertex 68 is not between 0 and 67
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkCertificateOfElimination(TestBaseballElimination.java:239)
+    TestBaseballElimination.test9c(TestBaseballElimination.java:620)
+    TestBaseballElimination.main(TestBaseballElimination.java:798)
+
+  * teams12-allgames.txt
+    java.lang.IllegalArgumentException: vertex 68 is not between 0 and 67
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkCertificateOfElimination(TestBaseballElimination.java:239)
+    TestBaseballElimination.test9c(TestBaseballElimination.java:621)
+    TestBaseballElimination.main(TestBaseballElimination.java:798)
+
+==> FAILED
+
+Test 9d: check certificateOfElimination() when n = 20 to 30
+  * teams24.txt
+    java.lang.IllegalArgumentException: vertex 278 is not between 0 and 277
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkCertificateOfElimination(TestBaseballElimination.java:239)
+    TestBaseballElimination.test9d(TestBaseballElimination.java:626)
+    TestBaseballElimination.main(TestBaseballElimination.java:801)
+
+  * teams29.txt
+    java.lang.IllegalArgumentException: vertex 408 is not between 0 and 407
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkCertificateOfElimination(TestBaseballElimination.java:239)
+    TestBaseballElimination.test9d(TestBaseballElimination.java:627)
+    TestBaseballElimination.main(TestBaseballElimination.java:801)
+
+  * teams30.txt
+    java.lang.IllegalArgumentException: vertex 437 is not between 0 and 436
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkCertificateOfElimination(TestBaseballElimination.java:239)
+    TestBaseballElimination.test9d(TestBaseballElimination.java:628)
+    TestBaseballElimination.main(TestBaseballElimination.java:801)
+
+==> FAILED
+
+Test 9e: check certificateOfElimination() when n = 30 to 50
+  * teams32.txt
+    java.lang.IllegalArgumentException: vertex 498 is not between 0 and 497
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkCertificateOfElimination(TestBaseballElimination.java:239)
+    TestBaseballElimination.test9e(TestBaseballElimination.java:633)
+    TestBaseballElimination.main(TestBaseballElimination.java:804)
+
+  * teams36.txt
+    java.lang.IllegalArgumentException: vertex 632 is not between 0 and 631
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkCertificateOfElimination(TestBaseballElimination.java:239)
+    TestBaseballElimination.test9e(TestBaseballElimination.java:634)
+    TestBaseballElimination.main(TestBaseballElimination.java:804)
+
+  * teams42.txt
+    java.lang.IllegalArgumentException: vertex 863 is not between 0 and 862
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkCertificateOfElimination(TestBaseballElimination.java:239)
+    TestBaseballElimination.test9e(TestBaseballElimination.java:635)
+    TestBaseballElimination.main(TestBaseballElimination.java:804)
+
+  * teams48.txt
+    java.lang.IllegalArgumentException: vertex 1130 is not between 0 and 1129
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkCertificateOfElimination(TestBaseballElimination.java:239)
+    TestBaseballElimination.test9e(TestBaseballElimination.java:636)
+    TestBaseballElimination.main(TestBaseballElimination.java:804)
+
+==> FAILED
+
+Test 10: check methods when n = 1
+  * teams1.txt
+  * teams1.txt
+  * teams1.txt
+  * teams1.txt
+  * teams1.txt
+  * teams1.txt
+  * teams1.txt
+==> passed
+
+Test 11: check immutability by calling certificateOfElimination() both before
+         and after calling isEliminated() and verifying that the results match
+  * teams4.txt
+    java.lang.IllegalArgumentException: vertex 8 is not between 0 and 7
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    BaseballElimination.certificateOfElimination(BaseballElimination.java:150)
+    TestBaseballElimination.checkImmutable(TestBaseballElimination.java:315)
+    TestBaseballElimination.test11(TestBaseballElimination.java:658)
+    TestBaseballElimination.main(TestBaseballElimination.java:810)
+
+  * teams5.txt
+    java.lang.IllegalArgumentException: vertex 12 is not between 0 and 11
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    BaseballElimination.certificateOfElimination(BaseballElimination.java:150)
+    TestBaseballElimination.checkImmutable(TestBaseballElimination.java:315)
+    TestBaseballElimination.test11(TestBaseballElimination.java:659)
+    TestBaseballElimination.main(TestBaseballElimination.java:810)
+
+  * teams29.txt
+    java.lang.IllegalArgumentException: vertex 408 is not between 0 and 407
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    BaseballElimination.certificateOfElimination(BaseballElimination.java:150)
+    TestBaseballElimination.checkImmutable(TestBaseballElimination.java:315)
+    TestBaseballElimination.test11(TestBaseballElimination.java:660)
+    TestBaseballElimination.main(TestBaseballElimination.java:810)
+
+==> FAILED
+
+Test 12: check that certificateOfElimination() returns null for eliminated teams
+  * teams4.txt
+    java.lang.IllegalArgumentException: vertex 8 is not between 0 and 7
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkNullCertificateOfElimination(TestBaseballElimination.java:285)
+    TestBaseballElimination.test12(TestBaseballElimination.java:667)
+    TestBaseballElimination.main(TestBaseballElimination.java:813)
+
+  * teams5.txt
+    java.lang.IllegalArgumentException: vertex 12 is not between 0 and 11
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.checkNullCertificateOfElimination(TestBaseballElimination.java:285)
+    TestBaseballElimination.test12(TestBaseballElimination.java:668)
+    TestBaseballElimination.main(TestBaseballElimination.java:813)
+
+==> FAILED
+
+Test 13: check for invalid arguments
+  * teams4.txt
+  * teams5.txt
+==> passed
+
+Test 14: check for dependence on reference equality of strings
+    java.lang.IllegalArgumentException: vertex 8 is not between 0 and 7
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.test14(TestBaseballElimination.java:718)
+    TestBaseballElimination.main(TestBaseballElimination.java:819)
+
+==> FAILED
+
+Test 15: check that two Baseball objects can be created at the same time
+  * teams4.txt and teams5.txt
+    java.lang.IllegalArgumentException: vertex 8 is not between 0 and 7
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.twoBaseballs(TestBaseballElimination.java:453)
+    TestBaseballElimination.test15(TestBaseballElimination.java:741)
+    TestBaseballElimination.main(TestBaseballElimination.java:822)
+
+  * teams5.txt and teams7.txt
+    java.lang.IllegalArgumentException: vertex 12 is not between 0 and 11
+
+    edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+    edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+    BaseballElimination.isEliminated(BaseballElimination.java:105)
+    TestBaseballElimination.twoBaseballs(TestBaseballElimination.java:453)
+    TestBaseballElimination.test15(TestBaseballElimination.java:742)
+    TestBaseballElimination.main(TestBaseballElimination.java:822)
+
+==> FAILED
+
+
+Total: 8/23 tests passed!
+
+
+================================================================
+********************************************************************************
+*  TIMING
+********************************************************************************
+
+Timing BaseballElimination
+*-----------------------------------------------------------
+Running 1 total tests.
+
+    n   constructor isEliminated() + certificateOfElimination()
+----------------------------------------------------------------
+   30       0.01Exception in thread "main" java.lang.IllegalArgumentException: vertex 437 is not between 0 and 436
+	at edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+	at edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+	at BaseballElimination.isEliminated(BaseballElimination.java:105)
+	at TimeBaseballElimination.run(TimeBaseballElimination.java:33)
+	at TimeBaseballElimination.main(TimeBaseballElimination.java:64)
+
+
+Total: 0/1 tests passed: Could not complete tests, which results in a reported score of 0.
+================================================================
+
+
+
+********************************************************************************
+*  MEMORY
+********************************************************************************
+
+Analyzing memory of BaseballElimination
+*-----------------------------------------------------------
+Exception in thread "main" java.lang.IllegalArgumentException: vertex 17 is not between 0 and 16
+	at edu.princeton.cs.algs4.FlowNetwork.validateVertex(FlowNetwork.java:120)
+	at edu.princeton.cs.algs4.FlowNetwork.addEdge(FlowNetwork.java:132)
+	at BaseballElimination.isEliminated(BaseballElimination.java:105)
+	at MemoryOfBaseballElimination.main(MemoryOfBaseballElimination.java:72)
+Running 4 total tests.
+
+
+Total: 0/4 tests passed: Could not complete tests, which results in a reported score of 0.
+================================================================

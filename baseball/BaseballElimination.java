@@ -20,7 +20,7 @@ public class BaseballElimination{
     if (filename == null) throw new IllegalArgumentException("invalid filename"); 
     In in = new In(filename);
     if (in == null) throw new IllegalArgumentException("file can't be opened."); 
-    inCut = new Bag<String>();
+    
     String name;
     scoreboard = new ST<String, Integer>();
     
@@ -132,6 +132,7 @@ public class BaseballElimination{
     StdOut.println("Try to eliminate team " + team + " : " + startid);
     StdOut.println("Max flow value:" + ff.value()); 
   */  
+    inCut = new Bag<String>();
     for(int i=0; i< numberOfTeams;i++){
       if (ff.inCut(i) && i!= startid)
         inCut.add(names[i]);
@@ -146,7 +147,8 @@ public class BaseballElimination{
       if (result.size() > 0) return result;
       
       // non trivial case
-      return inCut;
+      if (isEliminated(team)) return inCut;
+      return null;
   }  // subset R of teams that eliminates given team; null if not eliminated
   
   // Private methods //////////////////////////////////////////////////////////
