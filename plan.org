@@ -57,7 +57,30 @@
 9) [X] debug
 10) [X] optimise
 
-* TODO solve boggle
+* TODO solve boggle[18%]
+1. [X] create stub files
+2. [X] understand the problem
+3. [ ] understand the solution concept
+4. [ ] Familiarize yourself with the BoggleBoard.java data type.
+5. [ ] Use a standard set data type to represent the dictionary, e.g.,
+   a SET<String>, a TreeSet<String>, or a HashSet<String>.
+6. [ ] Create the data type BoggleSolver. Write a method based on
+   depth-first search to enumerate all strings that can be composed by
+   following sequences of adjacent dice. That is, enumerate all simple
+   paths in the Boggle graph (but there is no need to explicitly form
+   the graph). For now, ignore the special two-letter sequence Qu.
+7. [ ] Now, implement the following critical backtracking
+   optimization: when the current path corresponds to a string that is
+   not a prefix of any word in the dictionary, there is no need to
+   expand the path further. To do this, you will need to create a data
+   structure for the dictionary that supports the prefix query
+   operation: given a prefix, is there any word in the dictionary that
+   starts with that prefix?
+8. [ ] Deal with the special two-letter sequence Qu.
+9. [ ] add corner cases for invalid input
+10. [ ] debug
+11. [ ] optimise
+
 * TODO solve burrow wheeler
 * TODO understand linear programming
 * TODO understand intractability
