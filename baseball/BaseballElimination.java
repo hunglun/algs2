@@ -68,15 +68,16 @@ public class BaseballElimination{
     if (stat2 == null)  throw new IllegalArgumentException("error");
     return g[stat1][stat2];
   }    // number of remaining games between team1 and team2
+  
   public          boolean isEliminated(String team){
     // trivial case
     if (trivialCase(team).size() > 0 ) return true;
     
     // nontriviarl case
     // use arithmetic sum to compute the total number of binary combination of remaing teams.
-    int games = ((numberOfTeams - 1) * numberOfTeams) / 2;
-   
-    FlowNetwork fn = new FlowNetwork(2 + games + (numberOfTeams - 1));
+    int games = ((numberOfTeams - 1) * (numberOfTeams - 2)) / 2;
+    int v = 2 + games + (numberOfTeams - 1);
+    FlowNetwork fn = new FlowNetwork(v);
     
 // add flow edges
     
@@ -88,23 +89,37 @@ public class BaseballElimination{
     }
     
     // link game vertices and team vertices
-    int gameid = numberOfTeams;
+    int gameid = numberOfTeams ;
     int home;
+    
+    // link start with game vertices
+    int startid = scoreboard.get(team);
+    
     while(!otherTeams.isEmpty()){
       home = otherTeams.dequeue();
       for (int guest : otherTeams){        
         fn.addEdge(new FlowEdge(gameid, guest,Double.POSITIVE_INFINITY));
         fn.addEdge(new FlowEdge(gameid, home,Double.POSITIVE_INFINITY));
+        
+        fn.addEdge(new FlowEdge(startid, gameid,g[home][guest]));
+        assert(g[home][guest] == g[guest][home]);
         gameid++;
       }
     }
     
     // link start with game vertices
-    /*int startid = gameid;
-    for(int i=numberOfTeams; i<startid; i++){
+/*    int startid = scoreboard.get(team);
+    for(int i=numberOfTeams; i<gameid; i++){
+      //TODO update capacity
       fn.addEdge(new FlowEdge(startid, i,Double.POSITIVE_INFINITY));
-    */
+    }*/
     // link sink with team vertices
+    int endid = v - 1;
+    for(int i=0; i<numberOfTeams; i++){
+      if(startid == i) continue;
+      //TODO update capacity
+      fn.addEdge(new FlowEdge(i, endid ,w[startid] + r[startid] - w[i]));
+    }
     StdOut.println("Flow network:" + fn + " End"); 
     return true;
   }              // is given team eliminated?

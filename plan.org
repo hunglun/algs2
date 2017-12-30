@@ -36,12 +36,12 @@
 
 
 
-* TODO solve baseball elimination[40%]
+* TODO solve baseball elimination[50%]
 1) [X] create stub files
 2) [X] understand the problem
 3) [X] understand the solution concept
 4) [X] Write code to read in the input file and store the data.
-5) [ ] Draw by hand the FlowNetwork graph that you want to construct
+5) [X] Draw by hand the FlowNetwork graph that you want to construct
    for a few small examples. Write the code to construct the
    FlowNetwork, print it out using the toString() method, and and make
    sure that it matches your intent. Do not continue until you have
