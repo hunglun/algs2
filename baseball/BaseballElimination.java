@@ -1,9 +1,7 @@
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.ST;
-import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.Bag;
-import edu.princeton.cs.algs4.Stack;
 import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.FlowNetwork;
 import edu.princeton.cs.algs4.FlowEdge;
@@ -43,7 +41,7 @@ public class BaseballElimination{
       scoreboard.put(name, i);
     }
   }                    // create a baseball division from given filename in format specified below
-
+  
   public              int numberOfTeams(){
     return numberOfTeams;
   }                        // number of teams
@@ -112,12 +110,6 @@ public class BaseballElimination{
       }
     }
     
-    // link start with game vertices
-/*    int startid = scoreboard.get(team);
-    for(int i=numberOfTeams; i<gameid; i++){
-      //TODO update capacity
-      fn.addEdge(new FlowEdge(startid, i,Double.POSITIVE_INFINITY));
-    }*/
     // link sink with team vertices
     int endid = v - 1;
     for(int i=0; i<numberOfTeams; i++){
@@ -125,13 +117,13 @@ public class BaseballElimination{
       
       fn.addEdge(new FlowEdge(i, endid ,w[startid] + r[startid] - w[i]));
     }
-   
+    
     
     FordFulkerson ff = new FordFulkerson(fn,startid, endid);
-/*    StdOut.println("Total capacity: " + total_capacity);
-    StdOut.println("Try to eliminate team " + team + " : " + startid);
-    StdOut.println("Max flow value:" + ff.value()); 
-  */  
+    /*    StdOut.println("Total capacity: " + total_capacity);
+     StdOut.println("Try to eliminate team " + team + " : " + startid);
+     StdOut.println("Max flow value:" + ff.value()); 
+     */  
     inCut = new Bag<String>();
     for(int i=0; i< numberOfTeams;i++){
       if (ff.inCut(i) && i!= startid)
@@ -142,15 +134,15 @@ public class BaseballElimination{
     return total_capacity != ff.value();
   }              // is given team eliminated?
   
-
+  
   public Iterable<String> certificateOfElimination(String team){
-      Bag<String> result;
-      result = trivialCase(team);
-      if (result.size() > 0) return result;
-      
-      // non trivial case
-      if (isEliminated(team)) return inCut;
-      return null;
+    Bag<String> result;
+    result = trivialCase(team);
+    if (result.size() > 0) return result;
+    
+    // non trivial case
+    if (isEliminated(team)) return inCut;
+    return null;
   }  // subset R of teams that eliminates given team; null if not eliminated
   
   // Private methods //////////////////////////////////////////////////////////
@@ -165,7 +157,7 @@ public class BaseballElimination{
     }
     return teams;
   }
-    
+  
   public static void main(String[] args) {
     BaseballElimination division = new BaseballElimination(args[0]);
     //division.isEliminated("Detroit");
