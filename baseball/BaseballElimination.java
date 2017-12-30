@@ -88,7 +88,7 @@ public class BaseballElimination{
     
     Queue<Integer> otherTeams = new Queue<Integer>();
     for(String key : scoreboard){
-      if(key == team) continue;
+      if(key.equals(team)) continue;
       otherTeams.enqueue(scoreboard.get(key));
     }
     
@@ -125,7 +125,7 @@ public class BaseballElimination{
       
       fn.addEdge(new FlowEdge(i, endid ,w[startid] + r[startid] - w[i]));
     }
-   //StdOut.println("Flow network:" + fn + " End"); 
+   
     
     FordFulkerson ff = new FordFulkerson(fn,startid, endid);
 /*    StdOut.println("Total capacity: " + total_capacity);
@@ -137,6 +137,8 @@ public class BaseballElimination{
       if (ff.inCut(i) && i!= startid)
         inCut.add(names[i]);
     }
+    
+    //if(total_capacity != ff.value()) StdOut.println("Flow network:" + fn + " End"); 
     return total_capacity != ff.value();
   }              // is given team eliminated?
   
@@ -166,7 +168,9 @@ public class BaseballElimination{
     
   public static void main(String[] args) {
     BaseballElimination division = new BaseballElimination(args[0]);
+    //division.isEliminated("Detroit");
     for (String team : division.teams()) {
+      
       if (division.isEliminated(team)) {
         StdOut.print(team + " is eliminated by the subset R = { ");
         for (String t : division.certificateOfElimination(team)) {

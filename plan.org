@@ -36,7 +36,7 @@
 
 
 
-* TODO solve baseball elimination[80%]
+* DONE solve baseball elimination[100%]
 1) [X] create stub files
 2) [X] understand the problem
 3) [X] understand the solution concept
@@ -54,8 +54,8 @@
    you will implement. For modularity, you will want to add some
    private helper methods of your own.
 8) [X] add corner cases for invalid input
-9) [ ] debug
-10) [ ] optimise
+9) [X] debug
+10) [X] optimise
 
 * TODO solve boggle
 * TODO solve burrow wheeler
