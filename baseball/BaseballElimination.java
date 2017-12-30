@@ -13,17 +13,20 @@ public class BaseballElimination{
   private ST<String, Integer> scoreboard;
   private int[] w,l,r;
   private int[][] g;
+  private String[] names;
   private int numberOfTeams;
+  private Bag<String> inCut;
   public BaseballElimination(String filename){
     if (filename == null) throw new IllegalArgumentException("invalid filename"); 
     In in = new In(filename);
     if (in == null) throw new IllegalArgumentException("file can't be opened."); 
-    
+    inCut = new Bag<String>();
     String name;
     scoreboard = new ST<String, Integer>();
     
     // reading the input
     numberOfTeams = in.readInt();
+    names = new String[numberOfTeams];
     w = new int[numberOfTeams];
     l = new int[numberOfTeams];
     r = new int[numberOfTeams];
@@ -33,6 +36,7 @@ public class BaseballElimination{
       w[i] = in.readInt();
       l[i] = in.readInt();
       r[i] = in.readInt();
+      names[i]=name;
       for(int j=0; j<numberOfTeams; j++){
         g[i][j]=in.readInt();
       }
@@ -94,7 +98,7 @@ public class BaseballElimination{
     
     // link start with game vertices
     int startid = scoreboard.get(team);
-    
+    int total_capacity = 0;
     while(!otherTeams.isEmpty()){
       home = otherTeams.dequeue();
       for (int guest : otherTeams){        
@@ -103,6 +107,7 @@ public class BaseballElimination{
         
         fn.addEdge(new FlowEdge(startid, gameid,g[home][guest]));
         assert(g[home][guest] == g[guest][home]);
+        total_capacity += g[home][guest];
         gameid++;
       }
     }
@@ -117,11 +122,21 @@ public class BaseballElimination{
     int endid = v - 1;
     for(int i=0; i<numberOfTeams; i++){
       if(startid == i) continue;
-      //TODO update capacity
+      
       fn.addEdge(new FlowEdge(i, endid ,w[startid] + r[startid] - w[i]));
     }
-    StdOut.println("Flow network:" + fn + " End"); 
-    return true;
+   //StdOut.println("Flow network:" + fn + " End"); 
+    
+    FordFulkerson ff = new FordFulkerson(fn,startid, endid);
+/*    StdOut.println("Total capacity: " + total_capacity);
+    StdOut.println("Try to eliminate team " + team + " : " + startid);
+    StdOut.println("Max flow value:" + ff.value()); 
+  */  
+    for(int i=0; i< numberOfTeams;i++){
+      if (ff.inCut(i) && i!= startid)
+        inCut.add(names[i]);
+    }
+    return total_capacity != ff.value();
   }              // is given team eliminated?
   
 
@@ -130,10 +145,8 @@ public class BaseballElimination{
       result = trivialCase(team);
       if (result.size() > 0) return result;
       
-      result = new Bag<String>();
-      
       // non trivial case
-      return result;
+      return inCut;
   }  // subset R of teams that eliminates given team; null if not eliminated
   
   // Private methods //////////////////////////////////////////////////////////
