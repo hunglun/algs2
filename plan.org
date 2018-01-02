@@ -57,12 +57,12 @@
 9) [X] debug
 10) [X] optimise
 
-* TODO solve boggle[18%]
+* TODO solve boggle[45%]
 1. [X] create stub files
 2. [X] understand the problem
-3. [ ] understand the solution concept
-4. [ ] Familiarize yourself with the BoggleBoard.java data type.
-5. [ ] Use a standard set data type to represent the dictionary, e.g.,
+3. [X] understand the solution concept
+4. [X] Familiarize yourself with the BoggleBoard.java data type.
+5. [X] Use a standard set data type to represent the dictionary, e.g.,
    a SET<String>, a TreeSet<String>, or a HashSet<String>.
 6. [ ] Create the data type BoggleSolver. Write a method based on
    depth-first search to enumerate all strings that can be composed by
