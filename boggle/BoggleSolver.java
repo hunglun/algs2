@@ -9,11 +9,12 @@ public class BoggleSolver
   private boolean marked[][];
   private int count;
   private StringBuilder word;
+  private Bag<String> allValidWords;
   // Initializes the data structure using the given array of strings as the dictionary.
   // (You can assume each word in the dictionary contains only the uppercase letters A through Z.)
   public BoggleSolver(String[] dictionary){
     dictset = new TreeSet<String>();
-    
+    allValidWords = new Bag<String>();
     for(String word : dictionary){
       dictset.add(word);
     }
@@ -51,13 +52,27 @@ public class BoggleSolver
   }
   private void dfs(BoggleBoard board, int col, int row){
    marked[col][row] = true;
-  // count++;
-   //word.append(board.getLetter(row,col)); 
+   //StdOut.printf("%c ", board.getLetter(row,col));
+   int orig_length = word.length();
+   word.append(board.getLetter(row,col)); 
+   
+   if (word.length() == 3) {
+      allValidWords.add(word.toString());
+      word.deleteCharAt(word.length()-1); //TODO cache word.size()
+    //  word.deleteCharAt(word.length()-1); //TODO cache word.size()
+      //word = new StringBuilder();
+      marked[col][row] = false;
+      return;
+   }
+   
+   
    for(Pair pair : adj(board, new Pair(col,row))){
      if(!marked[pair.col][pair.row]) {
        dfs(board,pair.col,pair.row);
      }
    }
+  // word.delete(orig_length, word.length()-1);
+   //marked[col][row] = false;
   
     
    
@@ -67,14 +82,18 @@ public class BoggleSolver
   // Returns the set of all valid words in the given Boggle board, as an Iterable.
   public Iterable<String> getAllValidWords(BoggleBoard board){
     marked = new boolean[board.cols()][board.rows()];
-    Bag<String> bag = new Bag<String>();
+    word = new StringBuilder();
+    dfs(board,0,0);
+    /*
+     * 
     for(int c = 0; c < board.cols(); c++){
       for(int r = 0; r < board.rows(); r++){
         dfs(board,c,r);
         clear_mark();
       }
     }
-    return bag;
+    */
+    return allValidWords;
   }
   
   // Returns the score of the given word if it is in the dictionary, zero otherwise.
