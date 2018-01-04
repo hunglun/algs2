@@ -57,14 +57,14 @@
 9) [X] debug
 10) [X] optimise
 
-* TODO solve boggle[45%]
+* TODO solve boggle[54%]
 1. [X] create stub files
 2. [X] understand the problem
 3. [X] understand the solution concept
 4. [X] Familiarize yourself with the BoggleBoard.java data type.
 5. [X] Use a standard set data type to represent the dictionary, e.g.,
    a SET<String>, a TreeSet<String>, or a HashSet<String>.
-6. [ ] Create the data type BoggleSolver. Write a method based on
+6. [X] Create the data type BoggleSolver. Write a method based on
    depth-first search to enumerate all strings that can be composed by
    following sequences of adjacent dice. That is, enumerate all simple
    paths in the Boggle graph (but there is no need to explicitly form
