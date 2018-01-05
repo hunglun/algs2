@@ -54,17 +54,17 @@ public class BoggleSolver
   private void dfs(BoggleBoard board, int row, int col){
     
     Bag<Pair> nbs = adj(board, new Pair(row,col));
+    String wordstring = word.toString();
+    if(dictset.contains(wordstring)) allValidWords.add(wordstring);
     
-    if(nbs.isEmpty()) allValidWords.add(word.toString());
-    else{
-      for(Pair pair : nbs){      
-        word.append(board.getLetter(pair.row,pair.col));
-        marked[pair.row][pair.col] = true;
-        dfs(board,pair.row,pair.col);
-        word.deleteCharAt(word.length()-1);
-        marked[pair.row][pair.col] = false;  
-      }
+    for(Pair pair : nbs){      
+      word.append(board.getLetter(pair.row,pair.col));
+      marked[pair.row][pair.col] = true;
+      dfs(board,pair.row,pair.col);
+      word.deleteCharAt(word.length()-1);
+      marked[pair.row][pair.col] = false;  
     }
+    
     
   }
   
@@ -99,7 +99,7 @@ public class BoggleSolver
     int _count = 0;
     
     for (String word : solver.getAllValidWords(board)) {
-    //  StdOut.println(_count++ + ":"+word);
+      StdOut.println(_count++ + ":"+word);
       _count++;
       score += solver.scoreOf(word);
     }
