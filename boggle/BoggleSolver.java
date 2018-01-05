@@ -6,7 +6,7 @@ import java.util.TreeSet;
 
 public class BoggleSolver
 {
-  private TreeSet<String> dictset;
+ // private TreeSet<String> dictset;
   private StringBuilder word;
   private boolean marked[][];
   private int count;
@@ -16,13 +16,13 @@ public class BoggleSolver
   // (You can assume each word in the dictionary contains only the uppercase letters A through Z.)
   public BoggleSolver(String[] dictionary){
     if(dictionary == null) throw new IllegalArgumentException("error");
-    dictset = new TreeSet<String>();
+    //dictset = new TreeSet<String>();
     allValidWords = new TreeSet<String>();
     count = 0;
     st = new TrieST<Integer>();
     for(String word : dictionary){
       word = word.replaceAll("QU","Q");
-      dictset.add(word);
+      //dictset.add(word);
       st.put(word,count++);
     }
   }
@@ -65,7 +65,7 @@ public class BoggleSolver
   
 
   private boolean isValid(String w){
-    return w.length()>2 && dictset.contains(w);
+    return w.length()>2 && st.contains(w);
   }
   
   private boolean isPrefixInDictionary(String w){
