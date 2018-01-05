@@ -7,7 +7,7 @@ API:          PASSED
 
 Findbugs:     FAILED (1 warning)
 PMD:          PASSED
-Checkstyle:   FAILED (0 errors, 92 warnings)
+Checkstyle:   FAILED (0 errors, 93 warnings)
 
 Correctness:  0/13 tests passed
 Memory:       0/3 tests passed
@@ -20,7 +20,7 @@ ASSESSMENT DETAILS
 
 The following files were submitted:
 ----------------------------------
-4.4K Jan  5 18:42 BoggleSolver.java
+4.4K Jan  5 18:53 BoggleSolver.java
 
 
 ********************************************************************************
@@ -49,7 +49,7 @@ BoggleSolver:
 
 % findbugs *.class
 *-----------------------------------------------------------
-M D DLS_DEAD_LOCAL_STORE DLS: Assigns a value to the local variable 's' but that value is never used.  At BoggleSolver.java:[line 78]
+M D DLS_DEAD_LOCAL_STORE DLS: Assigns a value to the local variable 's' but that value is never used.  At BoggleSolver.java:[line 79]
 Warnings generated: 1
 
 
@@ -61,9 +61,10 @@ Warnings generated: 1
 BoggleSolver.java:10: StringBuffers can grow quite a lot, and so may become a source of memory leak (if the owning class has a long life time). [AvoidStringBufferField]
 BoggleSolver.java:13: The private instance (or static) variable 'allValidWords' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
 BoggleSolver.java:14: The private instance (or static) variable 'st' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
-BoggleSolver.java:78: Avoid unused local variables, such as 's'. [UnusedLocalVariable]
-BoggleSolver.java:79: Avoid using a 'continue' or 'break' statement as the last in a loop. [AvoidBranchingStatementAsLastInLoop]
-PMD ends with 5 warnings.
+BoggleSolver.java:20: Avoid unused local variables, such as 'count'. [UnusedLocalVariable]
+BoggleSolver.java:79: Avoid unused local variables, such as 's'. [UnusedLocalVariable]
+BoggleSolver.java:80: Avoid using a 'continue' or 'break' statement as the last in a loop. [AvoidBranchingStatementAsLastInLoop]
+PMD ends with 6 warnings.
 
 
 ================================================================
@@ -79,39 +80,39 @@ PMD ends with 5 warnings.
 [WARN] BoggleSolver.java:25:14: '=' is not preceded with whitespace. [WhitespaceAround]
 [WARN] BoggleSolver.java:25:15: '=' is not followed by whitespace. [WhitespaceAround]
 [WARN] BoggleSolver.java:25:19: '<' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:26:53: ',' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BoggleSolver.java:28:8: 'for' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BoggleSolver.java:28:31: '{' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:30:9: '//' or '/*' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BoggleSolver.java:31:16: ',' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BoggleSolver.java:34:21: '{' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:35:20: ',' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BoggleSolver.java:36:30: '{' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:42:54: '{' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:44:7: '//' or '/*' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BoggleSolver.java:46:46: '{' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:47:10: 'for' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BoggleSolver.java:47:16: '=' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:47:17: '=' is not followed by whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:47:19: ';' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BoggleSolver.java:47:20: '<' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:47:21: '<' is not followed by whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:47:39: '{' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:48:12: 'for' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BoggleSolver.java:48:18: '=' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:48:19: '=' is not followed by whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:48:21: ';' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BoggleSolver.java:48:22: '<' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:48:23: '<' is not followed by whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:48:41: '{' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:49:28: ',' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BoggleSolver.java:54:8: 'for' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BoggleSolver.java:54:14: '=' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:54:15: '=' is not followed by whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:54:28: '<' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:54:29: '<' is not followed by whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:25:44: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:27:55: ',' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BoggleSolver.java:29:8: 'for' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BoggleSolver.java:29:31: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:31:9: '//' or '/*' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BoggleSolver.java:32:16: ',' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BoggleSolver.java:35:21: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:36:20: ',' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BoggleSolver.java:37:30: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:43:54: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:45:7: '//' or '/*' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BoggleSolver.java:47:46: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:48:10: 'for' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BoggleSolver.java:48:16: '=' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:48:17: '=' is not followed by whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:48:19: ';' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BoggleSolver.java:48:20: '<' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:48:21: '<' is not followed by whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:48:39: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:49:12: 'for' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BoggleSolver.java:49:18: '=' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:49:19: '=' is not followed by whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:49:21: ';' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BoggleSolver.java:49:22: '<' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:49:23: '<' is not followed by whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:49:41: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:50:28: ',' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BoggleSolver.java:55:8: 'for' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BoggleSolver.java:55:14: '=' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:55:15: '=' is not followed by whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:55:28: '<' is not preceded with whitespace. [WhitespaceAround]
 ...
-Checkstyle ends with 0 errors and 92 warnings.
+Checkstyle ends with 0 errors and 93 warnings.
 
 
 ================================================================
@@ -138,6 +139,13 @@ Test 2: check getAllValidWords() on fixed 4-by-4 boards
   * dictionary = dictionary-yawl.txt; board = board4x4.txt
   * dictionary = dictionary-yawl.txt; board = board-points1.txt
   * dictionary = dictionary-yawl.txt; board = board-points2.txt
+  * dictionary = dictionary-yawl.txt; board = board-points3.txt
+  * dictionary = dictionary-yawl.txt; board = board-points4.txt
+  * dictionary = dictionary-yawl.txt; board = board-points5.txt
+==> passed
+
+Test 3: check getAllValidWords() on more fixed 4-by-4 boards
+  * dictionary = dictionary-yawl.txt; board = board-points100.txt
 
 
 Total: 0/13 tests passed: Could not complete tests, which results in a reported score of 0.
@@ -152,16 +160,16 @@ Running 3 total tests.
 
 Test 1: memory with dictionary-algs4.txt (must be <= 2x reference solution)
   * memory of dictionary[]           = 494304 bytes
-  * memory of student   BoggleSolver = 36353152 bytes
+  * memory of student   BoggleSolver = 36208864 bytes
   * memory of reference BoggleSolver = 5135408 bytes
-  * student / reference              = 7.08
+  * student / reference              = 7.05
 ==> FAILED
 
 Test 2: memory with dictionary-shakespeare.txt (must be <= 2x reference solution)
-  * memory of dictionary[]           = 1924640 bytes
-  * memory of student   BoggleSolver = 122095296 bytes
-  * memory of reference BoggleSolver = 17475528 bytes
-  * student / reference              = 6.99
+  * memory of dictionary[]           = 1924712 bytes
+  * memory of student   BoggleSolver = 121539664 bytes
+  * memory of reference BoggleSolver = 17474896 bytes
+  * student / reference              = 6.96
 ==> FAILED
 
 
@@ -183,31 +191,28 @@ Running 9 total tests.
 
 Test 1: timing constructor (must be <= 5x reference solution)
  *  dictionary-algs4.txt
-    - student   solution time (in seconds): 0.07
+    - student   solution time (in seconds): 0.05
     - reference solution time (in seconds): 0.01
-    - ratio:                                5.09
+    - ratio:                                3.85
 
-==> FAILED
+==> passed
 
  *  dictionary-enable2k.txt
-    - student   solution time (in seconds): 0.38
-    - reference solution time (in seconds): 0.16
-    - ratio:                                2.40
+    - student   solution time (in seconds): 0.27
+    - reference solution time (in seconds): 0.10
+    - ratio:                                2.66
 
 ==> passed
 
  *  dictionary-yawl.txt
     - student   solution time (in seconds): 0.44
-    - reference solution time (in seconds): 0.13
-    - ratio:                                3.35
+    - reference solution time (in seconds): 0.03
+    - ratio:                                16.25
 
-==> passed
+==> FAILED
 
  *  dictionary-zingarelli2005.txt
 
 
 Total: 0/9 tests passed: Could not complete tests, which results in a reported score of 0.
 ================================================================
-
-
-

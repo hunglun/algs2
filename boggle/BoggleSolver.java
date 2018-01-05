@@ -17,14 +17,15 @@ public class BoggleSolver
   public BoggleSolver(String[] dictionary){
     if(dictionary == null) throw new IllegalArgumentException("error");
     
-    int count;
+    int count=0;
     //dictset = new TreeSet<String>();
     allValidWords = new TreeSet<String>();
-    count = 0;
-    st = new TrieST<Integer>();
-    for(int i=0; i< dictionary.length; i++)
-      dictionary[i] = dictionary[i].replaceAll("QU","Q");
     
+    st = new TrieST<Integer>();
+    for(int i=0; i< dictionary.length; i++){
+      if (dictionary[i].indexOf("QU") != -1)
+        dictionary[i] = dictionary[i].replaceAll("QU","Q");
+    }
     for(String w : dictionary){
     
       //dictset.add(word);
