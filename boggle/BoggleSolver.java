@@ -9,21 +9,26 @@ public class BoggleSolver
  // private TreeSet<String> dictset;
   private StringBuilder word;
   private boolean marked[][];
-  private int count;
+
   private TreeSet<String> allValidWords;
   private TrieST<Integer> st;
   // Initializes the data structure using the given array of strings as the dictionary.
   // (You can assume each word in the dictionary contains only the uppercase letters A through Z.)
   public BoggleSolver(String[] dictionary){
     if(dictionary == null) throw new IllegalArgumentException("error");
+    
+    int count;
     //dictset = new TreeSet<String>();
     allValidWords = new TreeSet<String>();
     count = 0;
     st = new TrieST<Integer>();
-    for(String word : dictionary){
-      word = word.replaceAll("QU","Q");
+    for(int i=0; i< dictionary.length; i++)
+      dictionary[i] = dictionary[i].replaceAll("QU","Q");
+    
+    for(String w : dictionary){
+    
       //dictset.add(word);
-      st.put(word,count++);
+      st.put(w,count++);
     }
   }
   private class Pair{
@@ -49,7 +54,8 @@ public class BoggleSolver
     for(int i=pair.col-1; i<pair.col+2; i++){
       for(int j=pair.row-1; j<pair.row + 2; j++){
         if( i<0 || j<0 || i>board.cols()-1 || j>board.rows()-1 || (i==pair.col && j==pair.row)) {
-         // StdOut.printf("Out of bound:%d, %d\n",j,i);        
+         // StdOut.printf("Out of bound:%d, %d\n",j,i); 
+          continue;
         }else{
           //StdOut.printf("%d, %d\n",j,i);
           if(!marked[j][i]) {
