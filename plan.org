@@ -57,7 +57,7 @@
 9) [X] debug
 10) [X] optimise
 
-* TODO solve boggle[54%]
+* TODO solve boggle[72%]
 1. [X] create stub files
 2. [X] understand the problem
 3. [X] understand the solution concept
@@ -69,14 +69,14 @@
    following sequences of adjacent dice. That is, enumerate all simple
    paths in the Boggle graph (but there is no need to explicitly form
    the graph). For now, ignore the special two-letter sequence Qu.
-7. [ ] Now, implement the following critical backtracking
+7. [X] Now, implement the following critical backtracking
    optimization: when the current path corresponds to a string that is
    not a prefix of any word in the dictionary, there is no need to
    expand the path further. To do this, you will need to create a data
    structure for the dictionary that supports the prefix query
    operation: given a prefix, is there any word in the dictionary that
    starts with that prefix?
-8. [ ] Deal with the special two-letter sequence Qu.
+8. [X] Deal with the special two-letter sequence Qu.
 9. [ ] add corner cases for invalid input
 10. [ ] debug
 11. [ ] optimise
