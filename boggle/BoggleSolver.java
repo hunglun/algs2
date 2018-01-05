@@ -15,6 +15,7 @@ public class BoggleSolver
   // Initializes the data structure using the given array of strings as the dictionary.
   // (You can assume each word in the dictionary contains only the uppercase letters A through Z.)
   public BoggleSolver(String[] dictionary){
+    if(dictionary == null) throw new IllegalArgumentException("error");
     dictset = new TreeSet<String>();
     allValidWords = new TreeSet<String>();
     count = 0;
@@ -96,7 +97,7 @@ public class BoggleSolver
   
   // Returns the set of all valid words in the given Boggle board, as an Iterable.
   public Iterable<String> getAllValidWords(BoggleBoard board){
-    
+    if(board == null) throw new IllegalArgumentException("error");
     marked = new boolean[board.rows()][board.cols()];
     word = new StringBuilder();
     
@@ -108,6 +109,7 @@ public class BoggleSolver
   // Returns the score of the given word if it is in the dictionary, zero otherwise.
   // (You can assume the word contains only the uppercase letters A through Z.)
   public int scoreOf(String word){
+    if(word == null) throw new IllegalArgumentException("error");
     int length = word.length();
     length += word.split("Q").length - 1;
       if (length == 3) return 1;
