@@ -1,6 +1,7 @@
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.Bag;
+import edu.princeton.cs.algs4.TrieST;
 import java.util.TreeSet;
 
 public class BoggleSolver
@@ -10,14 +11,17 @@ public class BoggleSolver
   private boolean marked[][];
   private int count;
   private TreeSet<String> allValidWords;
+  TrieST<Integer> st;
   // Initializes the data structure using the given array of strings as the dictionary.
   // (You can assume each word in the dictionary contains only the uppercase letters A through Z.)
   public BoggleSolver(String[] dictionary){
     dictset = new TreeSet<String>();
     allValidWords = new TreeSet<String>();
     count = 0;
+    st = new TrieST<Integer>();
     for(String word : dictionary){
       dictset.add(word);
+      st.put(word,count++);
     }
   }
   private class Pair{
@@ -62,11 +66,21 @@ public class BoggleSolver
     return w.length()>2 && dictset.contains(w);
   }
   
+  private boolean isPrefixInDictionary(String w){
+    for(String s : st.keysWithPrefix(w)) {
+      return true;
+    }
+    return false;
+  }
+                                       
+                                 
   private void dfs(BoggleBoard board, int row, int col){
     
     Bag<Pair> nbs = adj(board, new Pair(row,col));
     String wordstring = word.toString();
     if(isValid(wordstring)) allValidWords.add(wordstring);
+
+    if(!isPrefixInDictionary(wordstring)) return; // important optimisation happens here.
     
     for(Pair pair : nbs){      
       word.append(board.getLetter(pair.row,pair.col));
