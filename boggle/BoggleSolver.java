@@ -11,7 +11,7 @@ public class BoggleSolver
   private boolean marked[][];
   private int count;
   private TreeSet<String> allValidWords;
-  TrieST<Integer> st;
+  private TrieST<Integer> st;
   // Initializes the data structure using the given array of strings as the dictionary.
   // (You can assume each word in the dictionary contains only the uppercase letters A through Z.)
   public BoggleSolver(String[] dictionary){
@@ -80,7 +80,7 @@ public class BoggleSolver
     
     Bag<Pair> nbs = adj(board, new Pair(row,col));
     String wordstring = word.toString();
-    if(isValid(wordstring)) allValidWords.add(wordstring);
+    if(isValid(wordstring)) allValidWords.add(wordstring.replaceAll("Q","QU"));
 
     if(!isPrefixInDictionary(wordstring)) return; // important optimisation happens here.
     
@@ -111,7 +111,7 @@ public class BoggleSolver
   public int scoreOf(String word){
     if(word == null) throw new IllegalArgumentException("error");
     int length = word.length();
-    length += word.split("Q").length - 1;
+    //length += word.split("Q").length - 1;
       if (length == 3) return 1;
       if (length == 4) return 1;
       if (length == 5) return 2;
