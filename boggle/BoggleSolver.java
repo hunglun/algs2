@@ -9,12 +9,12 @@ public class BoggleSolver
   private StringBuilder word;
   private boolean marked[][];
   private int count;
-  private Bag<String> allValidWords;
+  private TreeSet<String> allValidWords;
   // Initializes the data structure using the given array of strings as the dictionary.
   // (You can assume each word in the dictionary contains only the uppercase letters A through Z.)
   public BoggleSolver(String[] dictionary){
     dictset = new TreeSet<String>();
-    allValidWords = new Bag<String>();
+    allValidWords = new TreeSet<String>();
     count = 0;
     for(String word : dictionary){
       dictset.add(word);
