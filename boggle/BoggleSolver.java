@@ -29,15 +29,20 @@ public class BoggleSolver
         if ( index == dictionary[i].length()-1) 
           dictionary[i] = null;
         else{
-          if (dictionary[i].indexOf("QU") != -1)
-            dictionary[i] = dictionary[i].replaceAll("QU","Q");
+//          if (dictionary[i].indexOf("QU") != -1)
+//            dictionary[i] = dictionary[i].replaceAll("QU","Q");
         }
           
       }
     }
     for(String w : dictionary){
-      if(w!=null)
-        st.put(w,count++);
+      if(w!=null){
+        if (w.indexOf("QU") != -1){
+          st.put(w.replaceAll("QU","Q"), count++);
+        }else{
+          st.put(w,count++);
+        }
+      }
     }
   }
   private class Pair{
@@ -145,7 +150,9 @@ public class BoggleSolver
     
     String[] dictionary = in.readAllStrings();
     BoggleSolver solver = new BoggleSolver(dictionary);
-    
+    //StdOut.println(dictionary[1880]);
+    assert(dictionary[1880].equals("EQUATION"));
+    dictionary[1880]=null;
     timer = new Stopwatch();
     BoggleBoard board = new BoggleBoard(args[1]);
     int score = 0;
