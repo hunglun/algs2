@@ -6,10 +6,8 @@ import java.util.TreeSet;
 
 public class BoggleSolver
 {
- // private TreeSet<String> dictset;
   private StringBuilder word;
   private boolean marked[][];
-
   private TreeSet<String> allValidWords;
   private EnglishTrieST<Integer> st;
   // Initializes the data structure using the given array of strings as the dictionary.
@@ -28,11 +26,6 @@ public class BoggleSolver
       else{ 
         if ( index == dictionary[i].length()-1) 
           dictionary[i] = null;
-        else{
-//          if (dictionary[i].indexOf("QU") != -1)
-//            dictionary[i] = dictionary[i].replaceAll("QU","Q");
-        }
-          
       }
     }
     for(String w : dictionary){
@@ -133,15 +126,15 @@ public class BoggleSolver
   public int scoreOf(String word){
     if(word == null) throw new IllegalArgumentException("error");
     int length = word.length();
-    //length += word.split("Q").length - 1;
-      if (length == 3) return 1;
-      if (length == 4) return 1;
-      if (length == 5) return 2;
-      if (length == 6) return 3;
-      if (length == 7) return 5;
-      if (length >= 8) return 11;
-      assert(false); // shouldn't be here.
-      return 0;
+    
+    if (length == 3) return 1;
+    if (length == 4) return 1;
+    if (length == 5) return 2;
+    if (length == 6) return 3;
+    if (length == 7) return 5;
+    if (length >= 8) return 11;
+    assert(false); // shouldn't be here.
+    return 0;
   }
   
   public static void main(String[] args) {
@@ -150,9 +143,9 @@ public class BoggleSolver
     
     String[] dictionary = in.readAllStrings();
     BoggleSolver solver = new BoggleSolver(dictionary);
-    //StdOut.println(dictionary[1880]);
-    assert(dictionary[1880].equals("EQUATION"));
-    dictionary[1880]=null;
+    // StdOut.println(dictionary[1880]);
+    // assert(dictionary[1880].equals("EQUATION"));
+    // dictionary[1880]=null;
     timer = new Stopwatch();
     BoggleBoard board = new BoggleBoard(args[1]);
     int score = 0;
