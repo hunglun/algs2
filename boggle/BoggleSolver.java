@@ -2,6 +2,7 @@ import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.Bag;
 import edu.princeton.cs.algs4.TrieST;
+import edu.princeton.cs.algs4.Stopwatch;
 import java.util.TreeSet;
 
 public class BoggleSolver
@@ -131,21 +132,22 @@ public class BoggleSolver
   
   public static void main(String[] args) {
     In in = new In(args[0]);
+    Stopwatch timer = new Stopwatch();
+    
     String[] dictionary = in.readAllStrings();
     BoggleSolver solver = new BoggleSolver(dictionary);
     BoggleBoard board = new BoggleBoard(args[1]);
-    StdOut.println(board);
     int score = 0;
-    int _count = 0;
-    
+    StdOut.println(board);
     for (String word : solver.getAllValidWords(board)) {
-      StdOut.println(_count + ":"+word);
-      _count++;
+      StdOut.println(word);
       score += solver.scoreOf(word);
     }
-    StdOut.println("Count = " + _count);
+    StdOut.println("time elapsed:" + timer.elapsedTime());
     StdOut.println("Score = " + score);
   }
+  
+
   
   
 }
