@@ -22,14 +22,24 @@ public class BoggleSolver
     allValidWords = new TreeSet<String>();
     
     st = new EnglishTrieST<Integer>();
+    int index;
     for(int i=0; i< dictionary.length; i++){
-      if (dictionary[i].indexOf("QU") != -1)
-        dictionary[i] = dictionary[i].replaceAll("QU","Q");
+      index = dictionary[i].indexOf("Q");
+      if ( index != -1 && index < dictionary[i].length()-1 && dictionary[i].charAt(index+1) != 'U')
+        dictionary[i] = null;
+      else{ 
+        if ( index == dictionary[i].length()-1) 
+          dictionary[i] = null;
+        else{
+          if (dictionary[i].indexOf("QU") != -1)
+            dictionary[i] = dictionary[i].replaceAll("QU","Q");
+        }
+          
+      }
     }
     for(String w : dictionary){
-    
-      //dictset.add(word);
-      st.put(w,count++);
+      if(w!=null)
+        st.put(w,count++);
     }
   }
   private class Pair{
@@ -139,13 +149,18 @@ public class BoggleSolver
     BoggleSolver solver = new BoggleSolver(dictionary);
     BoggleBoard board = new BoggleBoard(args[1]);
     int score = 0;
+    int count = 0;
     StdOut.println(board);
     for (String word : solver.getAllValidWords(board)) {
       StdOut.println(word);
+      count++;
       score += solver.scoreOf(word);
     }
     StdOut.println("time elapsed:" + timer.elapsedTime());
     StdOut.println("Score = " + score);
+    StdOut.println("Count = " + count);
+    
+    
   }
   
 
