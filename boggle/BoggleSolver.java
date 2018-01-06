@@ -1,7 +1,6 @@
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.Bag;
-import edu.princeton.cs.algs4.TrieST;
 import edu.princeton.cs.algs4.Stopwatch;
 import java.util.TreeSet;
 
@@ -12,7 +11,7 @@ public class BoggleSolver
   private boolean marked[][];
 
   private TreeSet<String> allValidWords;
-  private TrieST<Integer> st;
+  private EnglishTrieST<Integer> st;
   // Initializes the data structure using the given array of strings as the dictionary.
   // (You can assume each word in the dictionary contains only the uppercase letters A through Z.)
   public BoggleSolver(String[] dictionary){
@@ -22,7 +21,7 @@ public class BoggleSolver
     //dictset = new TreeSet<String>();
     allValidWords = new TreeSet<String>();
     
-    st = new TrieST<Integer>();
+    st = new EnglishTrieST<Integer>();
     for(int i=0; i< dictionary.length; i++){
       if (dictionary[i].indexOf("QU") != -1)
         dictionary[i] = dictionary[i].replaceAll("QU","Q");
@@ -78,10 +77,11 @@ public class BoggleSolver
   
   private boolean isPrefixInDictionary(String w){
     if (w.length() < 1) return true;
-    for(String s : st.keysWithPrefix(w)) {
-      return true;
-    }
-    return false;
+    return st.hasPrefixOf(w);
+//    for(String s : st.keysWithPrefix(w)) {
+//      return true;
+//    }
+//    return false;
   }
                                        
                                  
