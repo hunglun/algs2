@@ -7,7 +7,7 @@ API:          PASSED
 
 Findbugs:     PASSED
 PMD:          PASSED
-Checkstyle:   FAILED (0 errors, 102 warnings)
+Checkstyle:   FAILED (0 errors, 106 warnings)
 
 Correctness:  6/13 tests passed
 Memory:       0/3 tests passed
@@ -20,8 +20,8 @@ ASSESSMENT DETAILS
 
 The following files were submitted:
 ----------------------------------
-4.9K Jan  6 05:20 BoggleSolver.java
-9.1K Jan  6 05:20 EnglishTrieST.java
+4.9K Jan  6 05:40 BoggleSolver.java
+9.1K Jan  6 05:40 EnglishTrieST.java
 
 
 ********************************************************************************
@@ -117,7 +117,7 @@ PMD ends with 4 warnings.
 [WARN] BoggleSolver.java:59:12: 'for' is not followed by whitespace. [WhitespaceAfter]
 [WARN] BoggleSolver.java:59:18: '=' is not preceded with whitespace. [WhitespaceAround]
 ...
-Checkstyle ends with 0 errors and 102 warnings.
+Checkstyle ends with 0 errors and 106 warnings.
 
 
 ================================================================
@@ -164,37 +164,37 @@ Test 3: check getAllValidWords() on more fixed 4-by-4 boards
 
 Test 4: check getAllValidWords() on random Hasbro boards
   * dictionary = dictionary-yawl.txt; board = 10 random Hasbro boards
-    - number of entries in student   solution: 321
-    - number of entries in reference solution: 232
-    - 89 extra entries in student solution, including: 'WIENER'
+    - number of entries in student   solution: 211
+    - number of entries in reference solution: 106
+    - 105 extra entries in student solution, including: 'YOKE'
     - failed on trial 2 of 10
          4 4
-         N  E  S  M  
-         H  I  T  E  
-         T  R  F  Y  
-         N  R  A  O
+         I  T  R  R  
+         E  E  F  R  
+         A  Z  A  I  
+         T  E  C  A
 
   * dictionary = dictionary-yawl.txt; board = 50 random Hasbro boards
-    - number of entries in student   solution: 390
-    - number of entries in reference solution: 74
-    - 316 extra entries in student solution, including: 'YETIS'
+    - number of entries in student   solution: 302
+    - number of entries in reference solution: 95
+    - 207 extra entries in student solution, including: 'ZETA'
     - failed on trial 1 of 50
          4 4
-         I  S  T  N  
-         N  S  X  H  
-         O  L  W  W  
-         A  R  E  C
+         V  R  H  O  
+         O  A  A  U  
+         H  I  B  T  
+         T  Z  I  L
 
   * dictionary = dictionary-yawl.txt; board = 100 random Hasbro boards
-    - number of entries in student   solution: 487
-    - number of entries in reference solution: 111
-    - 376 extra entries in student solution, including: 'YETIS'
+    - number of entries in student   solution: 652
+    - number of entries in reference solution: 356
+    - 296 extra entries in student solution, including: 'ZIT'
     - failed on trial 1 of 100
          4 4
-         L  X  N  E  
-         T  O  O  E  
-         O  S  U  S  
-         N  V  Y  T
+         Y  S  I  U  
+         N  R  T  N  
+         E  O  D  O  
+         M  S  A  S
 
 ==> FAILED
 
@@ -219,191 +219,147 @@ Test 6: check getAllValidWords() on exotic boards
 Test 7: check getAllValidWords() on boards with a Q
   * dictionary = dictionary-yawl.txt; board = board-qwerty.txt
   * dictionary = dictionary-yawl.txt; board = board-quinquevalencies.txt
-    - number of entries in student   solution: 129
-    - number of entries in reference solution: 130
-    - 1 missing entry in student solution: 'QUA'
-         4 4
-         Qu L  E  N  
-         I  A  X  C  
-         N  V  I  E  
-         Qu E  X  S
-
   * dictionary = dictionary-yawl.txt; board = board-inconsequentially.txt
   * dictionary = dictionary-yawl.txt; board = board-qaimaqam.txt
-    - number of entries in student   solution: 7
-    - number of entries in reference solution: 8
-    - 1 missing entry in student solution: 'QUA'
-         4 4
-         Qu A  I  Qu 
-         Qu Qu Qu M  
-         Qu Qu Qu A  
-         M  A  Qu Qu
-
   * dictionary = dictionary-yawl.txt; board = board-aqua.txt
-    - number of entries in student   solution: 0
-    - number of entries in reference solution: 1
-    - 1 missing entry in student solution: 'QUA'
-         4 4
-         Qu U  I  T  
-         X  X  X  X  
-         X  X  X  X  
-         A  Qu U  A
-
   * dictionary = dictionary-yawl.txt; board = 100 random Hasbro boards
-    - number of entries in student   solution: 226
-    - number of entries in reference solution: 175
-    - 51 extra entries in student solution, including: 'WIS'
+    - number of entries in student   solution: 271
+    - number of entries in reference solution: 171
+    - 100 extra entries in student solution, including: 'YFERE'
     - failed on trial 2 of 100
          4 4
-         T  H  N  O  
-         T  E  S  E  
-         A  T  F  H  
-         M  O  Qu E
+         I  H  V  T  
+         E  S  Qu H  
+         N  T  E  T  
+         O  B  A  E
 
   * dictionary = dictionary-16q.txt; board = board-9q.txt
-    - number of entries in student   solution: 7
-    - number of entries in reference solution: 8
-    - 1 missing entry in student solution: 'QUQU'
-         3 3
-         Qu Qu Qu 
-         Qu Qu Qu 
-         Qu Qu Qu
-
   * dictionary = dictionary-16q.txt; board = board-16q.txt
-    - number of entries in student   solution: 14
-    - number of entries in reference solution: 15
-    - 1 missing entry in student solution: 'QUQU'
-         4 4
-         Qu Qu Qu Qu 
-         Qu Qu Qu Qu 
-         Qu Qu Qu Qu 
-         Qu Qu Qu Qu
-
 ==> FAILED
 
 Test 8: check getAllValidWords() on random m-by-n boards
   * dictionary = dictionary-common.txt; board = 100 random 3-by-3 boards
-    - number of entries in student   solution: 38
-    - number of entries in reference solution: 22
-    - 16 extra entries in student solution, including: 'YAH'
+    - number of entries in student   solution: 32
+    - number of entries in reference solution: 24
+    - 8 extra entries in student solution, including: 'STIR'
     - failed on trial 2 of 100
          3 3
-         A  A  D  
-         T  S  E  
-         I  D  U
+         R  U  V  
+         E  A  R  
+         N  H  M
 
   * dictionary = dictionary-common.txt; board = 100 random 4-by-4 boards
-    - number of entries in student   solution: 104
-    - number of entries in reference solution: 69
-    - 35 extra entries in student solution, including: 'YAH'
+    - number of entries in student   solution: 56
+    - number of entries in reference solution: 24
+    - 32 extra entries in student solution, including: 'VANE'
     - failed on trial 1 of 100
          4 4
-         S  E  T  A  
-         N  I  O  S  
-         W  G  E  F  
-         H  D  A  N
+         O  D  D  C  
+         O  V  R  D  
+         S  E  P  S  
+         L  I  I  O
 
   * dictionary = dictionary-common.txt; board = 100 random 5-by-5 boards
-    - number of entries in student   solution: 194
-    - number of entries in reference solution: 103
-    - 91 extra entries in student solution, including: 'YAH'
+    - number of entries in student   solution: 114
+    - number of entries in reference solution: 66
+    - 48 extra entries in student solution, including: 'VEIL'
     - failed on trial 1 of 100
          5 5
-         T  H  A  N  H  
-         B  R  B  T  L  
-         W  I  S  T  E  
-         N  I  U  E  N  
-         S  H  E  E  C
+         E  P  E  A  Y  
+         T  E  U  A  E  
+         K  T  O  R  U  
+         R  S  D  U  W  
+         M  G  D  S  R
 
   * dictionary = dictionary-common.txt; board = 20 random 5-by-10 boards
-    - number of entries in student   solution: 371
-    - number of entries in reference solution: 231
-    - 140 extra entries in student solution, including: 'WRIST'
+    - number of entries in student   solution: 435
+    - number of entries in reference solution: 350
+    - 85 extra entries in student solution, including: 'YEAR'
     - failed on trial 1 of 20
          5 10
-         O  S  H  R  D  H  M  H  Y  B  
-         F  S  Y  C  L  H  L  L  A  E  
-         C  Y  O  T  N  E  I  A  T  O  
-         H  O  A  A  S  E  N  R  I  E  
-         N  I  U  Y  T  H  H  A  G  I
+         B  O  L  H  A  P  E  T  E  M  
+         T  A  R  T  A  B  A  E  O  I  
+         F  G  I  L  U  R  R  R  N  I  
+         S  N  I  N  A  R  S  D  O  T  
+         D  O  H  E  U  T  T  W  M  R
 
   * dictionary = dictionary-common.txt; board = 20 random 10-by-5 boards
-    - number of entries in student   solution: 581
-    - number of entries in reference solution: 274
-    - 307 extra entries in student solution, including: 'YOU'
+    - number of entries in student   solution: 607
+    - number of entries in reference solution: 227
+    - 380 extra entries in student solution, including: 'YARD'
     - failed on trial 1 of 20
          10 5
-         A  O  E  D  S  
-         Y  I  S  H  T  
-         U  T  N  I  O  
-         E  Y  I  C  S  
-         S  L  B  R  T  
-         D  S  L  H  L  
-         S  N  I  D  T  
-         E  E  L  R  E  
-         R  O  R  S  A  
-         T  U  T  I  M
+         B  M  D  O  C  
+         S  G  D  T  E  
+         I  T  A  T  T  
+         I  Y  W  R  B  
+         L  N  G  S  G  
+         R  A  E  A  O  
+         E  Y  E  D  H  
+         H  N  T  L  E  
+         E  E  E  G  R  
+         I  D  A  X  H
 
 ==> FAILED
 
 Test 9: check getAllValidWords() on random m-by-n boards
   * dictionary = dictionary-common.txt; board = 10 random 2-by-2 boards
-    - number of entries in student   solution: 3
+    - number of entries in student   solution: 1
     - number of entries in reference solution: 0
-    - 3 extra entries in student solution, including: 'ODE'
+    - 1 extra entry in student solution: 'WIN'
     - failed on trial 2 of 10
          2 2
-         O  E  
-         I  A
+         N  S  
+         Y  N
 
   * dictionary = dictionary-common.txt; board = 10 random 1-by-10 boards
-    - number of entries in student   solution: 7
-    - number of entries in reference solution: 4
-    - 3 extra entries in student solution, including: 'ODE'
+    - number of entries in student   solution: 2
+    - number of entries in reference solution: 1
+    - 1 extra entry in student solution: 'WIN'
     - failed on trial 1 of 10
          1 10
-         K  I  A  R  I  D  A  B  S  N
+         O  E  I  S  A  D  T  H  A  S
 
   * dictionary = dictionary-common.txt; board = 10 random 10-by-1 boards
-    - number of entries in student   solution: 7
-    - number of entries in reference solution: 0
-    - 7 extra entries in student solution, including: 'RID'
+    - number of entries in student   solution: 4
+    - number of entries in reference solution: 2
+    - 2 extra entries in student solution, including: 'WIN'
     - failed on trial 1 of 10
          10 1
-         A  
-         N  
-         F  
-         M  
-         I  
+         H  
+         R  
+         D  
          E  
          E  
-         Y  
-         F  
-         T
+         U  
+         H  
+         E  
+         E  
+         P
 
   * dictionary = dictionary-common.txt; board = 10 random 1-by-1 boards
-    - number of entries in student   solution: 7
+    - number of entries in student   solution: 4
     - number of entries in reference solution: 0
-    - 7 extra entries in student solution, including: 'RID'
+    - 4 extra entries in student solution, including: 'WIN'
     - failed on trial 1 of 10
          1 1
-         D
+         R
 
   * dictionary = dictionary-common.txt; board = 10 random 1-by-2 boards
-    - number of entries in student   solution: 7
+    - number of entries in student   solution: 4
     - number of entries in reference solution: 0
-    - 7 extra entries in student solution, including: 'RID'
+    - 4 extra entries in student solution, including: 'WIN'
     - failed on trial 1 of 10
          1 2
-         O  E
+         O  S
 
   * dictionary = dictionary-common.txt; board = 10 random 2-by-1 boards
-    - number of entries in student   solution: 7
+    - number of entries in student   solution: 4
     - number of entries in reference solution: 0
-    - 7 extra entries in student solution, including: 'RID'
+    - 4 extra entries in student solution, including: 'WIN'
     - failed on trial 1 of 10
          2 1
-         H  
+         K  
          E
 
 ==> FAILED
@@ -417,15 +373,15 @@ Test 11: mutating dictionary[] after passing to BoggleSolver constructor
   * dictionary = dictionary-algs4.txt
     - student implementation mutated dictionary[]
   * dictionary = dictionary-algs4.txt; board = 10 random Hasbro boards
-    - number of entries in student   solution: 35
-    - number of entries in reference solution: 10
-    - 25 extra entries in student solution, including: 'TIE'
+    - number of entries in student   solution: 25
+    - number of entries in reference solution: 16
+    - 9 extra entries in student solution, including: 'YET'
     - failed on trial 1 of 10
          4 4
-         B  A  O  L  
-         H  M  W  N  
-         S  I  U  R  
-         E  F  V  E
+         E  M  E  D  
+         F  W  M  X  
+         A  A  A  I  
+         N  D  Y  P
 
    - student implementation did not make a defensive copy of dictionary[]
 
@@ -435,65 +391,65 @@ Test 12: create more than one BoggleSolver object at a time
          [ BoggleSolver object 1 uses dictionary-algs4.txt   ]
          [ BoggleSolver object 2 uses dictionary-nursery.txt ]
   * dictionary = dictionary-algs4.txt; board = 10 random Hasbro boards
-    - number of entries in student   solution: 23
+    - number of entries in student   solution: 17
     - number of entries in reference solution: 16
-    - 7 extra entries in student solution, including: 'TOY'
+    - 1 extra entry in student solution: 'STEP'
     - failed on trial 2 of 10
          4 4
-         R  Y  S  R  
-         O  H  N  O  
-         A  E  R  T  
-         C  H  E  I
+         O  M  N  U  
+         J  S  T  A  
+         I  Y  E  T  
+         E  A  A  C
 
   * dictionary = dictionary-nursery.txt; board = 10 random Hasbro boards
-    - number of entries in student   solution: 24
-    - number of entries in reference solution: 12
-    - 12 extra entries in student solution, including: 'THIS'
+    - number of entries in student   solution: 14
+    - number of entries in reference solution: 7
+    - 7 extra entries in student solution, including: 'ZANY'
     - failed on trial 2 of 10
          4 4
-         V  E  P  O  
-         A  T  I  P  
-         T  X  N  T  
-         A  L  H  E
+         H  N  E  S  
+         X  U  F  O  
+         W  E  N  N  
+         C  A  E  L
 
   * dictionary = dictionary-algs4.txt; board = 10 random Hasbro boards
-    - number of entries in student   solution: 25
-    - number of entries in reference solution: 2
-    - 23 extra entries in student solution, including: 'TREE'
+    - number of entries in student   solution: 30
+    - number of entries in reference solution: 13
+    - 17 extra entries in student solution, including: 'YET'
     - failed on trial 1 of 10
          4 4
-         E  T  R  M  
-         J  T  N  Z  
-         E  C  T  S  
-         C  T  H  P
+         I  S  M  R  
+         O  U  R  O  
+         S  O  R  N  
+         U  H  F  G
 
 ==> FAILED
 
 Test 13: check scoreOf() on various dictionaries
   * dictionary = dictionary-algs4.txt
-    - word = 'RESTLESS'
+    - word = 'CHAFFINCH'
     - student   score = 11
     - reference score = 0
-    - failed on trial 1 of 1000
+    - failed on trial 2 of 1000
 
   * dictionary = dictionary-common.txt
-    - word = 'SEAS'
-    - student   score = 1
-    - reference score = 0
-    - failed on trial 1 of 5000
-
-  * dictionary = dictionary-shakespeare.txt
-    - word = 'RHAPSODIC'
+    - word = 'RESIZING'
     - student   score = 11
     - reference score = 0
-    - failed on trial 1 of 10000
+    - failed on trial 2 of 5000
+
+  * dictionary = dictionary-shakespeare.txt
+    - word = 'NUANCE'
+    - student   score = 3
+    - reference score = 0
+    - failed on trial 3 of 10000
 
   * dictionary = dictionary-nursery.txt
   * dictionary = dictionary-yawl.txt
-    - word = 'ASSAILETH'
+    - word = 'DOLEFULL'
     - student   score = 11
     - reference score = 0
-    - failed on trial 2 of 20000
+    - failed on trial 14 of 20000
 
 ==> FAILED
 
@@ -512,23 +468,23 @@ Running 3 total tests.
 
 Test 1: memory with dictionary-algs4.txt (must be <= 2x reference solution)
   * memory of dictionary[]           = 494304 bytes
-  * memory of student   BoggleSolver = 13646512 bytes
+  * memory of student   BoggleSolver = 13648176 bytes
   * memory of reference BoggleSolver = 5135408 bytes
   * student / reference              = 2.66
 ==> FAILED
 
 Test 2: memory with dictionary-shakespeare.txt (must be <= 2x reference solution)
   * memory of dictionary[]           = 1924640 bytes
-  * memory of student   BoggleSolver = 45891176 bytes
-  * memory of reference BoggleSolver = 17475528 bytes
+  * memory of student   BoggleSolver = 45890768 bytes
+  * memory of reference BoggleSolver = 17476048 bytes
   * student / reference              = 2.63
 ==> FAILED
 
 Test 3: memory with dictionary-yawl.txt (must be <= 2x reference solution)
-  * memory of dictionary[]           = 22583696 bytes
-  * memory of student   BoggleSolver = 464404688 bytes
-  * memory of reference BoggleSolver = 179000672 bytes
-  * student / reference              = 2.59
+  * memory of dictionary[]           = 22583240 bytes
+  * memory of student   BoggleSolver = 463827016 bytes
+  * memory of reference BoggleSolver = 178546176 bytes
+  * student / reference              = 2.60
 ==> FAILED
 
 
@@ -553,36 +509,36 @@ Test 1: timing constructor (must be <= 5x reference solution)
  *  dictionary-algs4.txt
     - student   solution time (in seconds): 0.03
     - reference solution time (in seconds): 0.01
-    - ratio:                                3.02
+    - ratio:                                2.81
 
 ==> passed
 
  *  dictionary-enable2k.txt
-    - student   solution time (in seconds): 0.23
-    - reference solution time (in seconds): 0.12
+    - student   solution time (in seconds): 0.22
+    - reference solution time (in seconds): 0.11
     - ratio:                                1.94
 
 ==> passed
 
  *  dictionary-yawl.txt
-    - student   solution time (in seconds): 0.08
+    - student   solution time (in seconds): 0.12
     - reference solution time (in seconds): 0.03
-    - ratio:                                2.95
+    - ratio:                                4.22
 
 ==> passed
 
  *  dictionary-zingarelli2005.txt
-    - student   solution time (in seconds): 0.14
-    - reference solution time (in seconds): 0.21
-    - ratio:                                0.65
+    - student   solution time (in seconds): 0.18
+    - reference solution time (in seconds): 0.25
+    - ratio:                                0.73
 
 ==> passed
 
 Test 2: timing getAllValidWords() for 5.0 seconds using dictionary-yawl.txt
         (must be <= 2x reference solution)
-    - reference solution calls per second: 6635.66
-    - student   solution calls per second: 523.48
-    - reference / student ratio:           12.68
+    - reference solution calls per second: 8620.91
+    - student   solution calls per second: 516.17
+    - reference / student ratio:           16.70
 
 => passed    student <= 10000x reference
 => passed    student <=    25x reference
@@ -592,3 +548,6 @@ Test 2: timing getAllValidWords() for 5.0 seconds using dictionary-yawl.txt
 
 
 Total: 6/9 tests passed!
+
+
+================================================================

@@ -82,16 +82,13 @@ public class BoggleSolver
   
 
   private boolean isValid(String w){
-    return w.length()>2 && st.contains(w);
+    return w.length()>1 && st.contains(w);
   }
   
   private boolean isPrefixInDictionary(String w){
     if (w.length() < 1) return true;
     return st.hasPrefixOf(w);
-//    for(String s : st.keysWithPrefix(w)) {
-//      return true;
-//    }
-//    return false;
+
   }
                                        
                                  
@@ -122,7 +119,10 @@ public class BoggleSolver
     
     dfs(board,-1,-1);
     
-    return allValidWords;
+    Bag<String> result = new Bag<String>();
+    for(String s:allValidWords)
+      if(s.length()>2) result.add(s);
+    return result;
   }
   
   // Returns the score of the given word if it is in the dictionary, zero otherwise.
