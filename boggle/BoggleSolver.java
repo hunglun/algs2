@@ -18,8 +18,6 @@ public class BoggleSolver
     if(dictionary == null) throw new IllegalArgumentException("error");
     
     int count=0;
-    //dictset = new TreeSet<String>();
-    allValidWords = new TreeSet<String>();
     
     st = new EnglishTrieST<Integer>();
     int index;
@@ -116,7 +114,7 @@ public class BoggleSolver
     if(board == null) throw new IllegalArgumentException("error");
     marked = new boolean[board.rows()][board.cols()];
     word = new StringBuilder();
-    
+    allValidWords = new TreeSet<String>();
     dfs(board,-1,-1);
     
     Bag<String> result = new Bag<String>();
@@ -143,10 +141,12 @@ public class BoggleSolver
   
   public static void main(String[] args) {
     In in = new In(args[0]);
-    Stopwatch timer = new Stopwatch();
+    Stopwatch timer;
     
     String[] dictionary = in.readAllStrings();
     BoggleSolver solver = new BoggleSolver(dictionary);
+    
+    timer = new Stopwatch();
     BoggleBoard board = new BoggleBoard(args[1]);
     int score = 0;
     int count = 0;
@@ -161,6 +161,21 @@ public class BoggleSolver
     StdOut.println("Count = " + count);
     
     
+    if (args.length == 3){
+      timer = new Stopwatch();
+      board = new BoggleBoard(args[2]);
+      score = 0;
+      count = 0;
+      StdOut.println(board);
+      for (String word : solver.getAllValidWords(board)) {
+        StdOut.println(word);
+        count++;
+        score += solver.scoreOf(word);
+      }
+      StdOut.println("time elapsed:" + timer.elapsedTime());
+      StdOut.println("Score = " + score);
+      StdOut.println("Count = " + count);
+    }
   }
   
 
