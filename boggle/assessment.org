@@ -7,20 +7,20 @@ API:          PASSED
 
 Findbugs:     FAILED (1 warning)
 PMD:          PASSED
-Checkstyle:   FAILED (0 errors, 93 warnings)
+Checkstyle:   FAILED (0 errors, 94 warnings)
 
 Correctness:  0/13 tests passed
 Memory:       0/3 tests passed
-Timing:       0/9 tests passed
+Timing:       3/9 tests passed
 
-Aggregate score: 10.00%
+Aggregate score: 16.67%
 [Compilation: 5%, API: 5%, Findbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
 
 ASSESSMENT DETAILS
 
 The following files were submitted:
 ----------------------------------
-4.4K Jan  5 18:53 BoggleSolver.java
+4.5K Jan  6 04:08 BoggleSolver.java
 
 
 ********************************************************************************
@@ -49,7 +49,7 @@ BoggleSolver:
 
 % findbugs *.class
 *-----------------------------------------------------------
-M D DLS_DEAD_LOCAL_STORE DLS: Assigns a value to the local variable 's' but that value is never used.  At BoggleSolver.java:[line 79]
+M D DLS_DEAD_LOCAL_STORE DLS: Assigns a value to the local variable 's' but that value is never used.  At BoggleSolver.java:[line 81]
 Warnings generated: 1
 
 
@@ -58,13 +58,12 @@ Warnings generated: 1
 
 % pmd .
 *-----------------------------------------------------------
-BoggleSolver.java:10: StringBuffers can grow quite a lot, and so may become a source of memory leak (if the owning class has a long life time). [AvoidStringBufferField]
-BoggleSolver.java:13: The private instance (or static) variable 'allValidWords' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
-BoggleSolver.java:14: The private instance (or static) variable 'st' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
-BoggleSolver.java:20: Avoid unused local variables, such as 'count'. [UnusedLocalVariable]
-BoggleSolver.java:79: Avoid unused local variables, such as 's'. [UnusedLocalVariable]
-BoggleSolver.java:80: Avoid using a 'continue' or 'break' statement as the last in a loop. [AvoidBranchingStatementAsLastInLoop]
-PMD ends with 6 warnings.
+BoggleSolver.java:11: StringBuffers can grow quite a lot, and so may become a source of memory leak (if the owning class has a long life time). [AvoidStringBufferField]
+BoggleSolver.java:14: The private instance (or static) variable 'allValidWords' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+BoggleSolver.java:15: The private instance (or static) variable 'st' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+BoggleSolver.java:81: Avoid unused local variables, such as 's'. [UnusedLocalVariable]
+BoggleSolver.java:82: Avoid using a 'continue' or 'break' statement as the last in a loop. [AvoidBranchingStatementAsLastInLoop]
+PMD ends with 5 warnings.
 
 
 ================================================================
@@ -72,47 +71,47 @@ PMD ends with 6 warnings.
 
 % checkstyle *.java
 *-----------------------------------------------------------
-[WARN] BoggleSolver.java:11:27: To specify an array type, put the square brackets before the variable name, e.g., 'String[] args' instead of 'String args[]'. [ArrayTypeStyle]
-[WARN] BoggleSolver.java:17:43: '{' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:18:7: 'if' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BoggleSolver.java:21:7: '//' or '/*' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BoggleSolver.java:25:8: 'for' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BoggleSolver.java:25:14: '=' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:25:15: '=' is not followed by whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:25:19: '<' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:25:44: '{' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:27:55: ',' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BoggleSolver.java:29:8: 'for' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BoggleSolver.java:29:31: '{' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:31:9: '//' or '/*' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BoggleSolver.java:32:16: ',' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BoggleSolver.java:35:21: '{' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:36:20: ',' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BoggleSolver.java:37:30: '{' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:43:54: '{' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:45:7: '//' or '/*' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BoggleSolver.java:47:46: '{' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:48:10: 'for' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BoggleSolver.java:48:16: '=' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:48:17: '=' is not followed by whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:48:19: ';' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BoggleSolver.java:48:20: '<' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:48:21: '<' is not followed by whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:48:39: '{' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:49:12: 'for' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BoggleSolver.java:49:18: '=' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:49:19: '=' is not followed by whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:49:21: ';' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BoggleSolver.java:49:22: '<' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:49:23: '<' is not followed by whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:49:41: '{' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:50:28: ',' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BoggleSolver.java:55:8: 'for' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BoggleSolver.java:55:14: '=' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:55:15: '=' is not followed by whitespace. [WhitespaceAround]
-[WARN] BoggleSolver.java:55:28: '<' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:12:27: To specify an array type, put the square brackets before the variable name, e.g., 'String[] args' instead of 'String args[]'. [ArrayTypeStyle]
+[WARN] BoggleSolver.java:18:43: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:19:7: 'if' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BoggleSolver.java:21:14: '=' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:21:15: '=' is not followed by whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:22:7: '//' or '/*' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BoggleSolver.java:26:8: 'for' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BoggleSolver.java:26:14: '=' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:26:15: '=' is not followed by whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:26:19: '<' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:26:44: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:28:55: ',' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BoggleSolver.java:30:8: 'for' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BoggleSolver.java:30:31: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:32:9: '//' or '/*' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BoggleSolver.java:33:16: ',' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BoggleSolver.java:36:21: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:37:20: ',' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BoggleSolver.java:38:30: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:44:54: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:46:7: '//' or '/*' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BoggleSolver.java:48:46: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:49:10: 'for' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BoggleSolver.java:49:16: '=' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:49:17: '=' is not followed by whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:49:19: ';' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BoggleSolver.java:49:20: '<' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:49:21: '<' is not followed by whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:49:39: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:50:12: 'for' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BoggleSolver.java:50:18: '=' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:50:19: '=' is not followed by whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:50:21: ';' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BoggleSolver.java:50:22: '<' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:50:23: '<' is not followed by whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:50:41: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BoggleSolver.java:51:28: ',' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BoggleSolver.java:56:8: 'for' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BoggleSolver.java:56:14: '=' is not preceded with whitespace. [WhitespaceAround]
 ...
-Checkstyle ends with 0 errors and 93 warnings.
+Checkstyle ends with 0 errors and 94 warnings.
 
 
 ================================================================
@@ -146,6 +145,18 @@ Test 2: check getAllValidWords() on fixed 4-by-4 boards
 
 Test 3: check getAllValidWords() on more fixed 4-by-4 boards
   * dictionary = dictionary-yawl.txt; board = board-points100.txt
+  * dictionary = dictionary-yawl.txt; board = board-points200.txt
+  * dictionary = dictionary-yawl.txt; board = board-points300.txt
+  * dictionary = dictionary-yawl.txt; board = board-points400.txt
+  * dictionary = dictionary-yawl.txt; board = board-points500.txt
+  * dictionary = dictionary-yawl.txt; board = board-points750.txt
+  * dictionary = dictionary-yawl.txt; board = board-points1000.txt
+  * dictionary = dictionary-yawl.txt; board = board-points1250.txt
+  * dictionary = dictionary-yawl.txt; board = board-points1500.txt
+  * dictionary = dictionary-yawl.txt; board = board-points2000.txt
+==> passed
+
+Test 4: check getAllValidWords() on random Hasbro boards
 
 
 Total: 0/13 tests passed: Could not complete tests, which results in a reported score of 0.
@@ -160,20 +171,37 @@ Running 3 total tests.
 
 Test 1: memory with dictionary-algs4.txt (must be <= 2x reference solution)
   * memory of dictionary[]           = 494304 bytes
-  * memory of student   BoggleSolver = 36208864 bytes
+  * memory of student   BoggleSolver = 36353152 bytes
   * memory of reference BoggleSolver = 5135408 bytes
-  * student / reference              = 7.05
+  * student / reference              = 7.08
 ==> FAILED
 
 Test 2: memory with dictionary-shakespeare.txt (must be <= 2x reference solution)
-  * memory of dictionary[]           = 1924712 bytes
-  * memory of student   BoggleSolver = 121539664 bytes
-  * memory of reference BoggleSolver = 17474896 bytes
-  * student / reference              = 6.96
+  * memory of dictionary[]           = 1924640 bytes
+  * memory of student   BoggleSolver = 122095296 bytes
+  * memory of reference BoggleSolver = 17475528 bytes
+  * student / reference              = 6.99
+==> FAILED
+
+    java.lang.OutOfMemoryError: Java heap space
+
+    edu.princeton.cs.algs4.TrieST$Node.<init>(TrieST.java:60)
+    edu.princeton.cs.algs4.TrieST$Node.<init>(TrieST.java:58)
+    edu.princeton.cs.algs4.TrieST.put(TrieST.java:118)
+    edu.princeton.cs.algs4.TrieST.put(TrieST.java:125)
+    edu.princeton.cs.algs4.TrieST.put(TrieST.java:125)
+     ...
+    edu.princeton.cs.algs4.TrieST.put(TrieST.java:125)
+    edu.princeton.cs.algs4.TrieST.put(TrieST.java:114)
+    BoggleSolver.<init>(BoggleSolver.java:33)
+    MemoryOfBoggleSolver.testDictionary(MemoryOfBoggleSolver.java:28)
+    MemoryOfBoggleSolver.main(MemoryOfBoggleSolver.java:61)
+
 ==> FAILED
 
 
-Total: 0/3 tests passed: Could not complete tests, which results in a reported score of 0.
+Total: 0/3 tests passed!
+
 ================================================================
 
 
@@ -193,26 +221,56 @@ Test 1: timing constructor (must be <= 5x reference solution)
  *  dictionary-algs4.txt
     - student   solution time (in seconds): 0.05
     - reference solution time (in seconds): 0.01
-    - ratio:                                3.85
+    - ratio:                                4.05
 
 ==> passed
 
  *  dictionary-enable2k.txt
     - student   solution time (in seconds): 0.27
-    - reference solution time (in seconds): 0.10
-    - ratio:                                2.66
+    - reference solution time (in seconds): 0.11
+    - ratio:                                2.48
 
 ==> passed
 
  *  dictionary-yawl.txt
-    - student   solution time (in seconds): 0.44
+    - student   solution time (in seconds): 0.45
     - reference solution time (in seconds): 0.03
     - ratio:                                16.25
 
 ==> FAILED
 
  *  dictionary-zingarelli2005.txt
+    java.lang.OutOfMemoryError: Java heap space
+
+    edu.princeton.cs.algs4.TrieST$Node.<init>(TrieST.java:60)
+    edu.princeton.cs.algs4.TrieST$Node.<init>(TrieST.java:58)
+    edu.princeton.cs.algs4.TrieST.put(TrieST.java:118)
+    edu.princeton.cs.algs4.TrieST.put(TrieST.java:125)
+    edu.princeton.cs.algs4.TrieST.put(TrieST.java:125)
+     ...
+    BoggleSolver.<init>(BoggleSolver.java:33)
+    TimeBoggleSolver.timeForConstructor(TimeBoggleSolver.java:29)
+    TimeBoggleSolver.testConstructor(TimeBoggleSolver.java:92)
+    TimeBoggleSolver.test1(TimeBoggleSolver.java:117)
+    TimeBoggleSolver.main(TimeBoggleSolver.java:180)
+
+==> FAILED
+
+Test 2: timing getAllValidWords() for 5.0 seconds using dictionary-yawl.txt
+        (must be <= 2x reference solution)
+    - reference solution calls per second: 9109.86
+    - student   solution calls per second: 3.34
+    - reference / student ratio:           2723.57
+
+=> passed    student <= 10000x reference
+=> FAILED    student <=    25x reference
+=> FAILED    student <=    10x reference
+=> FAILED    student <=     5x reference
+=> FAILED    student <=     2x reference
 
 
-Total: 0/9 tests passed: Could not complete tests, which results in a reported score of 0.
+Total: 3/9 tests passed!
+
+
 ================================================================
+

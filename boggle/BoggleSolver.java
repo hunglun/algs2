@@ -77,6 +77,7 @@ public class BoggleSolver
   }
   
   private boolean isPrefixInDictionary(String w){
+    if (w.length() < 1) return true;
     for(String s : st.keysWithPrefix(w)) {
       return true;
     }
