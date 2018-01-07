@@ -5,24 +5,24 @@ ASSESSMENT SUMMARY
 Compilation:  PASSED
 API:          PASSED
 
-Findbugs:     PASSED
+Findbugs:     FAILED (3 warnings)
 PMD:          PASSED
-Checkstyle:   FAILED (0 errors, 129 warnings)
+Checkstyle:   FAILED (0 errors, 157 warnings)
 
-Correctness:  30/64 tests passed
+Correctness:  37/64 tests passed
 Memory:       10/10 tests passed
-Timing:       117/159 tests passed
+Timing:       118/159 tests passed
 
-Aggregate score: 62.84%
+Aggregate score: 69.53%
 [Compilation: 5%, API: 5%, Findbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
 
 ASSESSMENT DETAILS
 
 The following files were submitted:
 ----------------------------------
-2.5K Jan  7 14:50 BurrowsWheeler.java
- 935 Jan  7 14:50 CircularSuffixArray.java
-2.0K Jan  7 14:50 MoveToFront.java
+2.5K Jan  7 19:30 BurrowsWheeler.java
+5.2K Jan  7 19:30 CircularSuffixArray.java
+2.0K Jan  7 19:30 MoveToFront.java
 
 
 ********************************************************************************
@@ -61,6 +61,10 @@ MoveToFront:
 
 % findbugs *.class
 *-----------------------------------------------------------
+L P UPM_UNCALLED_PRIVATE_METHOD UPM: The private method 'select()' is never called.  At CircularSuffixArray.java:[lines 102-103]
+L P UPM_UNCALLED_PRIVATE_METHOD UPM: The private method 'lcp()' is never called.  At CircularSuffixArray.java:[lines 82-83]
+L P UPM_UNCALLED_PRIVATE_METHOD UPM: The private method 'rank()' is never called.  At CircularSuffixArray.java:[lines 114-122]
+Warnings generated: 3
 
 
 ================================================================
@@ -68,8 +72,11 @@ MoveToFront:
 
 % pmd .
 *-----------------------------------------------------------
-CircularSuffixArray.java:8: The private instance (or static) variable 'sa' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
-PMD ends with 1 warning.
+CircularSuffixArray.java:7: The private instance (or static) variable 'suffixes' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+CircularSuffixArray.java:81: Avoid unused private methods, such as 'lcp(int)'. [UnusedPrivateMethod]
+CircularSuffixArray.java:101: Avoid unused private methods, such as 'select(int)'. [UnusedPrivateMethod]
+CircularSuffixArray.java:113: Avoid unused private methods, such as 'rank(String)'. [UnusedPrivateMethod]
+PMD ends with 4 warnings.
 
 
 ================================================================
@@ -77,55 +84,55 @@ PMD ends with 1 warning.
 
 % checkstyle *.java
 *-----------------------------------------------------------
-[WARN] BurrowsWheeler.java:1:8: Unused import statement for 'edu.princeton.cs.algs4.StdOut'. [UnusedImports]
-[WARN] BurrowsWheeler.java:12:33: '{' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BurrowsWheeler.java:17:8: 'for' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BurrowsWheeler.java:17:14: '=' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BurrowsWheeler.java:17:15: '=' is not followed by whitespace. [WhitespaceAround]
-[WARN] BurrowsWheeler.java:17:17: ';' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BurrowsWheeler.java:17:18: '<' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BurrowsWheeler.java:17:19: '<' is not followed by whitespace. [WhitespaceAround]
-[WARN] BurrowsWheeler.java:17:31: ';' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BurrowsWheeler.java:17:35: '{' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BurrowsWheeler.java:18:9: 'if' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BurrowsWheeler.java:25:8: 'for' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BurrowsWheeler.java:25:14: '=' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BurrowsWheeler.java:25:15: '=' is not followed by whitespace. [WhitespaceAround]
-[WARN] BurrowsWheeler.java:25:17: ';' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BurrowsWheeler.java:25:18: '<' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BurrowsWheeler.java:25:19: '<' is not followed by whitespace. [WhitespaceAround]
-[WARN] BurrowsWheeler.java:25:31: ';' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BurrowsWheeler.java:25:35: '{' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BurrowsWheeler.java:36:40: '{' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BurrowsWheeler.java:38:11: To specify an array type, put the square brackets before the variable name, e.g., 'String[] args' instead of 'String args[]'. [ArrayTypeStyle]
-[WARN] BurrowsWheeler.java:39:12: To specify an array type, put the square brackets before the variable name, e.g., 'String[] args' instead of 'String args[]'. [ArrayTypeStyle]
-[WARN] BurrowsWheeler.java:40:8: 'for' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BurrowsWheeler.java:40:14: '=' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BurrowsWheeler.java:40:15: '=' is not followed by whitespace. [WhitespaceAround]
-[WARN] BurrowsWheeler.java:40:19: '<' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BurrowsWheeler.java:40:20: '<' is not followed by whitespace. [WhitespaceAround]
-[WARN] BurrowsWheeler.java:41:12: '=' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BurrowsWheeler.java:41:13: '=' is not followed by whitespace. [WhitespaceAround]
-[WARN] BurrowsWheeler.java:49:19: To specify an array type, put the square brackets before the variable name, e.g., 'String[] args' instead of 'String args[]'. [ArrayTypeStyle]
-[WARN] BurrowsWheeler.java:50:13: To specify an array type, put the square brackets before the variable name, e.g., 'String[] args' instead of 'String args[]'. [ArrayTypeStyle]
-[WARN] BurrowsWheeler.java:51:8: 'for' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BurrowsWheeler.java:51:14: '=' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BurrowsWheeler.java:51:15: '=' is not followed by whitespace. [WhitespaceAround]
-[WARN] BurrowsWheeler.java:51:19: '<' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BurrowsWheeler.java:51:20: '<' is not followed by whitespace. [WhitespaceAround]
-[WARN] BurrowsWheeler.java:51:34: '{' is not preceded with whitespace. [WhitespaceAround]
-[WARN] BurrowsWheeler.java:52:10: 'for' is not followed by whitespace. [WhitespaceAfter]
-[WARN] BurrowsWheeler.java:52:16: '=' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BurrowsWheeler.java:10:33: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BurrowsWheeler.java:15:8: 'for' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BurrowsWheeler.java:15:14: '=' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BurrowsWheeler.java:15:15: '=' is not followed by whitespace. [WhitespaceAround]
+[WARN] BurrowsWheeler.java:15:17: ';' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BurrowsWheeler.java:15:18: '<' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BurrowsWheeler.java:15:19: '<' is not followed by whitespace. [WhitespaceAround]
+[WARN] BurrowsWheeler.java:15:31: ';' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BurrowsWheeler.java:15:35: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BurrowsWheeler.java:16:9: 'if' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BurrowsWheeler.java:23:8: 'for' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BurrowsWheeler.java:23:14: '=' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BurrowsWheeler.java:23:15: '=' is not followed by whitespace. [WhitespaceAround]
+[WARN] BurrowsWheeler.java:23:17: ';' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BurrowsWheeler.java:23:18: '<' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BurrowsWheeler.java:23:19: '<' is not followed by whitespace. [WhitespaceAround]
+[WARN] BurrowsWheeler.java:23:31: ';' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BurrowsWheeler.java:23:35: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BurrowsWheeler.java:34:40: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BurrowsWheeler.java:36:11: To specify an array type, put the square brackets before the variable name, e.g., 'String[] args' instead of 'String args[]'. [ArrayTypeStyle]
+[WARN] BurrowsWheeler.java:37:12: To specify an array type, put the square brackets before the variable name, e.g., 'String[] args' instead of 'String args[]'. [ArrayTypeStyle]
+[WARN] BurrowsWheeler.java:38:8: 'for' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BurrowsWheeler.java:38:14: '=' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BurrowsWheeler.java:38:15: '=' is not followed by whitespace. [WhitespaceAround]
+[WARN] BurrowsWheeler.java:38:19: '<' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BurrowsWheeler.java:38:20: '<' is not followed by whitespace. [WhitespaceAround]
+[WARN] BurrowsWheeler.java:39:12: '=' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BurrowsWheeler.java:39:13: '=' is not followed by whitespace. [WhitespaceAround]
+[WARN] BurrowsWheeler.java:47:19: To specify an array type, put the square brackets before the variable name, e.g., 'String[] args' instead of 'String args[]'. [ArrayTypeStyle]
+[WARN] BurrowsWheeler.java:48:13: To specify an array type, put the square brackets before the variable name, e.g., 'String[] args' instead of 'String args[]'. [ArrayTypeStyle]
+[WARN] BurrowsWheeler.java:49:8: 'for' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BurrowsWheeler.java:49:14: '=' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BurrowsWheeler.java:49:15: '=' is not followed by whitespace. [WhitespaceAround]
+[WARN] BurrowsWheeler.java:49:19: '<' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BurrowsWheeler.java:49:20: '<' is not followed by whitespace. [WhitespaceAround]
+[WARN] BurrowsWheeler.java:49:34: '{' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BurrowsWheeler.java:50:10: 'for' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BurrowsWheeler.java:50:16: '=' is not preceded with whitespace. [WhitespaceAround]
+[WARN] BurrowsWheeler.java:50:17: '=' is not followed by whitespace. [WhitespaceAround]
 ...
-Checkstyle ends with 0 errors and 126 warnings.
+Checkstyle ends with 0 errors and 154 warnings.
 
 % custom checkstyle checks for CircularSuffixArray.java
 *-----------------------------------------------------------
 
 % custom checkstyle checks for BurrowsWheeler.java
 *-----------------------------------------------------------
-[WARN] BurrowsWheeler.java:14:29: You must use 'BinaryStdIn' for all input in this program. [SideEffect]
-[WARN] BurrowsWheeler.java:42:16: You will probably not meet the performance requirement for 'inverseTransform()' if you call 'Arrays.sort()'. [Performance]
+[WARN] BurrowsWheeler.java:12:29: You must use 'BinaryStdIn' for all input in this program. [SideEffect]
+[WARN] BurrowsWheeler.java:40:16: You will probably not meet the performance requirement for 'inverseTransform()' if you call 'Arrays.sort()'. [Performance]
 Checkstyle ends with 0 errors and 2 warnings.
 
 % custom checkstyle checks for MoveToFront.java
@@ -147,159 +154,40 @@ Running 15 total tests.
 
 Test 1: check index() and length() with random binary strings
   * length = 10
-    - string = "BAAAABAABA"
-    - mismatch in indices
-    - student   index(0) = 9
-    - reference index(0) = 1
-
-    - failed on trial 2 of 1000
-
   * length = 100
-    - string = "BABAABAABAAABBAAAABABABAAABBBAAAAAAABAABBBBABBBBBAAABBAAAAAA..."
-    - mismatch in indices
-    - student   index(0) = 99
-    - reference index(0) = 29
-
-    - failed on trial 1 of 1000
-
   * length = 1000
-    - string = "ABBBABAAAABABBBBBABABBBBBBBBABBAABABBBBAAAABBBBBBABBBAAAABBB..."
-    - mismatch in indices
-    - student   index(357) = 997
-    - reference index(357) = 475
-
-    - failed on trial 1 of 1000
-
-==> FAILED
+==> passed
 
 Test 2: check index() and length() with random uppercase strings
   * length = 10
-    - string = "RIYVPKGYEE"
-    - mismatch in indices
-    - student   index(0) = 9
-    - reference index(0) = 8
-
-    - failed on trial 4 of 1000
-
   * length = 100
-    - string = "MUZLETFUIVGZKJZZODBHNDQVITKFACVKIGORNQHUMXUGWTXODJXELVUVVWML..."
-    - mismatch in indices
-    - student   index(39) = 99
-    - reference index(39) = 20
-
-    - failed on trial 1 of 1000
-
   * length = 1000
-    - string = "NGELVIGVLFCXOIYLOCBCOHDKEGOJFBCYZGYLNBOWKKUUZLDCENEZTRTIAYCD..."
-    - mismatch in indices
-    - student   index(40) = 999
-    - reference index(40) = 312
-
-    - failed on trial 1 of 1000
-
-==> FAILED
+==> passed
 
 Test 3: check index() and length() with random ASCII strings
   * length = 10
-    - string = "_z 83yK3ky"
-    - mismatch in indices
-    - student   index(7) = 9
-    - reference index(7) = 5
-
-    - failed on trial 63 of 1000
-
   * length = 100
-    - string = hex representation: 0e 0f 1f 1a 46 61 5c 3e 63 43 73 48 74 53 22 18 52 25 36 3c ...
-    - mismatch in indices
-    - student   index(39) = 99
-    - reference index(39) = 41
-
-    - failed on trial 3 of 1000
-
   * length = 1000
-    - string = hex representation: 5b 4e 5b 79 7c 33 27 79 4e 75 39 0a 23 39 46 23 1e 7c 6d 17 ...
-    - mismatch in indices
-    - student   index(572) = 999
-    - reference index(572) = 508
-
-    - failed on trial 1 of 1000
-
-==> FAILED
+==> passed
 
 Test 4: check index() and length() with random extended ASCII strings
   * length = 10
-    - string = hex representation: 9c 82 a7 7b b3 6a 25 cf 54 6a 
-    - mismatch in indices
-    - student   index(2) = 9
-    - reference index(2) = 5
-
-    - failed on trial 54 of 1000
-
   * length = 100
-    - string = hex representation: e5 87 b2 08 be 36 3e b9 e3 42 dc ba 06 a7 6e 96 77 ef 86 5b ...
-    - mismatch in indices
-    - student   index(47) = 99
-    - reference index(47) = 61
-
-    - failed on trial 10 of 1000
-
   * length = 1000
-    - string = hex representation: 32 ff 32 9f a2 47 28 98 1f 86 39 43 64 a8 6f be 60 7b 1f a6 ...
-    - mismatch in indices
-    - student   index(717) = 999
-    - reference index(717) = 216
-
-    - failed on trial 2 of 1000
-
-==> FAILED
+==> passed
 
 Test 5: check index() and length() with strings from text files
   * cadabra.txt
-    - string = "CADABRA!ABRA"
-    - mismatch in indices
-    - student   index(1) = 11
-    - reference index(1) = 6
-
   * amendments.txt
-    - string = "Article I. Congress shall make no law respecting an establis..."
-    - mismatch in indices
-    - student   index(0) = 18368
-    - reference index(0) = 14383
-
   * moby1.txt
-    - string = "Call me Ishmael. Some years ago- never mind how long precise..."
-    - mismatch in indices
-    - student   index(0) = 12217
-    - reference index(0) = 10396
-
   * dickens1000.txt
-    - string = "It was the best of times, it was the worst of times, it was ..."
-    - mismatch in indices
-    - student   index(759) = 999
-    - reference index(759) = 969
-
-==> FAILED
+==> passed
 
 Test 6: check index() and length() with strings from binary files
   * us.gif
-    - string = hex representation: 47 49 46 38 39 61 8e 01 01 01 d5 00 00 94 18 29 06 02 03 84 ...
-    - mismatch in indices
-    - student   index(3353) = 12399
-    - reference index(3353) = 509
-
   * CS_bricks.jpg
-    - string = hex representation: ff d8 ff e1 00 16 45 78 69 66 00 00 4d 4d 00 2a 00 00 00 08 ...
-    - mismatch in indices
-    - student   index(20674) = 24566
-    - reference index(20674) = 17181
-
   * rand1K.bin
-    - string = hex representation: 91 a6 be ff 17 30 3b c2 90 4c dc 6f 14 73 64 27 04 6b 87 8a ...
-    - mismatch in indices
-    - student   index(683) = 999
-    - reference index(683) = 574
-
-==> FAILED
+==> passed
 
 Test 7: check index() and length() with random strings of length 0, 1, and 2
   * length = 0
@@ -316,49 +204,23 @@ Test 8: check that index() throws an exception when argument is out of bounds
 ==> passed
 
 Test 9: check that constructor throws an exception when argument is null
-==> passed
-
-Test 10: check that two CircularSuffixArray objects can be created at the same time
-  * cadabra.txt and amendments.txt
-    - string = "CADABRA!ABRA"
-    - mismatch in indices
-    - student   index(1) = 11
-    - reference index(1) = 6
-
-    - string = "Article I. Congress shall make no law respecting an establis..."
-    - mismatch in indices
-    - student   index(0) = 18368
-    - reference index(0) = 14383
-
-  * amendments.txt and cadabra.txt
-    - string = "Article I. Congress shall make no law respecting an establis..."
-    - mismatch in indices
-    - student   index(0) = 18368
-    - reference index(0) = 14383
-
-    - string = "CADABRA!ABRA"
-    - mismatch in indices
-    - student   index(1) = 11
-    - reference index(1) = 6
-
-  * dickens1000.txt and cadabra.txt
-    - string = "It was the best of times, it was the worst of times, it was ..."
-    - mismatch in indices
-    - student   index(759) = 999
-    - reference index(759) = 969
-
-    - string = "CADABRA!ABRA"
-    - mismatch in indices
-    - student   index(1) = 11
-    - reference index(1) = 6
+    - throws the wrong exception when calling constructor with a null argument
+    - throws a java.lang.NullPointerException
+    - should throw a java.lang.IllegalArgumentException
 
 ==> FAILED
 
+Test 10: check that two CircularSuffixArray objects can be created at the same time
+  * cadabra.txt and amendments.txt
+  * amendments.txt and cadabra.txt
+  * dickens1000.txt and cadabra.txt
+==> passed
+
 Test 11: check that CircularSuffixArray is immutable
-  * string = "IVTWHVATWTNQSRJPUSYKJHHDNSHMGR"
-  * string = "AAABBAABABAABABBAABBBABAABAAAB"
+  * string = "BDHNKIQVTWELGSKPSCDNTEYOKKMQHD"
+  * string = "AABBBABABBAAAABBBBAAAABBBABAAB"
   * string = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-  * string = hex representation: 5a 03 76 3e c1 7f 63 f0 1f 4a da e7 05 4c 00 
+  * string = hex representation: a5 be 9b 70 af e8 0c cb c7 0d a8 fa 9f ec 53 
 ==> passed
 
 Test 12: check index() and length() with corner-case strings
@@ -385,42 +247,14 @@ Test 15: check index() and length() with random strings
   * length 2 string over binary alphabet, repeated 2 times
   * length 2 string over binary alphabet, repeated 10 times
   * length 5 string over binary alphabet, repeated 2 times
-    - string = "BAABABAABA"
-    - mismatch in indices
-    - student   index(0) = 9
-    - reference index(0) = 1
-
-    - failed on trial 2 of 5
-
   * length 5 string over binary alphabet, repeated 3 times
-    - string = "ABAABABAABABAAB"
-    - mismatch in indices
-    - student   index(3) = 13
-    - reference index(3) = 0
-
-    - failed on trial 2 of 5
-
   * length 5 string over binary alphabet, repeated 5 times
-    - string = "ABBABABBABABBABABBABABBAB"
-    - mismatch in indices
-    - student   index(10) = 24
-    - reference index(10) = 2
-
-    - failed on trial 2 of 5
-
   * length 7 string over uppercase alphabet, repeated 2 times
   * length 7 string over uppercase alphabet, repeated 3 times
   * length 7 string over uppercase alphabet, repeated 5 times
-    - string = "RIHIDTIRIHIDTIRIHIDTIRIHIDTIRIHIDTI"
-    - mismatch in indices
-    - student   index(10) = 34
-    - reference index(10) = 3
+==> passed
 
-    - failed on trial 1 of 5
-
-==> FAILED
-
-Total: 7/15 tests passed!
+Total: 14/15 tests passed!
 
 
 ================================================================
@@ -732,34 +566,34 @@ Test 3d: check transform() on random inputs
     - student   length = 0
     - reference length = 14
     - student:   
-    - reference: 00 00 00 01 42 41 42 41 42 42 42 42 41 41 
+    - reference: 00 00 00 05 42 41 41 42 42 41 42 42 42 41 
 
     - failed on trial 1 of 100
-    - input = 'AABBBABBBA'
+    - input = 'BABBBBBAAA'
 
   * 10 random characters from DNA alphabet
     - student   length = 0
     - reference length = 14
     - student:   
-    - reference: 00 00 00 02 54 41 54 47 41 43 54 54 54 43 
+    - reference: 00 00 00 08 47 47 47 54 47 47 47 43 54 41 
 
     - failed on trial 1 of 100
-    - input = 'CTAAGCTTTT'
+    - input = 'TGCGGGGGAT'
 
   * 10 random characters from uppercase alphabet
     - student   length = 0
     - reference length = 14
     - student:   
-    - reference: 00 00 00 02 50 4c 55 42 45 44 55 42 50 4e 
+    - reference: 00 00 00 00 59 4f 54 57 56 51 53 53 44 49 
 
     - failed on trial 1 of 100
-    - input = 'DNUPBELBPU'
+    - input = 'DWQSVSTOIY'
 
   * 1000 random characters from binary alphabet
     - student   length = 0
     - reference length = 1004
     - student:   
-    - reference: 00 00 01 21 42 41 42 42 42 .. 41 41 41 41 42 41 41 42 41 
+    - reference: 00 00 02 a9 42 42 42 42 42 .. 42 41 42 41 41 42 42 42 41 
 
     - failed on trial 1 of 100
 
@@ -767,7 +601,7 @@ Test 3d: check transform() on random inputs
     - student   length = 0
     - reference length = 1004
     - student:   
-    - reference: 00 00 01 b1 54 54 43 41 41 .. 41 54 47 43 41 54 47 43 41 
+    - reference: 00 00 02 0f 43 43 43 54 54 .. 47 47 41 54 41 47 47 41 47 
 
     - failed on trial 1 of 100
 
@@ -775,7 +609,7 @@ Test 3d: check transform() on random inputs
     - student   length = 0
     - reference length = 1004
     - student:   
-    - reference: 00 00 02 75 57 4a 45 4e 4f .. 59 5a 50 52 58 4b 48 50 59 
+    - reference: 00 00 03 a6 48 4c 53 5a 43 .. 4e 47 4f 46 51 42 52 51 43 
 
     - failed on trial 1 of 100
 
@@ -786,7 +620,7 @@ Test 3e: check transform() on more random inputs
     - student   length = 0
     - reference length = 1004
     - student:   
-    - reference: 00 00 00 2f 0e 1a 1e 49 02 .. 11 70 3d 7d 23 44 0c 33 59 
+    - reference: 00 00 00 10 7d 76 3c 26 69 .. 14 5d 1c 4d 07 65 32 6d 43 
 
     - failed on trial 1 of 100
 
@@ -794,7 +628,7 @@ Test 3e: check transform() on more random inputs
     - student   length = 0
     - reference length = 1004
     - student:   
-    - reference: 00 00 03 9f 1b 07 05 30 76 .. 14 85 b4 d6 6c ff 89 23 24 
+    - reference: 00 00 02 4e 48 0e 64 24 c9 .. dd f4 10 97 02 1e 25 b6 5c 
 
     - failed on trial 1 of 100
 
@@ -802,7 +636,7 @@ Test 3e: check transform() on more random inputs
     - student   length = 0
     - reference length = 1004
     - student:   
-    - reference: 00 00 01 05 0e 91 f2 34 cb .. 88 b4 b5 3f f6 a0 a1 14 c7 
+    - reference: 00 00 02 9f 9b 96 32 0f 97 .. 51 a2 12 3d 2c c4 32 85 29 
 
     - failed on trial 1 of 100
 
@@ -810,7 +644,7 @@ Test 3e: check transform() on more random inputs
     - student   length = 0
     - reference length = 1004
     - student:   
-    - reference: 00 00 03 e2 ff cf 35 96 45 .. e1 19 0f 5e 19 97 ef 39 a5 
+    - reference: 00 00 03 c1 c7 7b 9d 35 8f .. 26 ec f4 83 a2 b2 a8 9e 36 
 
     - failed on trial 1 of 100
 
@@ -822,7 +656,7 @@ Test 3f: check tranform() on random inputs that are circular
     - student   length = 0
     - reference length = 14
     - student:   
-    - reference: 00 00 00 00 41 41 41 41 41 41 41 41 41 41 
+    - reference: 00 00 00 07 41 41 41 41 41 41 41 41 41 41 
 
     - failed on trial 1 of 2
     - input = 'AAAAAAAAAA'
@@ -831,28 +665,28 @@ Test 3f: check tranform() on random inputs that are circular
     - student   length = 0
     - reference length = 24
     - student:   
-    - reference: 00 00 00 0c 42 42 42 42 42 .. 42 42 42 42 42 41 41 41 41 
+    - reference: 00 00 00 10 42 42 42 42 41 .. 41 42 42 42 42 41 41 41 41 
 
     - failed on trial 1 of 100
-    - input = 'BBBABBBBABBBBABBBBAB'
+    - input = 'BBAAABBAAABBAAABBAAA'
 
   * 5 random strings from DNA alphabet
     - student   length = 0
-    - reference length = 24
+    - reference length = 14
     - student:   
-    - reference: 00 00 00 08 54 54 54 54 41 .. 47 47 47 47 47 47 47 47 47 
+    - reference: 00 00 00 00 43 43 47 47 47 47 43 43 41 41 
 
     - failed on trial 1 of 100
-    - input = 'GGTAGGGTAGGGTAGGGTAG'
+    - input = 'AGCGCAGCGC'
 
   * 5 random strings from uppercase alphabet
     - student   length = 0
-    - reference length = 19
+    - reference length = 14
     - student:   
-    - reference: 00 00 00 09 54 54 54 41 41 41 56 56 56 4d 4d 4d 41 41 41 
+    - reference: 00 00 00 00 48 48 51 51 4f 4f 42 42 4d 4d 
 
     - failed on trial 1 of 100
-    - input = 'TAAVMTAAVMTAAVM'
+    - input = 'BOMQHBOMQH'
 
 ==> FAILED
 
@@ -901,7 +735,7 @@ Test 5a: check that inverseTransform(transform()) = original on text files
 
     edu.princeton.cs.algs4.BinaryStdIn.readChar(BinaryStdIn.java:156)
     edu.princeton.cs.algs4.BinaryStdIn.readInt(BinaryStdIn.java:265)
-    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:37)
+    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:35)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:422)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:401)
     TestBurrowsWheeler.test5a(TestBurrowsWheeler.java:628)
@@ -913,7 +747,7 @@ Test 5a: check that inverseTransform(transform()) = original on text files
 
     edu.princeton.cs.algs4.BinaryStdIn.readChar(BinaryStdIn.java:156)
     edu.princeton.cs.algs4.BinaryStdIn.readInt(BinaryStdIn.java:265)
-    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:37)
+    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:35)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:422)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:401)
     TestBurrowsWheeler.test5a(TestBurrowsWheeler.java:629)
@@ -925,7 +759,7 @@ Test 5a: check that inverseTransform(transform()) = original on text files
 
     edu.princeton.cs.algs4.BinaryStdIn.readChar(BinaryStdIn.java:156)
     edu.princeton.cs.algs4.BinaryStdIn.readInt(BinaryStdIn.java:265)
-    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:37)
+    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:35)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:422)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:401)
     TestBurrowsWheeler.test5a(TestBurrowsWheeler.java:630)
@@ -937,7 +771,7 @@ Test 5a: check that inverseTransform(transform()) = original on text files
 
     edu.princeton.cs.algs4.BinaryStdIn.readChar(BinaryStdIn.java:156)
     edu.princeton.cs.algs4.BinaryStdIn.readInt(BinaryStdIn.java:265)
-    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:37)
+    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:35)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:422)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:401)
     TestBurrowsWheeler.test5a(TestBurrowsWheeler.java:631)
@@ -952,7 +786,7 @@ Test 5b: check that inverseTransform(transform()) = original on corner-case text
 
     edu.princeton.cs.algs4.BinaryStdIn.readChar(BinaryStdIn.java:156)
     edu.princeton.cs.algs4.BinaryStdIn.readInt(BinaryStdIn.java:265)
-    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:37)
+    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:35)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:422)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:401)
     TestBurrowsWheeler.test5b(TestBurrowsWheeler.java:638)
@@ -964,7 +798,7 @@ Test 5b: check that inverseTransform(transform()) = original on corner-case text
 
     edu.princeton.cs.algs4.BinaryStdIn.readChar(BinaryStdIn.java:156)
     edu.princeton.cs.algs4.BinaryStdIn.readInt(BinaryStdIn.java:265)
-    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:37)
+    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:35)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:422)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:401)
     TestBurrowsWheeler.test5b(TestBurrowsWheeler.java:639)
@@ -976,7 +810,7 @@ Test 5b: check that inverseTransform(transform()) = original on corner-case text
 
     edu.princeton.cs.algs4.BinaryStdIn.readChar(BinaryStdIn.java:156)
     edu.princeton.cs.algs4.BinaryStdIn.readInt(BinaryStdIn.java:265)
-    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:37)
+    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:35)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:422)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:401)
     TestBurrowsWheeler.test5b(TestBurrowsWheeler.java:640)
@@ -988,7 +822,7 @@ Test 5b: check that inverseTransform(transform()) = original on corner-case text
 
     edu.princeton.cs.algs4.BinaryStdIn.readChar(BinaryStdIn.java:156)
     edu.princeton.cs.algs4.BinaryStdIn.readInt(BinaryStdIn.java:265)
-    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:37)
+    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:35)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:422)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:401)
     TestBurrowsWheeler.test5b(TestBurrowsWheeler.java:641)
@@ -1003,7 +837,7 @@ Test 5c: check that inverseTransform(transform()) = original on binary files
 
     edu.princeton.cs.algs4.BinaryStdIn.readChar(BinaryStdIn.java:156)
     edu.princeton.cs.algs4.BinaryStdIn.readInt(BinaryStdIn.java:265)
-    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:37)
+    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:35)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:422)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:401)
     TestBurrowsWheeler.test5c(TestBurrowsWheeler.java:648)
@@ -1015,7 +849,7 @@ Test 5c: check that inverseTransform(transform()) = original on binary files
 
     edu.princeton.cs.algs4.BinaryStdIn.readChar(BinaryStdIn.java:156)
     edu.princeton.cs.algs4.BinaryStdIn.readInt(BinaryStdIn.java:265)
-    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:37)
+    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:35)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:422)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:401)
     TestBurrowsWheeler.test5c(TestBurrowsWheeler.java:649)
@@ -1027,7 +861,7 @@ Test 5c: check that inverseTransform(transform()) = original on binary files
 
     edu.princeton.cs.algs4.BinaryStdIn.readChar(BinaryStdIn.java:156)
     edu.princeton.cs.algs4.BinaryStdIn.readInt(BinaryStdIn.java:265)
-    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:37)
+    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:35)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:422)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:401)
     TestBurrowsWheeler.test5c(TestBurrowsWheeler.java:650)
@@ -1042,14 +876,14 @@ Test 5d: check that inverseTransform(tranform()) = original on random inputs
 
     edu.princeton.cs.algs4.BinaryStdIn.readChar(BinaryStdIn.java:156)
     edu.princeton.cs.algs4.BinaryStdIn.readInt(BinaryStdIn.java:265)
-    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:37)
+    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:35)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:422)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:444)
     TestBurrowsWheeler.test5d(TestBurrowsWheeler.java:657)
     TestBurrowsWheeler.main(TestBurrowsWheeler.java:790)
 
     - failed on trial 1 of 100
-    - input = 'ABBBABBBAB'
+    - input = 'BABABBAABB'
 
   * 10 random characters from DNA alphabet
 
@@ -1057,14 +891,14 @@ Test 5d: check that inverseTransform(tranform()) = original on random inputs
 
     edu.princeton.cs.algs4.BinaryStdIn.readChar(BinaryStdIn.java:156)
     edu.princeton.cs.algs4.BinaryStdIn.readInt(BinaryStdIn.java:265)
-    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:37)
+    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:35)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:422)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:444)
     TestBurrowsWheeler.test5d(TestBurrowsWheeler.java:658)
     TestBurrowsWheeler.main(TestBurrowsWheeler.java:790)
 
     - failed on trial 1 of 100
-    - input = 'AGGCATAATT'
+    - input = 'AGCTGCCACT'
 
   * 10 random characters from uppercase alphabet
 
@@ -1072,14 +906,14 @@ Test 5d: check that inverseTransform(tranform()) = original on random inputs
 
     edu.princeton.cs.algs4.BinaryStdIn.readChar(BinaryStdIn.java:156)
     edu.princeton.cs.algs4.BinaryStdIn.readInt(BinaryStdIn.java:265)
-    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:37)
+    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:35)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:422)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:444)
     TestBurrowsWheeler.test5d(TestBurrowsWheeler.java:659)
     TestBurrowsWheeler.main(TestBurrowsWheeler.java:790)
 
     - failed on trial 1 of 100
-    - input = 'UXOYMQOLHK'
+    - input = 'TNRWTHCMUY'
 
   * 1000 random characters from binary alphabet
 
@@ -1087,7 +921,7 @@ Test 5d: check that inverseTransform(tranform()) = original on random inputs
 
     edu.princeton.cs.algs4.BinaryStdIn.readChar(BinaryStdIn.java:156)
     edu.princeton.cs.algs4.BinaryStdIn.readInt(BinaryStdIn.java:265)
-    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:37)
+    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:35)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:422)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:444)
     TestBurrowsWheeler.test5d(TestBurrowsWheeler.java:660)
@@ -1101,7 +935,7 @@ Test 5d: check that inverseTransform(tranform()) = original on random inputs
 
     edu.princeton.cs.algs4.BinaryStdIn.readChar(BinaryStdIn.java:156)
     edu.princeton.cs.algs4.BinaryStdIn.readInt(BinaryStdIn.java:265)
-    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:37)
+    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:35)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:422)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:444)
     TestBurrowsWheeler.test5d(TestBurrowsWheeler.java:661)
@@ -1115,7 +949,7 @@ Test 5d: check that inverseTransform(tranform()) = original on random inputs
 
     edu.princeton.cs.algs4.BinaryStdIn.readChar(BinaryStdIn.java:156)
     edu.princeton.cs.algs4.BinaryStdIn.readInt(BinaryStdIn.java:265)
-    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:37)
+    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:35)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:422)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:444)
     TestBurrowsWheeler.test5d(TestBurrowsWheeler.java:662)
@@ -1132,7 +966,7 @@ Test 5e: check that inverseTransform(tranform()) = original on random inputs
 
     edu.princeton.cs.algs4.BinaryStdIn.readChar(BinaryStdIn.java:156)
     edu.princeton.cs.algs4.BinaryStdIn.readInt(BinaryStdIn.java:265)
-    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:37)
+    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:35)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:422)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:444)
     TestBurrowsWheeler.test5e(TestBurrowsWheeler.java:668)
@@ -1146,7 +980,7 @@ Test 5e: check that inverseTransform(tranform()) = original on random inputs
 
     edu.princeton.cs.algs4.BinaryStdIn.readChar(BinaryStdIn.java:156)
     edu.princeton.cs.algs4.BinaryStdIn.readInt(BinaryStdIn.java:265)
-    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:37)
+    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:35)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:422)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:444)
     TestBurrowsWheeler.test5e(TestBurrowsWheeler.java:669)
@@ -1160,7 +994,7 @@ Test 5e: check that inverseTransform(tranform()) = original on random inputs
 
     edu.princeton.cs.algs4.BinaryStdIn.readChar(BinaryStdIn.java:156)
     edu.princeton.cs.algs4.BinaryStdIn.readInt(BinaryStdIn.java:265)
-    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:37)
+    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:35)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:422)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:444)
     TestBurrowsWheeler.test5e(TestBurrowsWheeler.java:670)
@@ -1174,7 +1008,7 @@ Test 5e: check that inverseTransform(tranform()) = original on random inputs
 
     edu.princeton.cs.algs4.BinaryStdIn.readChar(BinaryStdIn.java:156)
     edu.princeton.cs.algs4.BinaryStdIn.readInt(BinaryStdIn.java:265)
-    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:37)
+    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:35)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:422)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:444)
     TestBurrowsWheeler.test5e(TestBurrowsWheeler.java:671)
@@ -1192,7 +1026,7 @@ Test 5f: check that inverseTransform(tranform()) = original
 
     edu.princeton.cs.algs4.BinaryStdIn.readChar(BinaryStdIn.java:156)
     edu.princeton.cs.algs4.BinaryStdIn.readInt(BinaryStdIn.java:265)
-    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:37)
+    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:35)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:422)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransformDegenerate(TestBurrowsWheeler.java:463)
     TestBurrowsWheeler.test5f(TestBurrowsWheeler.java:678)
@@ -1207,14 +1041,14 @@ Test 5f: check that inverseTransform(tranform()) = original
 
     edu.princeton.cs.algs4.BinaryStdIn.readChar(BinaryStdIn.java:156)
     edu.princeton.cs.algs4.BinaryStdIn.readInt(BinaryStdIn.java:265)
-    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:37)
+    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:35)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:422)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransformDegenerate(TestBurrowsWheeler.java:463)
     TestBurrowsWheeler.test5f(TestBurrowsWheeler.java:679)
     TestBurrowsWheeler.main(TestBurrowsWheeler.java:796)
 
     - failed on trial 1 of 100
-    - input = 'AABAAAABAAAABAA'
+    - input = 'BAABBBAABBBAABB'
 
   * random strings from DNA alphabet
 
@@ -1222,14 +1056,14 @@ Test 5f: check that inverseTransform(tranform()) = original
 
     edu.princeton.cs.algs4.BinaryStdIn.readChar(BinaryStdIn.java:156)
     edu.princeton.cs.algs4.BinaryStdIn.readInt(BinaryStdIn.java:265)
-    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:37)
+    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:35)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:422)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransformDegenerate(TestBurrowsWheeler.java:463)
     TestBurrowsWheeler.test5f(TestBurrowsWheeler.java:680)
     TestBurrowsWheeler.main(TestBurrowsWheeler.java:796)
 
     - failed on trial 1 of 100
-    - input = 'TCGTTTCGTTTCGTT'
+    - input = 'TATTCTATTCTATTC'
 
   * random strings from uppercase alphabet
 
@@ -1237,14 +1071,14 @@ Test 5f: check that inverseTransform(tranform()) = original
 
     edu.princeton.cs.algs4.BinaryStdIn.readChar(BinaryStdIn.java:156)
     edu.princeton.cs.algs4.BinaryStdIn.readInt(BinaryStdIn.java:265)
-    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:37)
+    BurrowsWheeler.inverseTransform(BurrowsWheeler.java:35)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransform(TestBurrowsWheeler.java:422)
     TestBurrowsWheeler.checkTransformConsistentWithInverseTransformDegenerate(TestBurrowsWheeler.java:463)
     TestBurrowsWheeler.test5f(TestBurrowsWheeler.java:681)
     TestBurrowsWheeler.main(TestBurrowsWheeler.java:796)
 
     - failed on trial 1 of 100
-    - input = 'UWFLLUWFLLUWFLLUWFLLUWFLL'
+    - input = 'VPHZMVPHZM'
 
 ==> FAILED
 
@@ -1307,21 +1141,21 @@ Maximum allowed memory is 64n + 128.
 
                  n        bytes
 -------------------------------
-=> passed       16          800
-=> passed       32         1472
-=> passed       64         2816
-=> passed      128         5504
-=> passed      256        10880
-=> passed      512        21632
-=> passed     1024        43136
-=> passed     2048        86144
-=> passed     4096       172160
-=> passed     8192       344192
+=> passed       16          776
+=> passed       32         1448
+=> passed       64         2792
+=> passed      128         5480
+=> passed      256        10856
+=> passed      512        21608
+=> passed     1024        43112
+=> passed     2048        86120
+=> passed     4096       172136
+=> passed     8192       344168
 ==> 10/10 tests passed
 
 Total: 10/10 tests passed!
 
-Estimated student memory (bytes) = 42.00 n + 128.00   (R^2 = 1.000)
+Estimated student memory (bytes) = 42.00 n + 104.00   (R^2 = 1.000)
 ================================================================
 
 
@@ -1341,22 +1175,22 @@ Tests  1-13: time to create a circular suffix array for the first
 
                  n    student  reference      ratio
 ---------------------------------------------------
-=> passed     1000       0.02       0.00       3.93
-=> passed     2000       0.00       0.00       5.00
-=> passed     4000       0.01       0.00       3.06
-=> passed     8000       0.01       0.00       3.13
-=> passed    16000       0.03       0.01       5.61
-=> passed    32000       0.03       0.02       1.34
-=> passed    64000       0.10       0.02       5.98
-=> FAILED   128000       0.37       0.03      12.13
-=> FAILED   256000       0.42       0.03      14.37
-=> passed   512000       0.73       0.10       7.02
-=> passed  1024000       1.21       0.17       6.99
-=> passed  2048000       2.38       0.31       7.60
-=> passed  4096000       6.04       1.17       5.15
+=> passed     1000       0.01       0.00      15.42
+=> passed     2000       0.00       0.00       4.41
+=> passed     4000       0.01       0.00       3.64
+=> passed     8000       0.01       0.00       2.90
+=> passed    16000       0.02       0.00       3.87
+=> passed    32000       0.06       0.01       5.24
+=> FAILED    64000       0.11       0.01      12.67
+=> passed   128000       0.23       0.03       9.04
+=> FAILED   256000       0.39       0.03      13.63
+=> passed   512000       0.74       0.06      11.64
+=> FAILED  1024000       1.41       0.11      12.54
+=> passed  2048000       2.99       0.29      10.34
+=> passed  4096000       7.50       0.90       8.31
 
 Estimated running time (using last 6 measurements)
-    = 1.89e-05 * n^0.81  (R^2 = 0.96)
+    = 1.69e-06 * n^0.99  (R^2 = 0.99)
 
 
 Tests 14-26: time to create circular suffix array for n random ASCII characters
@@ -1366,25 +1200,25 @@ Tests 14-26: time to create circular suffix array for n random ASCII characters
 
                  n    student  reference      ratio
 ---------------------------------------------------
-=> passed     1000       0.00       0.00       5.62
-=> passed     2000       0.00       0.00       2.19
-=> passed     4000       0.00       0.00       2.17
-=> passed     8000       0.01       0.00       6.11
-=> passed    16000       0.01       0.00       5.99
-=> passed    32000       0.02       0.00       5.85
-=> passed    64000       0.05       0.00      10.32
-=> passed   128000       0.10       0.02       5.43
-=> passed   256000       0.18       0.04       4.26
-=> passed   512000       0.39       0.05       8.50
-=> passed  1024000       0.84       0.06      14.13
-=> passed  2048000       2.08       0.15      14.02
-=> passed  4096000       5.47       0.48      11.51
+=> passed     1000       0.00       0.00       4.38
+=> passed     2000       0.00       0.00       3.37
+=> passed     4000       0.00       0.00       2.72
+=> passed     8000       0.00       0.00       2.16
+=> passed    16000       0.01       0.00       6.19
+=> passed    32000       0.02       0.00       8.61
+=> passed    64000       0.04       0.00       9.92
+=> passed   128000       0.08       0.01       8.17
+=> passed   256000       0.26       0.06       4.48
+=> passed   512000       0.57       0.05      10.51
+=> passed  1024000       0.98       0.08      12.96
+=> passed  2048000       2.71       0.21      12.81
+=> passed  4096000       5.74       0.39      14.74
 
 Estimated running time (using last 6 measurements)
-    = 9.27e-08 * n^1.17  (R^2 = 0.99)
+    = 8.99e-08 * n^1.18  (R^2 = 0.99)
 
 
-Total: 24/26 tests passed!
+Total: 23/26 tests passed!
 
 
 ================================================================
@@ -1414,18 +1248,18 @@ Tests  3-12: Timing encode() with first n character of dickens.txt
 
                  n    student  reference      ratio
 ---------------------------------------------------
-=> passed     1000       0.00       0.00       0.68
-=> passed     2000       0.00       0.00       0.95
-=> passed     4000       0.01       0.01       1.00
+=> passed     1000       0.00       0.00       0.69
+=> passed     2000       0.00       0.00       1.04
+=> passed     4000       0.01       0.01       1.06
 => passed     8000       0.01       0.01       0.98
-=> passed    16000       0.02       0.02       0.96
-=> passed    32000       0.05       0.05       0.99
-=> passed    64000       0.09       0.10       0.97
-=> passed   128000       0.17       0.18       0.95
-=> passed   256000       0.34       0.35       0.97
+=> passed    16000       0.02       0.02       0.99
+=> passed    32000       0.04       0.04       0.92
+=> passed    64000       0.08       0.08       1.00
+=> passed   128000       0.14       0.14       0.98
+=> passed   256000       0.28       0.29       0.99
 
 Estimated running time (using last 6 measurements)
-     = 1.95e-06 * n^0.97  (R^2 = 1.00)
+     = 1.60e-06 * n^0.97  (R^2 = 1.00)
 
 
 Tests  13-20: Timing encode() with first n character of abab.txt
@@ -1433,18 +1267,18 @@ Tests  13-20: Timing encode() with first n character of abab.txt
 
                  n    student  reference      ratio
 ---------------------------------------------------
-=> passed     1000       0.00       0.00       0.95
+=> passed     1000       0.00       0.00       0.99
 => passed     2000       0.00       0.00       0.95
-=> passed     4000       0.00       0.01       0.82
-=> passed     8000       0.01       0.01       0.92
-=> passed    16000       0.02       0.02       0.92
-=> passed    32000       0.03       0.04       0.92
-=> passed    64000       0.07       0.08       0.95
-=> passed   128000       0.14       0.15       0.92
-=> passed   256000       0.28       0.31       0.92
+=> passed     4000       0.00       0.00       0.97
+=> passed     8000       0.01       0.01       0.94
+=> passed    16000       0.02       0.02       0.93
+=> passed    32000       0.03       0.03       0.93
+=> passed    64000       0.08       0.07       1.14
+=> passed   128000       0.13       0.14       0.92
+=> passed   256000       0.23       0.25       0.91
 
 Estimated running time (using last 6 measurements)
-     = 1.06e-06 * n^1.00  (R^2 = 1.00)
+     = 1.04e-06 * n^1.00  (R^2 = 0.99)
 
 
 Tests 21-29: Timing decode() with first n character of dickens.txt
@@ -1452,18 +1286,18 @@ Tests 21-29: Timing decode() with first n character of dickens.txt
 
                  n    student  reference      ratio
 ---------------------------------------------------
-=> passed     1000       0.00       0.00       0.91
-=> passed     2000       0.00       0.00       0.96
-=> passed     4000       0.00       0.01       0.96
-=> passed     8000       0.01       0.01       0.94
-=> passed    16000       0.02       0.02       0.96
-=> passed    32000       0.04       0.05       0.81
-=> passed    64000       0.07       0.08       0.94
-=> passed   128000       0.15       0.16       0.97
-=> passed   256000       0.30       0.35       0.87
+=> passed     1000       0.00       0.00       0.98
+=> passed     2000       0.00       0.00       0.94
+=> passed     4000       0.00       0.00       0.92
+=> passed     8000       0.01       0.01       0.93
+=> passed    16000       0.02       0.02       0.95
+=> passed    32000       0.03       0.03       0.95
+=> passed    64000       0.06       0.06       0.94
+=> passed   128000       0.12       0.13       0.94
+=> passed   256000       0.32       0.35       0.94
 
 Estimated running time (using last 6 measurements)
-     = 1.28e-06 * n^0.99  (R^2 = 1.00)
+     = 6.29e-07 * n^1.04  (R^2 = 1.00)
 
 
 Tests 30-38: Timing decode() with first n character of abab.txt
@@ -1471,18 +1305,18 @@ Tests 30-38: Timing decode() with first n character of abab.txt
 
                  n    student  reference      ratio
 ---------------------------------------------------
-=> passed     1000       0.00       0.00       0.89
-=> passed     2000       0.00       0.00       0.90
-=> passed     4000       0.00       0.00       0.91
-=> passed     8000       0.01       0.01       0.92
-=> passed    16000       0.02       0.02       0.91
-=> passed    32000       0.04       0.04       0.93
-=> passed    64000       0.07       0.08       0.96
-=> passed   128000       0.15       0.18       0.83
-=> passed   256000       0.29       0.30       0.97
+=> passed     1000       0.00       0.00       0.98
+=> passed     2000       0.00       0.00       0.92
+=> passed     4000       0.00       0.01       0.92
+=> passed     8000       0.01       0.01       0.93
+=> passed    16000       0.02       0.02       0.93
+=> passed    32000       0.03       0.04       0.92
+=> passed    64000       0.06       0.06       0.87
+=> passed   128000       0.13       0.15       0.82
+=> passed   256000       0.26       0.29       0.91
 
 Estimated running time (using last 6 measurements)
-     = 9.19e-07 * n^1.02  (R^2 = 1.00)
+     = 1.97e-06 * n^0.94  (R^2 = 1.00)
 
 
 Total: 38/38 tests passed!
@@ -1548,15 +1382,15 @@ Tests  5-17: timing transform() with first n character of dickens.txt
 => passed    16000       0.00       0.01       0.00
 => passed    32000       0.00       0.01       0.00
 => passed    64000       0.00       0.01       0.00
-=> passed   128000       0.00       0.03       0.00
+=> passed   128000       0.00       0.02       0.00
 => passed   256000       0.00       0.04       0.00
 => passed   512000       0.00       0.08       0.00
-=> passed  1024000       0.00       0.17       0.00
-=> passed  2048000       0.00       0.63       0.00
-=> passed  4096000       0.00       1.39       0.00
+=> passed  1024000       0.00       0.16       0.00
+=> passed  2048000       0.00       0.42       0.00
+=> passed  4096000       0.00       0.93       0.00
 
 Estimated running time as a function of n (using last 6 measurements)
-    = 2.29e-07 * n^0.36  (R^2 = 0.35)
+    = 1.00e-07 * n^0.41  (R^2 = 0.47)
 
 
 Tests 18-30: timing transform() with first n character of random.bin
@@ -1564,22 +1398,22 @@ Tests 18-30: timing transform() with first n character of random.bin
 
                  n    student  reference      ratio
 ---------------------------------------------------
-=> passed     1000       0.00       0.00       0.44
+=> passed     1000       0.00       0.00       0.46
 => passed     2000       0.00       0.00       0.08
-=> passed     4000       0.00       0.00       0.04
-=> passed     8000       0.00       0.00       0.03
+=> passed     4000       0.00       0.00       0.03
+=> passed     8000       0.00       0.00       0.05
 => passed    16000       0.00       0.00       0.01
-=> passed    32000       0.00       0.01       0.00
-=> passed    64000       0.00       0.02       0.00
-=> passed   128000       0.00       0.04       0.00
-=> passed   256000       0.00       0.08       0.00
-=> passed   512000       0.00       0.15       0.00
-=> passed  1024000       0.00       0.18       0.00
-=> passed  2048000       0.00       0.51       0.00
-=> passed  4096000       0.00       1.64       0.00
+=> passed    32000       0.00       0.00       0.00
+=> passed    64000       0.00       0.01       0.00
+=> passed   128000       0.00       0.02       0.00
+=> passed   256000       0.00       0.03       0.00
+=> passed   512000       0.00       0.07       0.00
+=> passed  1024000       0.00       0.15       0.00
+=> passed  2048000       0.00       0.46       0.00
+=> passed  4096000       0.00       1.13       0.00
 
 Estimated running time as a function of n (using last 6 measurements)
-    = 1.43e-03 * n^-0.27  (R^2 = 0.84)
+    = 5.13e-06 * n^0.12  (R^2 = 0.19)
 
 
 Tests 31-43: timing transform() with first n character of abab.txt
@@ -1587,16 +1421,122 @@ Tests 31-43: timing transform() with first n character of abab.txt
 
                  n    student  reference      ratio
 ---------------------------------------------------
-=> passed     1000       0.00       0.00       0.12
-=> passed     2000       0.00       0.00       0.04
-=> passed     4000       0.00       0.00       0.07
+=> passed     1000       0.00       0.00       0.13
+=> passed     2000       0.00       0.00       0.05
+=> passed     4000       0.00       0.00       0.03
 => passed     8000       0.00       0.00       0.01
 => passed    16000       0.00       0.00       0.00
-=> passed    32000 
+=> passed    32000       0.00       0.00       0.01
+=> passed    64000       0.00       0.00       0.00
+=> passed   128000       0.00       0.01       0.01
+=> passed   256000       0.00       0.01       0.00
+=> passed   512000       0.00       0.02       0.00
+=> passed  1024000       0.00       0.04       0.00
+=> passed  2048000       0.00       0.08       0.00
+=> passed  4096000       0.00       0.13       0.00
 
-...
+Estimated running time as a function of n (using last 6 measurements)
+    = 2.94e-06 * n^0.14  (R^2 = 0.14)
 
-WARNING: the grading output was truncated due to excessive length.
-Typically, this is because you have a method that has an unanticipated side effect
-(such as printing to standard output or throwing an exception). A large amount of output
-can also arise from failing many tests.
+
+Tests 44-56: timing inverseTransform() with first n character of dickens.txt
+             [ max allowed time = 2 seconds and <= 8x reference ]
+
+                 n    student  reference      ratio
+---------------------------------------------------
+=> passed     1000       0.00       0.00       4.29
+=> passed     2000       0.00       0.00       7.66
+=> passed     4000       0.01       0.00      17.55
+=> passed     8000       0.02       0.00      12.47
+=> passed    16000       0.06       0.00      23.18
+=> FAILED    32000       0.26       0.00     166.80
+=> FAILED    64000       1.19       0.00     397.92
+=> FAILED   128000       5.59       0.00    1403.75
+=> FAILED   256000
+=> FAILED   512000
+=> FAILED  1024000
+=> FAILED  2048000
+=> FAILED  4096000
+
+==> FAILED.   inverseTransform() is possibly n^2 or worse.
+Estimated running time as a function of n (using last 6 measurements)
+    = 1.30e-09 * n^1.86  (R^2 = 0.97)
+
+
+Tests 57-69: timing inverseTransform() with first n character of random.bin
+             [ max allowed time = 2 seconds and <= 8x reference ]
+
+                 n    student  reference      ratio
+---------------------------------------------------
+=> passed     1024       0.00       0.00       5.19
+=> passed     2048       0.00       0.00      31.21
+=> passed     4096       0.01       0.00      58.00
+=> passed     8192       0.02       0.00     118.40
+=> passed    16384       0.08       0.00     225.96
+=> FAILED    32768       0.33       0.00     470.53
+=> FAILED    65536       1.30       0.00     712.75
+=> FAILED   131072       5.33       0.00    1379.27
+=> FAILED   262144
+=> FAILED   524288
+=> FAILED  1048576
+=> FAILED  2097152
+=> FAILED  4194304
+
+==> FAILED.   inverseTransform() is possibly n^2 or worse.
+Estimated running time as a function of n (using last 6 measurements)
+    = 3.38e-10 * n^1.99  (R^2 = 1.00)
+
+
+Tests 70-82: timing inverseTransform() with first n character of abab.txt
+             [ max allowed time = 2 seconds and <= 8x reference ]
+
+                 n    student  reference      ratio
+---------------------------------------------------
+=> passed     1000       0.00       0.00       9.39
+=> passed     2000       0.00       0.00      24.96
+=> passed     4000       0.00       0.00      30.33
+=> passed     8000       0.02       0.00     106.95
+=> passed    16000       0.07       0.00     211.79
+=> FAILED    32000       0.30       0.00     434.09
+=> FAILED    64000       1.18       0.00     529.16
+=> FAILED   128000       4.85       0.00    1810.84
+=> FAILED   256000
+=> FAILED   512000
+=> FAILED  1024000
+=> FAILED  2048000
+=> FAILED  4096000
+
+==> FAILED.   inverseTransform() is possibly n^2 or worse.
+Estimated running time as a function of n (using last 6 measurements)
+    = 3.19e-10 * n^1.99  (R^2 = 1.00)
+
+
+Tests 83-95: timing inverseTransform() with first n character of cyclic.bin
+             [ max allowed time = 2 seconds and <= 8x reference ]
+
+                 n    student  reference      ratio
+---------------------------------------------------
+=> passed     1024       0.00       0.00      12.49
+=> passed     2048       0.00       0.00      20.39
+=> passed     4096       0.00       0.00      41.86
+=> passed     8192       0.01       0.00      82.97
+=> passed    16384       0.06       0.00     146.43
+=> FAILED    32768       0.22       0.00     299.89
+=> FAILED    65536       0.89       0.00     569.58
+=> FAILED   131072       3.57       0.00     893.35
+=> FAILED   262144
+=> FAILED   524288
+=> FAILED  1048576
+=> FAILED  2097152
+=> FAILED  4194304
+
+==> FAILED.   inverseTransform() is possibly n^2 or worse.
+Estimated running time as a function of n (using last 6 measurements)
+    = 2.46e-10 * n^1.98  (R^2 = 1.00)
+
+
+Total: 57/95 tests passed!
+
+
+================================================================
+

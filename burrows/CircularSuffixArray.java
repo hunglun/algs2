@@ -27,10 +27,10 @@ public class CircularSuffixArray {
             this.index = index;
         }
         private int length() {
-            return text.length() - index;
+            return text.length();
         }
         private char charAt(int i) {
-            return text.charAt(index + i);
+            return text.charAt((index + i) % length());
         }
 
         public int compareTo(Suffix that) {
@@ -44,7 +44,7 @@ public class CircularSuffixArray {
         }
 
         public String toString() {
-            return text.substring(index);
+            return text.substring(index) + text.substring(0,index);
         }
     }
 
@@ -70,18 +70,6 @@ public class CircularSuffixArray {
     }
 
 
-    /**
-     * Returns the length of the longest common prefix of the <em>i</em>th
-     * smallest suffix and the <em>i</em>-1st smallest suffix.
-     * @param i an integer between 1 and <em>n</em>-1
-     * @return the length of the longest common prefix of the <em>i</em>th
-     * smallest suffix and the <em>i</em>-1st smallest suffix.
-     * @throws java.lang.IllegalArgumentException unless {@code 1 <= i < n}
-     */
-    public int lcp(int i) {
-        if (i < 1 || i >= suffixes.length) throw new IllegalArgumentException();
-        return lcpSuffix(suffixes[i], suffixes[i-1]);
-    }
 
     // longest common prefix of s and t
     private static int lcpSuffix(Suffix s, Suffix t) {
@@ -92,35 +80,6 @@ public class CircularSuffixArray {
         return n;
     }
 
-    /**
-     * Returns the <em>i</em>th smallest suffix as a string.
-     * @param i the index
-     * @return the <em>i</em> smallest suffix as a string
-     * @throws java.lang.IllegalArgumentException unless {@code 0 <= i < n}
-     */
-    public String select(int i) {
-        if (i < 0 || i >= suffixes.length) throw new IllegalArgumentException();
-        return suffixes[i].toString();
-    }
-
-    /**
-     * Returns the number of suffixes strictly less than the {@code query} string.
-     * We note that {@code rank(select(i))} equals {@code i} for each {@code i}
-     * between 0 and <em>n</em>-1.
-     * @param query the query string
-     * @return the number of suffixes strictly less than {@code query}
-     */
-    public int rank(String query) {
-        int lo = 0, hi = suffixes.length - 1;
-        while (lo <= hi) {
-            int mid = lo + (hi - lo) / 2;
-            int cmp = compare(query, suffixes[mid]);
-            if (cmp < 0) hi = mid - 1;
-            else if (cmp > 0) lo = mid + 1;
-            else return mid;
-        }
-        return lo;
-    }
 
     // compare query string to suffix
     private static int compare(String query, Suffix suffix) {
