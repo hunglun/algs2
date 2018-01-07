@@ -36,7 +36,28 @@ public class MoveToFront {
   }
   
   // apply move-to-front decoding, reading from standard input and writing to standard output
-  public static void decode(){}
+  public static void decode(){
+    A = new char[R];
+    for(char i=0; i<R; i++)
+      A[i]=i;
+    char out = 0;
+    // read one 8-bit char at a time
+    while (!BinaryStdIn.isEmpty()) {
+      char in = BinaryStdIn.readChar();
+      out = A[in];
+     
+      // output the match
+      BinaryStdOut.write((char)out);
+      // shift alphabet
+      for(int i=in;i>0;i--)
+        A[i]=A[i-1];
+      
+      A[0]=out;
+
+    }
+    BinaryStdOut.flush();
+  
+  }
   
   // if args[0] is '-', apply move-to-front encoding
   // if args[0] is '+', apply move-to-front decoding
