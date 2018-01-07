@@ -11,6 +11,7 @@ public class CircularSuffixArray {
      * @param text the input string
      */
     public CircularSuffixArray(String text) {
+	if(text==null) throw new IllegalArgumentException();
         int n = text.length();
         this.suffixes = new Suffix[n];
         for (int i = 0; i < n; i++)
