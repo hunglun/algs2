@@ -1,6 +1,4 @@
-import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdIn;
-
 import edu.princeton.cs.algs4.BinaryStdOut;
 import edu.princeton.cs.algs4.BinaryStdIn;
 import java.util.Arrays;
@@ -10,12 +8,14 @@ import java.util.Arrays;
 public class BurrowsWheeler {
     // apply Burrows-Wheeler transform, reading from standard input and writing to standard output
   public static void transform(){
-    String s = StdIn.readString();
+    
+    String s = StdIn.readAll();
+//    StdOut.println(s);
     CircularSuffixArray sa = new CircularSuffixArray(s);
     for(int i=0;i<sa.length();i++){
       if(sa.index(i) == 0) {
         BinaryStdOut.write(i);
-        BinaryStdOut.flush();
+        
         break;
       }
     }
@@ -23,9 +23,10 @@ public class BurrowsWheeler {
     for(int i=0;i<sa.length();i++){
       index = sa.index(i);
       index = (index == 0) ? sa.length() - 1 : index - 1;
-      StdOut.printf("%c", s.charAt(index));
+      BinaryStdOut.write(s.charAt(index));
+//      StdOut.printf("%c", s.charAt(index));
     }
-
+    BinaryStdOut.flush();
     
   }
 
@@ -37,11 +38,10 @@ public class BurrowsWheeler {
     for(int i=0; i<t.length; i++)
       st[i]=t[i];
     Arrays.sort(st);
-//    StdOut.println();
+//    StdOut.println(first);
 //    for(char c : st) StdOut.printf("%c",c);
 //    StdOut.println(first);
 //    for(char c : t) StdOut.printf("%c",c);
-  
 //    StdOut.println();
     
     boolean marked[] = new boolean[t.length];
@@ -62,11 +62,11 @@ public class BurrowsWheeler {
     int index = first;
     int count = 0;
     while (count < t.length ){
-      StdOut.printf("%c", st[index]);
+      BinaryStdOut.write(st[index]);
       index = next[index];
       count++;
     }
-    
+    BinaryStdOut.flush();
 //    StdOut.println();
   }
 
