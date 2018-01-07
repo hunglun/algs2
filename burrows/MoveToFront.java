@@ -49,7 +49,7 @@ public class MoveToFront {
       out = A[in];
      
       // output the match
-      BinaryStdOut.write((char)out);
+      BinaryStdOut.write(out);
       // shift alphabet
       for(int i=in;i>0;i--)
         A[i]=A[i-1];
