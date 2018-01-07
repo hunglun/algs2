@@ -25,7 +25,26 @@ public class CircularSuffixArray {
     String s = args[0];
     StdOut.println(s);
     CircularSuffixArray csa = new CircularSuffixArray(s);
-    for(int i=0;i<csa.length();i++)
-      StdOut.println(csa.index(i));
+    for(int i=0;i<csa.length();i++){
+	StdOut.printf("%2d ", csa.index(i));
+	for(int j=csa.index(i); j<csa.length();j++){
+	    StdOut.printf("%c",s.charAt(j));
+	}
+	for(int j=0; j<csa.index(i);j++){
+	    StdOut.printf("%c",s.charAt(j));
+	}
+	StdOut.println();
+    }
+    StdOut.println();
+
+    for(int i=0;i<csa.length();i++){
+	StdOut.printf("%2d ", csa.index(i));
+	for(int j=csa.index(i); j<csa.length();j++){
+	    StdOut.printf("%c",s.charAt(j));
+	}
+	StdOut.println();
+    }
+    StdOut.println();
+
   }
 }
