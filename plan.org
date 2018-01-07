@@ -81,7 +81,7 @@
 10. [X] debug
 11. [X] optimise
 
-* TODO solve burrow wheeler[60%]
+* TODO solve burrow wheeler[80%]
 1. [X] Download the directory burrows to your system. It contains some
    sample input files and reference solutions. For convenience,
    burrows-testing.zip contains all of these files bundled together.
@@ -94,7 +94,7 @@
    and space. Then sort this array of indices. It's just like sorting
    an array of references.
 3. [X] Implement the Burrows-Wheeler transform, using the CircularSuffixArray class.
-4. [ ] The Burrows-Wheeler decoding is the trickiest part, but it is
+4. [X] The Burrows-Wheeler decoding is the trickiest part, but it is
    very little code once you understand how it works. (Not including
    declarations and input, our solution is about 10 lines of code.)
    You may find the key-indexed counting algorithm from the string
