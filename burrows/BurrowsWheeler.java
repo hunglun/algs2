@@ -1,5 +1,6 @@
 import edu.princeton.cs.algs4.BinaryStdOut;
 import edu.princeton.cs.algs4.BinaryStdIn;
+import edu.princeton.cs.algs4.BinarySearch;
 import java.util.Arrays;
 // build and run
 // javac-algs4 BurrowsWheeler.java && java-algs4 BurrowsWheeler "-" < abra.txt | java-algs4 edu.princeton.cs.algs4.HexDump 16
@@ -37,9 +38,16 @@ public class BurrowsWheeler {
   public static void inverseTransform(){
     int first = BinaryStdIn.readInt();
     char t[] = BinaryStdIn.readString().toCharArray();
-    char st[] = new char[t.length];
-    for(int i=0; i<t.length; i++)
+    int st[] = new int[t.length];
+
+    int count[] = new int[256];
+    for(int i=0; i<count.length; i++){
+	count[i]=0;
+    }
+    for(int i=0; i<t.length; i++){
       st[i]=t[i];
+    }
+    
     Arrays.sort(st);
 //    StdOut.println(first);
 //    for(char c : st) StdOut.printf("%c",c);
@@ -49,25 +57,32 @@ public class BurrowsWheeler {
     
     boolean marked[] = new boolean[t.length];
     int next[] = new int[t.length];
+
+    char c;
+    int indexST;
+    //    StdOut.println();
     for(int i=0; i<t.length; i++){
-      for(int j=0; j<t.length; j++){
-        if(st[i] == t[j] && marked[j] == false) {
-          next[i]=j;
-          marked[j]=true;
-          break;
-        }
-      }
+	c = t[i];
+	indexST = BinarySearch.indexOf(st,c);
+
+	// move index up
+	while(indexST!=0 && st[indexST-1] == c) indexST--;
+	
+	indexST += count[c];
+	count[c]++;
+	next[indexST] = i;
+	//	StdOut.printf("%d ",indexST);
     }
     
-//    for(int c : next) StdOut.printf("%d ",c);
-    
+    //     for(int ch : next) StdOut.printf("%d ",ch);
+    //    StdOut.println();
     
     int index = first;
-    int count = 0;
-    while (count < t.length ){
-      BinaryStdOut.write(st[index]);
+    int _count = 0;
+    while (_count < t.length ){
+	BinaryStdOut.write((char)st[index]);
       index = next[index];
-      count++;
+      _count++;
     }
     BinaryStdOut.flush();
 //    StdOut.println();
