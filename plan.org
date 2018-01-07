@@ -81,7 +81,7 @@
 10. [X] debug
 11. [X] optimise
 
-* TODO solve burrow wheeler[85%]
+* DONE solve burrow wheeler[100%]
 1. [X] Download the directory burrows to your system. It contains some
    sample input files and reference solutions. For convenience,
    burrows-testing.zip contains all of these files bundled together.
@@ -104,6 +104,6 @@
    are about 10 lines of code each. If yours is significantly longer,
    try to simplify it.
 6. [X] debug
-7. [ ] optimise
+7. [X] optimise
 * TODO understand linear programming
 * TODO understand intractability
