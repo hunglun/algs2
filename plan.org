@@ -81,7 +81,7 @@
 10. [X] debug
 11. [X] optimise
 
-* TODO solve burrow wheeler[80%]
+* TODO solve burrow wheeler[100%]
 1. [X] Download the directory burrows to your system. It contains some
    sample input files and reference solutions. For convenience,
    burrows-testing.zip contains all of these files bundled together.
@@ -99,7 +99,7 @@
    declarations and input, our solution is about 10 lines of code.)
    You may find the key-indexed counting algorithm from the string
    sorting lecture to be useful.
-5. [ ] Implement the move-to-front encoding and decoding
+5. [X] Implement the move-to-front encoding and decoding
    algorithms. Not including comments and declarations, our solutions
    are about 10 lines of code each. If yours is significantly longer,
    try to simplify it.

@@ -1,5 +1,8 @@
 import edu.princeton.cs.algs4.SuffixArray;
 import edu.princeton.cs.algs4.StdOut;
+
+import edu.princeton.cs.algs4.BinaryStdOut;
+import edu.princeton.cs.algs4.BinaryStdIn;
 public class CircularSuffixArray {
   
   private SuffixArray sa;

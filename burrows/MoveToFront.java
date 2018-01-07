@@ -1,4 +1,6 @@
 import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.BinaryStdOut;
+import edu.princeton.cs.algs4.BinaryStdIn;
 public class MoveToFront {
   private static final int R = 256;        // extended ASCII
   private static char A[];
